@@ -1,0 +1,192 @@
+/* ========================================
+   COMMUNITY FIXED LAYOUT - FACEBOOK STYLE
+   ======================================== */
+
+/* Reset và override hoàn toàn layout từ community-components.css */
+.community-container {
+    display: block !important;
+    grid-template-columns: none !important;
+    grid-template-areas: none !important;
+    gap: 0 !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: 100vh !important;
+    position: relative !important;
+    width: 100% !important;
+}
+
+.community-hero {
+    grid-area: unset !important;
+    width: 100% !important;
+    max-width: 1400px !important;
+    margin: 100px auto 32px !important;
+    padding: 48px 20px !important;
+    background: var(--primary-gradient) !important;
+    border-radius: 24px !important;
+    text-align: center !important;
+    color: white !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+}
+
+.main-layout {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+    padding: 0 20px !important;
+    display: flex !important;
+    gap: 24px !important;
+    align-items: flex-start !important;
+    min-height: calc(100vh - 200px) !important;
+}
+
+/* LEFT SIDEBAR - FIXED POSITION */
+.left-sidebar {
+    position: fixed !important;
+    left: calc((100vw - 1400px) / 2 + 20px) !important;
+    top: 100px !important;
+    width: 300px !important;
+    height: calc(100vh - 100px) !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    z-index: 10 !important;
+    background: #f8fafc !important;
+    padding-right: 8px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 24px !important;
+    grid-area: unset !important;
+}
+
+/* MAIN FEED - CENTERED CONTENT */
+.main-feed {
+    flex: 1 !important;
+    max-width: 600px !important;
+    margin: 0 auto !important;
+    position: relative !important;
+    z-index: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 28px !important;
+    grid-area: unset !important;
+}
+
+/* RIGHT SIDEBAR - FIXED POSITION */
+.right-sidebar {
+    position: fixed !important;
+    right: calc((100vw - 1400px) / 2 + 20px) !important;
+    top: 100px !important;
+    width: 300px !important;
+    height: calc(100vh - 100px) !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    z-index: 10 !important;
+    background: #f8fafc !important;
+    padding-left: 8px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 24px !important;
+    grid-area: unset !important;
+}
+
+/* Scrollbar styling cho sidebars */
+.left-sidebar::-webkit-scrollbar,
+.right-sidebar::-webkit-scrollbar {
+    width: 6px !important;
+}
+
+.left-sidebar::-webkit-scrollbar-track,
+.right-sidebar::-webkit-scrollbar-track {
+    background: #f1f5f9 !important;
+    border-radius: 3px !important;
+}
+
+.left-sidebar::-webkit-scrollbar-thumb,
+.right-sidebar::-webkit-scrollbar-thumb {
+    background: #e2e8f0 !important;
+    border-radius: 3px !important;
+}
+
+.left-sidebar::-webkit-scrollbar-thumb:hover,
+.right-sidebar::-webkit-scrollbar-thumb:hover {
+    background: #6366f1 !important;
+}
+
+/* Responsive Design */
+@media (max-width: 1440px) {
+    .left-sidebar {
+        left: 20px !important;
+    }
+    
+    .right-sidebar {
+        right: 20px !important;
+    }
+    
+    .main-layout {
+        max-width: calc(100vw - 680px) !important;
+        margin-left: 340px !important;
+        margin-right: 340px !important;
+    }
+}
+
+@media (max-width: 1200px) {
+    .left-sidebar, .right-sidebar {
+        width: 280px !important;
+    }
+    
+    .left-sidebar {
+        left: 10px !important;
+    }
+    
+    .right-sidebar {
+        right: 10px !important;
+    }
+    
+    .main-layout {
+        max-width: calc(100vw - 600px) !important;
+        margin-left: 300px !important;
+        margin-right: 300px !important;
+    }
+}
+
+@media (max-width: 1024px) {
+    .left-sidebar, .right-sidebar {
+        display: none !important;
+    }
+    
+    .main-layout {
+        max-width: 100% !important;
+        margin: 0 auto !important;
+        padding: 0 20px !important;
+    }
+    
+    .main-feed {
+        max-width: 100% !important;
+    }
+    
+    .community-hero {
+        margin-top: 80px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-layout {
+        padding: 0 16px !important;
+    }
+
+    .community-hero {
+        padding: 32px 16px !important;
+        margin-top: 80px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-layout {
+        padding: 0 12px !important;
+    }
+
+    .community-hero {
+        padding: 24px 12px !important;
+    }
+} 

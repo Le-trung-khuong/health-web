@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cảm ơn bạn đã ủng hộ!</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        .thank-you-container {
+            text-align: center;
+            padding: 50px 20px;
+            max-width: 700px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.07);
+        }
+        .thank-you-container h1 {
+            color: #4CAF50; /* Green for success */
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .thank-you-container p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+        .thank-you-container .donation-summary {
+            border: 1px dashed #ddd;
+            padding: 20px;
+            margin-top: 25px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            text-align: left;
+        }
+        .thank-you-container .donation-summary strong {
+            color: #333;
+        }
+        .thank-you-container .donation-summary p {
+            margin-bottom: 10px;
+        }
+        .thank-you-container .actions a {
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="thank-you-container">
+            <h1>Cảm ơn bạn đã ủng hộ! <i class="fas fa-heart" style="color: #FF6B6B;"></i></h1>
+            <p>Sự đóng góp của bạn vô cùng ý nghĩa và sẽ trực tiếp giúp đỡ dự án <strong id="projectNameThankYou">Dự án ABC</strong>.</p>
+            <p>Một email xác nhận đã được (mô phỏng) gửi đến địa chỉ <strong id="donorEmailThankYou">email@example.com</strong>.</p>
+            
+            <div class="donation-summary">
+                <h3 style="text-align: center; margin-bottom: 15px;">Thông tin đóng góp:</h3>
+                <p><strong>Dự án:</strong> <span id="summaryProjectName">Dự án ABC</span></p>
+                <p><strong>Mã đơn hàng:</strong> <span id="summaryOrderId">N/A</span></p>
+                <p><strong>Số tiền ủng hộ (Tổng cộng):</strong> <span id="summaryAmount">0</span> VNĐ</p>
+                <p><strong>Phương thức thanh toán:</strong> <span id="summaryMethod">Chưa xác định</span></p>
+                <p style="font-size: 0.9em; text-align: center; margin-top: 15px; color: #555;"><em>(Đây là thông tin mô phỏng cho mục đích demo)</em></p>
+            </div>
+
+            <p>Bạn có thể xem báo cáo chi tiết của dự án (khi có) hoặc quay lại trang chủ để khám phá các dự án khác.</p>
+            <div class="actions mt-3">
+                <a href="project-detail-completed.html" class="btn btn-secondary">Xem báo cáo dự án (Mẫu)</a>
+                <a href="#" id="backToRegionBtn" class="btn btn-primary">Quay lại Trang Chủ</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const params     = new URLSearchParams(window.location.search);
+  const region     = params.get('region') || '';
+  const rawProject = params.get('project') || '';
+  const projectName = rawProject
+    ? decodeURIComponent(rawProject)
+    : 'Dự án bạn vừa ủng hộ';
+
+  // Cập nhật tên dự án
+  document.getElementById('projectNameThankYou').textContent = projectName;
+  document.getElementById('summaryProjectName').textContent  = projectName;
+
+  // Cập nhật các thông tin khác
+  const donorEmail = params.get('email')   || '';
+  const amount     = params.get('amount')  || '0';
+  const methodRaw  = params.get('method')  || '';
+  const orderId    = params.get('orderId')|| '';
+
+  document.getElementById('donorEmailThankYou').textContent = donorEmail;
+  document.getElementById('summaryAmount').textContent      =
+    new Intl.NumberFormat('vi-VN').format(amount);
+  document.getElementById('summaryMethod').textContent      =
+    methodRaw
+      ? methodRaw.charAt(0).toUpperCase() + methodRaw.slice(1)
+      : 'Chưa xác định';
+  document.getElementById('summaryOrderId').textContent     = orderId;
+
+  // Cập nhật nút Quay lại
+  const backBtn = document.getElementById('backToRegionBtn');
+  if (region && backBtn) {
+    // vùng nằm trong thư mục regions
+    backBtn.href = `regions/${region}.html?region=${region}`;
+  }
+});
+</script>
+</body>
+</html>

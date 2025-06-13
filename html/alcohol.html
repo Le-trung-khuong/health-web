@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rượu Bia - Tác Hại & Phòng Chống | Vì Cộng Đồng Khỏe Mạnh</title>
+    <meta name="description" content="Khám phá thông tin toàn diện về rượu bia, tác hại, cách phòng tránh và hỗ trợ cai nghiện. Trung tâm kiến thức về phòng chống lạm dụng rượu bia vì cộng đồng khỏe mạnh.">
+    <meta name="keywords" content="rượu bia, tác hại rượu bia, cai nghiện rượu, lạm dụng rượu bia, phòng chống rượu bia, sức khỏe cộng đồng">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/alcohol_modal.css">
+    <link rel="stylesheet" href="../css/alcohol_page.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <style>
+        /* Custom styles for alcohol page */
+        .hero-alcohol {
+            position: relative;
+            background: url('https://images.unsplash.com/photo-1581873372796-635b67ca2008?q=80&w=1740&auto=format&fit=crop') no-repeat center center;
+            background-size: cover;
+            padding: 160px 0 100px;
+            color: white;
+            overflow: hidden;
+        }
+        
+        .hero-alcohol::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 100%);
+            z-index: 1;
+        }
+        
+        .hero-alcohol .container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-title-gradient {
+            background: linear-gradient(45deg, #f39c12, #e74c3c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        
+        .hero-warning {
+            display: inline-block;
+            padding: 10px 20px;
+            background: rgba(231, 76, 60, 0.2);
+            border: 1px solid rgba(231, 76, 60, 0.4);
+            border-radius: 8px;
+            margin-top: 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(231, 76, 60, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(231, 76, 60, 0);
+            }
+        }
+        
+        .bubbles-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 70%, transparent 100%);
+            border-radius: 50%;
+            animation: bubble 15s infinite ease-in;
+            opacity: 0;
+        }
+        
+        @keyframes bubble {
+            0% {
+                transform: translateY(0) scale(0);
+                opacity: 0;
+            }
+            5% {
+                opacity: 0.8;
+            }
+            95% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(-2000px) scale(2);
+                opacity: 0;
+            }
+        }
+        
+        .info-card {
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .info-card .card-img-top {
+            height: 200px;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .info-card:hover .card-img-top {
+            transform: scale(1.1);
+        }
+        
+        .info-card .card-title {
+            font-weight: 700;
+            color: #333;
+            border-bottom: 2px solid #f39c12;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        
+        .info-card .card-footer {
+            background-color: white;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .btn {
+            border-radius: 30px;
+            padding: 10px 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .stats-counter {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: -50px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .counter-item {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .counter-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #f39c12;
+            margin-bottom: 10px;
+        }
+        
+        .counter-label {
+            color: #555;
+            font-weight: 500;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #f39c12;
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #e67e22;
+        }
+    </style>
+</head>
+<body>
+    <header id="main-header">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html"> 
+                    <i class="fas fa-shield-heart"></i> Vì Cộng Đồng Khỏe Mạnh
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMainInfo">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarMainInfo">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html#hero">Trang Chủ</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Thông Tin
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="information.html">Ma Túy</a></li>
+                                <li><a class="dropdown-item" href="gambling.html">Cờ Bạc</a></li>
+                                <li><a class="dropdown-item" href="prostitution.html">Mại Dâm</a></li>
+                                <li><a class="dropdown-item active" href="alcohol.html">Rượu Bia</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="all-issues.html">Tất Cả Tệ Nạn</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="index.html#mission">Mục Tiêu Dự Án</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.html#hope-stories">Câu Chuyện Hy Vọng</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.html#support-resources">Hỗ Trợ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.html#contact-footer">Liên Hệ</a></li>
+                        <li class="nav-item">
+                            <button id="theme-toggle" class="btn btn-sm" aria-label="Chuyển chế độ Sáng hoặc Tối">
+                                <i class="fas fa-moon"></i>
+                            </button>
+                        </li>
+                         <li class="nav-item nav-loggedOut"><a class="nav-link" href="login.html">Đăng Nhập</a></li>
+                        <!-- Các mục khi đã đăng nhập (ví dụ) -->
+                        <li class="nav-item nav-loggedIn d-none"><a class="nav-link" href="#" id="logoutButtonInfo">Đăng Xuất</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section with Dynamic Bubbles -->
+        <section class="hero-alcohol">
+            <!-- Bubbles Animation -->
+            <div class="bubbles-container">
+                <div class="bubble" style="width: 30px; height: 30px; left: 10%; animation-duration: 15s; animation-delay: 0s;"></div>
+                <div class="bubble" style="width: 20px; height: 20px; left: 20%; animation-duration: 12s; animation-delay: 1s;"></div>
+                <div class="bubble" style="width: 25px; height: 25px; left: 35%; animation-duration: 14s; animation-delay: 2s;"></div>
+                <div class="bubble" style="width: 15px; height: 15px; left: 50%; animation-duration: 10s; animation-delay: 0.5s;"></div>
+                <div class="bubble" style="width: 30px; height: 30px; left: 65%; animation-duration: 13s; animation-delay: 1.5s;"></div>
+                <div class="bubble" style="width: 20px; height: 20px; left: 80%; animation-duration: 11s; animation-delay: 2.5s;"></div>
+                <div class="bubble" style="width: 35px; height: 35px; left: 90%; animation-duration: 16s; animation-delay: 0.5s;"></div>
+            </div>
+            
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h1 class="hero-title-gradient" data-aos="fade-up">Rượu Bia & Tác Hại</h1>
+                        <h2 class="hero-subtitle" data-aos="fade-up" data-aos-delay="100">Hiểu rõ để phòng tránh và xây dựng cộng đồng khỏe mạnh</h2>
+                        <p class="lead" data-aos="fade-up" data-aos-delay="200">
+                            Khám phá thông tin toàn diện về tác hại của lạm dụng rượu bia, cách phòng tránh, và các nguồn lực hỗ trợ. Cùng nhau xây dựng một cộng đồng không bị đe dọa bởi tác hại của rượu bia.
+                        </p>
+                        <div class="d-flex gap-3 mt-4" data-aos="fade-up" data-aos-delay="300">
+                            <a href="#harm" class="btn btn-danger"><i class="fas fa-exclamation-triangle me-2"></i>Tác Hại</a>
+                            <a href="#solutions" class="btn btn-success"><i class="fas fa-hands-helping me-2"></i>Giải Pháp</a>
+                            <a href="#abuse" class="btn btn-warning text-dark"><i class="fas fa-info-circle me-2"></i>Tìm Hiểu</a>
+                        </div>
+                        <div class="hero-warning" data-aos="fade-up" data-aos-delay="400">
+                            <i class="fas fa-exclamation-triangle me-2"></i> Nội dung chỉ mang tính chất giáo dục về tác hại của lạm dụng rượu bia
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Statistics Counter Section -->
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="stats-counter" data-aos="fade-up">
+                        <div class="row">
+                            <div class="col-md-3 counter-item">
+                                <div class="counter-value" data-count="38">0</div>
+                                <div class="counter-label">% người Việt uống quá mức</div>
+                            </div>
+                            <div class="col-md-3 counter-item">
+                                <div class="counter-value" data-count="8.3">0</div>
+                                <div class="counter-label">% dân số mắc bệnh liên quan</div>
+                            </div>
+                            <div class="col-md-3 counter-item">
+                                <div class="counter-value" data-count="40">0</div>
+                                <div class="counter-label">% tai nạn giao thông do rượu bia</div>
+                            </div>
+                            <div class="col-md-3 counter-item">
+                                <div class="counter-value" data-count="65">0</div>
+                                <div class="counter-label">% bạo lực gia đình liên quan</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Information Section -->
+        <section id="all-information" class="py-5 mt-4">
+            <div class="container">
+                <div class="section-header text-center mb-5" data-aos="fade-up">
+                    <h2 class="display-5 fw-bold">Kiến Thức Toàn Diện Về Rượu Bia</h2>
+                    <p class="lead">Hiểu rõ tác hại, cách phòng tránh và tìm kiếm sự giúp đỡ liên quan đến lạm dụng rượu bia.</p>
+                </div>
+
+                <!-- Interactive Risk Meter -->
+                <div class="risk-meter-container bg-white p-4 rounded shadow mb-5" data-aos="fade-up">
+                    <h3 class="text-center mb-4"><i class="fas fa-wine-glass glass-icon"></i> Đo Lường Mức Độ Rủi Ro</h3>
+                    
+                    <div class="row align-items-center">
+                        <div class="col-lg-8">
+                            <p>Chọn loại đồ uống để xem mức độ rủi ro sức khỏe tương ứng:</p>
+                            
+                            <div class="drink-options d-flex justify-content-around mb-4">
+                                <div class="drink-option active" data-risk="10">
+                                    <div class="drink-icon"><i class="fas fa-beer"></i></div>
+                                    <div class="drink-name">Bia</div>
+                                </div>
+                                <div class="drink-option" data-risk="25">
+                                    <div class="drink-icon"><i class="fas fa-wine-glass-alt"></i></div>
+                                    <div class="drink-name">Rượu vang</div>
+                                </div>
+                                <div class="drink-option" data-risk="60">
+                                    <div class="drink-icon"><i class="fas fa-glass-whiskey"></i></div>
+                                    <div class="drink-name">Rượu mạnh</div>
+                                </div>
+                                <div class="drink-option" data-risk="80">
+                                    <div class="drink-icon"><i class="fas fa-wine-bottle"></i></div>
+                                    <div class="drink-name">Rượu ngâm</div>
+                                </div>
+                            </div>
+                            
+                            <div class="risk-meter">
+                                <div class="risk-indicator" style="left: 10%"></div>
+                            </div>
+                            
+                            <div class="risk-levels d-flex justify-content-between mb-3">
+                                <div class="risk-level">Thấp</div>
+                                <div class="risk-level">Trung bình</div>
+                                <div class="risk-level">Cao</div>
+                            </div>
+                            
+                            <div class="drink-info p-3 bg-light rounded">
+                                <p class="mb-1"><strong>Mức độ rủi ro: 10%</strong></p>
+                                <p class="mb-1">Bia có độ cồn tương đối thấp (4-6%), nhưng uống nhiều vẫn gây tác hại đáng kể đến sức khỏe, đặc biệt là gan và tim mạch.</p>
+                                <p class="mb-0"><strong>Khuyến nghị:</strong> Nên giới hạn ở mức không quá 1-2 lon mỗi ngày và không uống hàng ngày.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-4">
+                            <div class="liquid-container">
+                                <div class="liquid-fill" style="height: 10%"></div>
+                                <div class="liquid-label">10%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filter Section -->
+                <div class="row mb-4 gy-3 gx-2 justify-content-center align-items-end p-4 bg-light rounded" data-aos="fade-up">
+                    <div class="col-md-3">
+                        <label for="filter-alcohol-category" class="form-label">Danh mục</label>
+                        <select class="form-select" id="filter-alcohol-category" aria-label="Lọc theo danh mục rượu bia">
+                            <option selected value="">Tất cả danh mục</option>
+                            <option value="lam-dung">Lạm dụng & Nghiện</option>
+                            <option value="tac-hai">Tác hại</option>
+                            <option value="phong-chong">Phòng chống</option>
+                            <option value="giai-phap">Giải pháp & Hỗ trợ</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="filter-alcohol-topic" class="form-label">Chủ đề</label>
+                        <select class="form-select" id="filter-alcohol-topic" aria-label="Lọc theo chủ đề rượu bia">
+                            <option selected value="">Tất cả chủ đề</option>
+                            <option value="kien-thuc-chung">Kiến thức chung</option>
+                            <option value="suc-khoe">Sức khỏe</option>
+                            <option value="gia-dinh-xa-hoi">Gia đình & Xã hội</option>
+                            <option value="thanh-thieu-nien">Thanh thiếu niên</option>
+                            <option value="phap-luat">Pháp luật</option>
+                            <option value="ho-tro">Hỗ trợ & Cai nghiện</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="search-info" class="form-label">Tìm kiếm</label>
+                        <input type="text" class="form-control" id="search-info" placeholder="Nhập từ khóa...">
+                    </div>
+                    <div class="col-md-auto">
+                         <button class="btn btn-primary w-100" type="button" onclick="applyFilters()"><i class="fas fa-search me-2"></i>Lọc</button>
+                    </div>
+                </div>
+
+                <!-- Information Cards -->
+                <div class="row g-4" id="info-list-container">
+                    <!-- Card 1: Khái Niệm Lạm Dụng Rượu Bia -->
+                    <div class="col-md-4 info-item" data-alcohol-category="lam-dung" data-alcohol-topic="kien-thuc-chung" id="abuse" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card info-card h-100">
+                            <div class="position-relative overflow-hidden">
+                                <img src="https://media.istockphoto.com/id/1448387216/vi/vec-to/h%C3%ACnh-minh-h%E1%BB%8Da-ng%C6%B0%E1%BB%9Di-%C4%91%C3%A0n-%C3%B4ng-b%E1%BB%8B-giam-c%E1%BA%A7m-trong-chai-r%C6%B0%E1%BB%A3u-kh%C3%A1i-ni%E1%BB%87m-tr%E1%BB%ABu-t%C6%B0%E1%BB%A3ng-nghi%E1%BB%87n-si%C3%AAu-th%E1%BB%B1c.jpg?s=612x612&w=0&k=20&c=V8u_AHs309664N5p0uhsFOfzBgmdyymCU-BKU6B086Y=" class="card-img-top" alt="Khái niệm lạm dụng rượu bia">
+                                <div class="position-absolute top-0 end-0 m-2">
+                                    <span class="badge bg-danger">Lạm dụng</span>
+                                </div>
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Khái Niệm Lạm Dụng Rượu Bia</h5>
+                                <p class="card-text text-muted">Tìm hiểu về định nghĩa lạm dụng rượu bia, mức độ sử dụng nguy hiểm và sự khác biệt với nghiện rượu.</p>
+                                <a href="#" onclick="showToast('Chi tiết về khái niệm lạm dụng rượu bia đang được cập nhật.', 'info')" class="btn btn-primary mt-auto"><i class="fas fa-book-open me-2"></i>Đọc Thêm</a>
+                            </div>
+                            <div class="card-footer text-muted d-flex justify-content-between">
+                                <span><i class="fas fa-wine-glass-alt me-1"></i> Mức độ sử dụng</span>
+                                <span><i class="fas fa-question-circle text-info me-1"></i> Kiến thức</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 2: Dấu Hiệu Nhận Biết Nghiện Rượu -->
+                    <div class="col-md-4 info-item" data-alcohol-category="lam-dung" data-alcohol-topic="kien-thuc-chung" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card info-card h-100">
+                            <div class="position-relative overflow-hidden">
+                                <img src="https://i.redd.it/d4gu7s5r28u71.jpg" class="card-img-top" alt="Dấu hiệu nghiện rượu">
+                                <div class="position-absolute top-0 end-0 m-2">
+                                    <span class="badge bg-warning text-dark">Nghiện</span>
+                                </div>
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Dấu Hiệu Nhận Biết Nghiện Rượu</h5>
+                                <p class="card-text text-muted">Các dấu hiệu về hành vi, thể chất và tâm lý giúp nhận biết sớm một người có thể đang nghiện rượu.</p>
+                                 <a href="#" onclick="showToast('Thông tin về dấu hiệu nghiện rượu đang được cập nhật.', 'info')" class="btn btn-warning mt-auto text-dark"><i class="fas fa-eye me-2"></i>Nhận Biết</a>
+                            </div>
+                             <div class="card-footer text-muted d-flex justify-content-between">
+                                <span><i class="fas fa-user-md me-1"></i> Triệu chứng</span>
+                                <span><i class="fas fa-exclamation-triangle text-danger me-1"></i> Cảnh báo sớm</span>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <!-- Card 3: Tác Hại Của Rượu Bia Lên Gan -->
+                    <div class="col-md-4 info-item" data-alcohol-category="tac-hai" data-alcohol-topic="suc-khoe" id="harm" data-aos="fade-up" data-aos-delay="300">
+                         <div class="card info-card h-100">
+                            <div class="position-relative overflow-hidden">
+                                <img src="https://www.vinmec.com/static/uploads/20191128_092924_631465_bia_ruou_hai_viem_g_max_1800x1800_jpg_1dfb11af6d.jpg" class="card-img-top" alt="Tác hại của rượu bia lên gan">
+                                <div class="position-absolute top-0 end-0 m-2">
+                                    <span class="badge bg-danger">Tác hại</span>
+                                </div>
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Tác Hại Của Rượu Bia Lên Gan</h5>
+                                <p class="card-text text-muted">Rượu bia gây tổn thương gan như thế nào: gan nhiễm mỡ, viêm gan do rượu, xơ gan và ung thư gan.</p>
+                                 <a href="#" onclick="showToast('Thông tin chi tiết về tác hại lên gan đang được cập nhật.', 'info')" class="btn btn-danger mt-auto"><i class="fas fa-procedures me-2"></i>Tìm Hiểu Sâu</a>
+                            </div>
+                             <div class="card-footer text-muted d-flex justify-content-between">
+                                <span><i class="fas fa-disease me-1"></i> Xơ gan</span>
+                                <span><i class="fas fa-heartbeat me-1"></i> Sức khỏe</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Rượu Bia và Sức Khỏe Tâm Thần -->
+                    <div class="col-md-4 info-item" data-alcohol-category="tac-hai" data-alcohol-topic="suc-khoe" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card info-card h-100">
+                            <div class="position-relative overflow-hidden">
+                                <img src="https://bvtamthannghean.gov.vn/uploads/news/2023_10/k5-2.jpg" class="card-img-top" alt="Rượu bia và sức khỏe tâm thần">
+                                <div class="position-absolute top-0 end-0 m-2">
+                                    <span class="badge bg-danger">Tác hại</span>
+                                </div>
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Rượu Bia và Sức Khỏe Tâm Thần</h5>
+                                <p class="card-text text-muted">Mối liên hệ giữa lạm dụng rượu bia và các vấn đề tâm thần như trầm cảm, lo âu, rối loạn giấc ngủ.</p>
+                                <a href="#" onclick="showToast('Chi tiết về tác động tâm thần của rượu bia đang được cập nhật.', 'info')" class="btn btn-danger mt-auto"><i class="fas fa-brain me-2"></i>Ảnh Hưởng Tâm Lý</a>
+                            </div>
+                            <div class="card-footer text-muted d-flex justify-content-between">
+                                <span><i class="fas fa-sad-tear me-1"></i> Trầm cảm</span>
+                                <span><i class="fas fa-moon me-1"></i> Mất ngủ</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 5: Ảnh Hưởng Của Rượu Bia Đến Gia Đình -->
+                    <div class="col-md-4 info-item" data-alcohol-category="tac-hai" data-alcohol-topic="gia-dinh-xa-hoi" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card info-card h-100">
+                            <div class="position-relative overflow-hidden">
+                                <img src="https://media.istockphoto.com/id/1428087260/vi/anh/nghi%E1%BB%87n-r%C6%B0%E1%BB%A3u-ho%E1%BA%B7c-kh%C3%A1i-ni%E1%BB%87m-nghi%E1%BB%87n-r%C6%B0%E1%BB%A3u-c%E1%BA%ADn-c%E1%BA%A3nh-ch%C3%A0ng-trai-tr%E1%BA%BB-ch%C3%A2u-%C3%A1-c%E1%BA%A3m-th%E1%BA%A5y-ch%C3%A1n-n%E1%BA%A3n-khi.jpg?s=612x612&w=0&k=20&c=QNJEkVJiCj629gmjz0ufYIG9S_8pQwx21MEbqxCGedg=" class="card-img-top" alt="Ảnh hưởng của rượu bia đến gia đình">
+                                <div class="position-absolute top-0 end-0 m-2">
+                                    <span class="badge bg-info text-white">Xã hội</span>
+                                </div>
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Ảnh Hưởng Của Rượu Bia Đến Gia Đình</h5>
+                                <p class="card-text text-muted">Lạm dụng rượu bia gây ra bạo lực gia đình, ly hôn, khó khăn tài chính và ảnh hưởng tiêu cực đến con cái.</p>
+                                <a href="#" onclick="showToast('Thông tin về ảnh hưởng gia đình đang được cập nhật.', 'info')" class="btn btn-info mt-auto text-white"><i class="fas fa-users-slash me-2"></i>Tác Động Xã Hội</a>
+                            </div>
+                            <div class="card-footer text-muted d-flex justify-content-between">
+                                <span><i class="fas fa-home me-1"></i> Gia đình</span>
+                                <span><i class="fas fa-child me-1"></i> Trẻ em</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 6: Rượu Bia và Nguy Cơ Tai Nạn Giao Thông -->
+                    <div class="col-md-4 info-item" data-alcohol-category="tac-hai" data-alcohol-topic="gia-dinh-xa-hoi" data-aos="fade-up" data-aos-delay="300">
+                        <div class="card info-card h-100">
+                            <div class="position-relative overflow-hidden">
+                                <img src="https://suckhoedoisong.qltns.mediacdn.vn/zoom/600_315/Images/thaibinh/2020/01/03/sau-khi-uong-ruou-bia-bao-nhieu-lau-thi-lai-xe-khong-bi-phat1578022326.jpg" class="card-img-top" alt="Rượu bia và tai nạn giao thông">
+                                <div class="position-absolute top-0 end-0 m-2">
+                                    <span class="badge bg-danger">Tác hại</span>
+                                </div>
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Rượu Bia và Nguy Cơ Tai Nạn Giao Thông</h5>
+                                <p class="card-text text-muted">Tác động của rượu bia đến khả năng lái xe và hậu quả nghiêm trọng của tai nạn giao thông do rượu bia.</p>
+                                <a href="#" onclick="showToast('Thông tin về rượu bia và tai nạn đang được cập nhật.', 'info')" class="btn btn-danger mt-auto"><i class="fas fa-car-crash me-2"></i>An Toàn Giao Thông</a>
+                            </div>
+                            <div class="card-footer text-muted d-flex justify-content-between">
+                                <span><i class="fas fa-car me-1"></i> Lái xe</span>
+                                <span><i class="fas fa-exclamation-triangle text-danger me-1"></i> Nguy hiểm</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 7: Phòng Chống Lạm Dụng Rượu Bia Ở Thanh Thiếu Niên -->
+                    <div class="col-md-4 info-item" data-alcohol-category="phong-chong" data-alcohol-topic="thanh-thieu-nien" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card info-card h-100">
+                            <div class="position-relative overflow-hidden">
+                                <img src="https://mtcs.1cdn.vn/2024/02/05/dip-tet-uong-ruou-bia-the-nao-de-it-gay-hai-nhat-cho-co-the-666.jpg" class="card-img-top" alt="Phòng chống lạm dụng rượu bia ở thanh thiếu niên">
+                                <div class="position-absolute top-0 end-0 m-2">
+                                    <span class="badge bg-success">Phòng chống</span>
+                                </div>
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Phòng Chống Lạm Dụng Ở Thanh Thiếu Niên</h5>
+                                <p class="card-text text-muted">Vai trò của gia đình, nhà trường và xã hội trong việc giáo dục và ngăn ngừa thanh thiếu niên sử dụng rượu bia.</p>
+                                <a href="#" onclick="showToast('Thông tin về phòng chống cho thanh thiếu niên đang được cập nhật.', 'info')" class="btn btn-success mt-auto"><i class="fas fa-user-shield me-2"></i>Bảo Vệ Giới Trẻ</a>
+                            </div>
+                            <div class="card-footer text-muted d-flex justify-content-between">
+                                <span><i class="fas fa-school me-1"></i> Nhà trường</span>
+                                <span><i class="fas fa-child me-1"></i> Thanh thiếu niên</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 8: Luật Phòng Chống Tác Hại Của Rượu Bia -->
+                    <div class="col-md-4 info-item" data-alcohol-category="giai-phap" data-alcohol-topic="phap-luat" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card info-card h-100">
+                            <div class="position-relative overflow-hidden">
+                                <img src="https://media.istockphoto.com/id/2009359107/vi/anh/thang-%C4%91o-c%C3%B4ng-l%C3%BD-v%C3%A0-b%C3%BAa-b%C3%BAa-b%C3%BAa-c%E1%BB%A7a-th%E1%BA%A9m-ph%C3%A1n-nh%C6%B0-m%E1%BB%99t-bi%E1%BB%83u-t%C6%B0%E1%BB%A3ng-c%E1%BB%A7a-lu%E1%BA%ADt-ph%C3%A1p-v%C3%A0-tr%E1%BA%ADt-t%E1%BB%B1.jpg?s=612x612&w=0&k=20&c=swTTXi1pdETFT9F9EFa-4p-BEkUq7H8N3W-1aRno9HU=" class="card-img-top" alt="Luật phòng chống tác hại rượu bia">
+                                <div class="position-absolute top-0 end-0 m-2">
+                                    <span class="badge bg-secondary">Pháp luật</span>
+                                </div>
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Luật Phòng Chống Tác Hại Của Rượu Bia</h5>
+                                <p class="card-text text-muted">Các quy định pháp luật hiện hành về sản xuất, kinh doanh, quảng cáo và sử dụng rượu bia tại Việt Nam.</p>
+                                <a href="#" onclick="showToast('Thông tin pháp luật về rượu bia đang được cập nhật.', 'info')" class="btn btn-secondary mt-auto"><i class="fas fa-gavel me-2"></i>Tìm Hiểu Luật</a>
+                            </div>
+                            <div class="card-footer text-muted d-flex justify-content-between">
+                                <span><i class="fas fa-balance-scale me-1"></i> Quy định</span>
+                                <span><i class="fas fa-book-reader me-1"></i> Điều luật</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 9: Hỗ Trợ Cai Nghiện Rượu Bia -->
+                    <div class="col-md-4 info-item" data-alcohol-category="giai-phap" data-alcohol-topic="ho-tro" id="solutions" data-aos="fade-up" data-aos-delay="300">
+                        <div class="card info-card h-100">
+                            <div class="position-relative overflow-hidden">
+                                <img src="https://cdn.pixabay.com/photo/2017/02/16/08/45/bless-you-2070774_1280.jpg" class="card-img-top" alt="Hỗ trợ cai nghiện rượu bia">
+                                <div class="position-absolute top-0 end-0 m-2">
+                                    <span class="badge bg-success">Giải pháp</span>
+                                </div>
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Hỗ Trợ Cai Nghiện Rượu Bia</h5>
+                                <p class="card-text text-muted">Các phương pháp điều trị, tư vấn tâm lý, nhóm hỗ trợ và địa chỉ uy tín giúp người nghiện rượu vượt qua khó khăn.</p>
+                                <a href="index.html#support-resources" class="btn btn-success mt-auto"><i class="fas fa-hands-helping me-2"></i>Tìm Nơi Hỗ Trợ</a>
+                            </div>
+                            <div class="card-footer text-muted d-flex justify-content-between">
+                                <span><i class="fas fa-clinic-medical me-1"></i> Trung tâm</span>
+                                <span><i class="fas fa-user-friends me-1"></i> Nhóm hỗ trợ</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 text-center mt-3 d-none" id="no-info-message">
+                        <p class="lead">Không tìm thấy thông tin phù hợp với lựa chọn của bạn.</p>
+                    </div>
+                </div>
+
+                <!-- No pagination needed for now -->
+            </div>
+        </section>
+        
+        <!-- Types of Alcohol Section -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <div class="section-header text-center mb-5" data-aos="fade-up">
+                    <h2 class="display-5 fw-bold">Các Loại Rượu Bia Phổ Biến</h2>
+                    <p class="lead">Tìm hiểu về các loại đồ uống có cồn và tác động của chúng đối với sức khỏe</p>
+                </div>
+                
+                <div class="row g-4">
+                    <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="alcohol-type-card h-100">
+                            <div class="type-icon"><i class="fas fa-beer"></i></div>
+                            <h4 class="type-name">Bia</h4>
+                            <p class="type-content">Đồ uống có cồn được sản xuất từ quá trình lên men của các loại ngũ cốc, chủ yếu là lúa mạch.</p>
+                            <div class="alcohol-content">Nồng độ cồn: 4-6%</div>
+                            <div class="type-examples-container">
+                                <div class="type-examples-label">Ví dụ:</div>
+                                <div class="type-examples">
+                                    <span class="type-example">Bia hơi</span>
+                                    <span class="type-example">Bia chai</span>
+                                    <span class="type-example">Bia lon</span>
+                                    <span class="type-example">Bia thủ công</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="alcohol-type-card h-100">
+                            <div class="type-icon"><i class="fas fa-wine-glass-alt"></i></div>
+                            <h4 class="type-name">Rượu vang</h4>
+                            <p class="type-content">Được sản xuất từ nho lên men, có nhiều loại khác nhau như vang đỏ, vang trắng, vang hồng.</p>
+                            <div class="alcohol-content">Nồng độ cồn: 8-15%</div>
+                            <div class="type-examples-container">
+                                <div class="type-examples-label">Ví dụ:</div>
+                                <div class="type-examples">
+                                    <span class="type-example">Vang đỏ</span>
+                                    <span class="type-example">Vang trắng</span>
+                                    <span class="type-example">Vang hồng</span>
+                                    <span class="type-example">Vang nổ</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                        <div class="alcohol-type-card h-100">
+                            <div class="type-icon"><i class="fas fa-glass-whiskey"></i></div>
+                            <h4 class="type-name">Rượu mạnh</h4>
+                            <p class="type-content">Đồ uống có hàm lượng cồn cao, thường được chưng cất và ủ trong thời gian dài.</p>
+                            <div class="alcohol-content">Nồng độ cồn: 15-60%</div>
+                            <div class="type-examples-container">
+                                <div class="type-examples-label">Ví dụ:</div>
+                                <div class="type-examples">
+                                    <span class="type-example">Vodka</span>
+                                    <span class="type-example">Whisky</span>
+                                    <span class="type-example">Cognac</span>
+                                    <span class="type-example">Rượu đế</span>
+                                    <span class="type-example">Rượu nếp</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                        <div class="alcohol-type-card h-100">
+                            <div class="type-icon"><i class="fas fa-wine-bottle"></i></div>
+                            <h4 class="type-name">Rượu truyền thống</h4>
+                            <p class="type-content">Các loại rượu được sản xuất theo phương pháp truyền thống của Việt Nam.</p>
+                            <div class="alcohol-content">Nồng độ cồn: 20-55%</div>
+                            <div class="type-examples-container">
+                                <div class="type-examples-label">Ví dụ:</div>
+                                <div class="type-examples">
+                                    <span class="type-example">Rượu cần</span>
+                                    <span class="type-example">Rượu làng</span>
+                                    <span class="type-example">Rượu ngâm</span>
+                                    <span class="type-example">Rượu thuốc</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Myths vs Facts Section -->
+        <section class="py-5">
+            <div class="container">
+                <div class="section-header text-center mb-5" data-aos="fade-up">
+                    <h2 class="display-5 fw-bold">Hiểu Đúng Về Rượu Bia</h2>
+                    <p class="lead">Phân biệt giữa các quan niệm sai lầm và sự thật về rượu bia</p>
+                </div>
+                
+                <div class="row g-4">
+                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="myth-fact-card">
+                            <div class="myth-fact-icon"><i class="fas fa-cocktail"></i></div>
+                            <div class="myth-content">
+                                <div class="myth-header">Quan niệm sai lầm</div>
+                                <p>Pha rượu với nước ngọt làm giảm tác hại của rượu.</p>
+                            </div>
+                            <div class="fact-content">
+                                <div class="fact-header">Sự thật</div>
+                                <p>Pha với nước ngọt chỉ làm rượu dễ uống hơn nhưng không làm giảm lượng cồn đi vào cơ thể. Trên thực tế, đường trong nước ngọt có thể làm tăng hấp thu cồn nhanh hơn.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="myth-fact-card">
+                            <div class="myth-fact-icon"><i class="fas fa-coffee"></i></div>
+                            <div class="myth-content">
+                                <div class="myth-header">Quan niệm sai lầm</div>
+                                <p>Cà phê giúp tỉnh táo sau khi uống rượu.</p>
+                            </div>
+                            <div class="fact-content">
+                                <div class="fact-header">Sự thật</div>
+                                <p>Cà phê không thể đẩy nhanh quá trình phân hủy cồn trong cơ thể. Caffeine chỉ làm bạn tỉnh táo tạm thời nhưng không giảm nồng độ cồn trong máu.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+                        <div class="myth-fact-card">
+                            <div class="myth-fact-icon"><i class="fas fa-beer"></i></div>
+                            <div class="myth-content">
+                                <div class="myth-header">Quan niệm sai lầm</div>
+                                <p>Bia không có hại bằng rượu mạnh.</p>
+                            </div>
+                            <div class="fact-content">
+                                <div class="fact-header">Sự thật</div>
+                                <p>Một lon bia (330ml, 5%) chứa lượng cồn tương đương với một ly rượu mạnh (40ml, 40%). Tác hại đến từ tổng lượng cồn tiêu thụ, không phải loại đồ uống.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
+                        <div class="myth-fact-card">
+                            <div class="myth-fact-icon"><i class="fas fa-tint"></i></div>
+                            <div class="myth-content">
+                                <div class="myth-header">Quan niệm sai lầm</div>
+                                <p>Uống nhiều nước trước khi uống rượu sẽ không say.</p>
+                            </div>
+                            <div class="fact-content">
+                                <div class="fact-header">Sự thật</div>
+                                <p>Uống nước giúp cơ thể tránh mất nước nhưng không ngăn cản quá trình hấp thu cồn vào máu. Bạn vẫn có thể say nếu uống nhiều rượu bia.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Call to Action -->
+        <section class="py-5 bg-primary text-white">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-8 mb-4 mb-lg-0" data-aos="fade-up">
+                        <h2 class="fw-bold">Cần hỗ trợ về vấn đề rượu bia?</h2>
+                        <p class="lead mb-0">Nếu bạn hoặc người thân đang gặp khó khăn với lạm dụng rượu bia, đừng ngần ngại tìm kiếm sự giúp đỡ.</p>
+                    </div>
+                    <div class="col-lg-4 text-lg-end" data-aos="fade-up" data-aos-delay="200">
+                        <a href="index.html#support-resources" class="btn btn-light btn-lg">
+                            <i class="fas fa-hands-helping me-2"></i>Tìm nơi hỗ trợ
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact-footer-info" class="footer py-5"> 
+         <div class="container">
+        <div class="row">
+            <div class="col-lg-4 mb-4 mb-lg-0">
+                <h5 class="mb-4"><i class="fas fa-shield-heart me-2"></i>Vì Cộng Đồng Khỏe Mạnh</h5>
+                <p>Cung cấp thông tin chính xác và hỗ trợ kịp thời trong công cuộc phòng chống lạm dụng rượu bia.</p>
+                <div class="mt-4">
+                    <a href="tel:18006606" class="d-block mb-2"><i class="fas fa-phone-alt me-2"></i>Đường dây nóng: 1800 6606</a>
+                    <a href="mailto:contact@vicongdongkhoemanh.org" class="d-block"><i class="fas fa-envelope me-2"></i>contact@vicongdongkhoemanh.org</a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                <h6 class="mb-4">Liên Kết</h6>
+                <ul class="list-unstyled footer-links">
+                    <li><a href="index.html">Trang Chủ</a></li>
+                    <li><a href="index.html#mission">Mục Tiêu Dự Án</a></li>
+                    <li><a href="all-issues.html">Tệ Nạn Xã Hội</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                <h6 class="mb-4">Hỗ Trợ</h6>
+                <ul class="list-unstyled footer-links">
+                    <li><a href="index.html#support-resources">Trung Tâm Giúp Đỡ</a></li>
+                     <li><a href="tel:18006606">Đường Dây Nóng</a></li>
+                    <li><a href="mailto:contact@vicongdongkhoemanh.org">Liên Hệ Tư Vấn</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-md-4">
+                <h6 class="mb-4">Kết nối với chúng tôi</h6>
+                <div class="d-flex social-links">
+                    <a href="https://facebook.com/ViCongDongKhoeManhPage" target="_blank" rel="noopener noreferrer" class="me-3"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://youtube.com/ViCongDongKhoeManhChannel" target="_blank" rel="noopener noreferrer" class="me-3"><i class="fab fa-youtube"></i></a>
+                    <a href="mailto:contact@vicongdongkhoemanh.org"><i class="fas fa-envelope"></i></a>
+                </div>
+                <div class="mt-4">
+                    <h6>Đăng ký nhận thông tin</h6>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Email của bạn" aria-label="Email của bạn">
+                        <button class="btn btn-primary" type="button">Đăng ký</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="mt-4 mb-3 border-light opacity-50">
+        <div class="row align-items-center">
+            <div class="col-md-6 small">
+                © 2023 Vì Cộng Đồng Khỏe Mạnh. Phát triển vì một tương lai không lạm dụng rượu bia.
+            </div>
+            <div class="col-md-6 text-md-end small">
+                <a href="privacy-policy.html" class="text-light me-3">Chính sách bảo mật</a>
+                <a href="terms-of-service.html" class="text-light me-3">Điều khoản sử dụng</a>
+            </div>
+        </div>
+    </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../javaScript/alcohol_info.js"></script>
+    <script src="../javaScript/script.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        
+        // Counter animation
+        function animateCounters() {
+            const counterElements = document.querySelectorAll('.counter-value');
+            
+            counterElements.forEach(counter => {
+                const targetValue = parseFloat(counter.getAttribute('data-count'));
+                const duration = 2000; // 2 seconds
+                const frameDuration = 1000/60; // 60fps
+                const totalFrames = Math.round(duration / frameDuration);
+                
+                let frame = 0;
+                let currentValue = 0;
+                
+                const animate = () => {
+                    frame++;
+                    const progress = frame / totalFrames;
+                    const easedProgress = progress < 0.5
+                        ? 2 * progress * progress
+                        : -1 + (4 - 2 * progress) * progress; // Ease in-out quadratic
+                    
+                    currentValue = easedProgress * targetValue;
+                    
+                    const formattedValue = Number.isInteger(targetValue) 
+                        ? Math.floor(currentValue).toLocaleString()
+                        : currentValue.toFixed(1);
+                    
+                    counter.textContent = formattedValue;
+                    
+                    if (frame < totalFrames) {
+                        requestAnimationFrame(animate);
+                    } else {
+                        counter.textContent = targetValue.toLocaleString();
+                    }
+                };
+                
+                requestAnimationFrame(animate);
+            });
+        }
+        
+        // Risk meter functionality
+        function setupRiskMeter() {
+            document.querySelectorAll('.drink-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    // Get risk value
+                    const riskValue = parseInt(this.getAttribute('data-risk'));
+                    
+                    // Remove active class from all options
+                    document.querySelectorAll('.drink-option').forEach(opt => opt.classList.remove('active'));
+                    
+                    // Add active class to current option
+                    this.classList.add('active');
+                    
+                    // Update indicator position
+                    const indicator = document.querySelector('.risk-indicator');
+                    indicator.style.left = `${riskValue}%`;
+                    
+                    // Get risk data from alcohol_info.js
+                    const riskData = alcoholData.riskInfo[riskValue.toString()];
+                    
+                    // Update drink info
+                    const drinkInfo = document.querySelector('.drink-info');
+                    drinkInfo.innerHTML = `
+                        <p class="mb-1"><strong>Mức độ rủi ro: ${riskValue}%</strong></p>
+                        <p class="mb-1">${riskData.description}</p>
+                        <p class="mb-0"><strong>Khuyến nghị:</strong> ${riskData.recommendation}</p>
+                    `;
+                    
+                    // Update liquid fill
+                    const liquidFill = document.querySelector('.liquid-fill');
+                    liquidFill.style.height = `${riskValue}%`;
+                    
+                    // Update liquid label
+                    const liquidLabel = document.querySelector('.liquid-label');
+                    liquidLabel.textContent = `${riskValue}%`;
+                    
+                    // Change color based on risk level
+                    let liquidColor;
+                    if (riskValue < 25) {
+                        liquidColor = '#2ecc71'; // Green - low risk
+                    } else if (riskValue < 50) {
+                        liquidColor = '#f39c12'; // Orange - medium risk
+                    } else {
+                        liquidColor = '#e74c3c'; // Red - high risk
+                    }
+                    
+                    liquidFill.style.background = liquidColor;
+                });
+            });
+            
+            // Activate first option by default
+            document.querySelector('.drink-option').click();
+        }
+        
+        function createRandomBubbles() {
+            const bubblesContainer = document.querySelector('.bubbles-container');
+            if (bubblesContainer) {
+                for (let i = 0; i < 10; i++) {
+                    const bubble = document.createElement('div');
+                    bubble.className = 'bubble';
+                    
+                    // Random size
+                    const size = Math.floor(Math.random() * 20) + 10; // 10-30px
+                    bubble.style.width = `${size}px`;
+                    bubble.style.height = `${size}px`;
+                    
+                    // Random position
+                    const left = Math.floor(Math.random() * 100);
+                    bubble.style.left = `${left}%`;
+                    
+                    // Random animation duration
+                    const duration = Math.floor(Math.random() * 8) + 8; // 8-16s
+                    bubble.style.animationDuration = `${duration}s`;
+                    
+                    // Random delay
+                    const delay = Math.floor(Math.random() * 5);
+                    bubble.style.animationDelay = `${delay}s`;
+                    
+                    bubblesContainer.appendChild(bubble);
+                }
+            }
+        }
+        
+        function applyFilters() {
+            const selectedAlcoholCategory = document.getElementById('filter-alcohol-category').value;
+            const selectedAlcoholTopic = document.getElementById('filter-alcohol-topic').value;
+            const searchTerm = document.getElementById('search-info').value.toLowerCase();
+            const infoItems = document.querySelectorAll('#info-list-container .info-item');
+            let infoFound = 0;
+
+            infoItems.forEach(item => {
+                const alcoholCategory = item.dataset.alcoholCategory;
+                const alcoholTopic = item.dataset.alcoholTopic;
+                const title = item.querySelector('.card-title').textContent.toLowerCase();
+                const text = item.querySelector('.card-text').textContent.toLowerCase();
+                
+                const categoryMatch = selectedAlcoholCategory === "" || selectedAlcoholCategory === alcoholCategory;
+                const topicMatch = selectedAlcoholTopic === "" || selectedAlcoholTopic === alcoholTopic;
+                const searchTermMatch = searchTerm === "" || title.includes(searchTerm) || text.includes(searchTerm);
+
+                if (categoryMatch && topicMatch && searchTermMatch) {
+                    item.style.display = 'block';
+                    infoFound++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            const noInfoMessage = document.getElementById('no-info-message');
+            if (infoFound === 0) {
+                noInfoMessage.classList.remove('d-none');
+            } else {
+                noInfoMessage.classList.add('d-none');
+            }
+        }
+        
+        // Utility function to show toast notifications
+        function showToast(message, type = 'info') {
+            // Create toast container if it doesn't exist
+            let toastContainer = document.querySelector('.toast-container');
+            if (!toastContainer) {
+                toastContainer = document.createElement('div');
+                toastContainer.className = 'toast-container position-fixed bottom-0 end-0 p-3';
+                document.body.appendChild(toastContainer);
+            }
+            
+            // Create toast element
+            const toastId = 'toast-' + Date.now();
+            const toast = document.createElement('div');
+            toast.className = `toast align-items-center text-white bg-${type} border-0`;
+            toast.id = toastId;
+            toast.setAttribute('role', 'alert');
+            toast.setAttribute('aria-live', 'assertive');
+            toast.setAttribute('aria-atomic', 'true');
+            
+            // Toast content
+            toast.innerHTML = `
+                <div class="d-flex">
+                    <div class="toast-body">
+                        ${message}
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            `;
+            
+            // Add toast to container
+            toastContainer.appendChild(toast);
+            
+            // Initialize and show toast
+            const bsToast = new bootstrap.Toast(toast, {
+                animation: true,
+                autohide: true,
+                delay: 5000
+            });
+            bsToast.show();
+            
+            // Remove toast after hiding
+            toast.addEventListener('hidden.bs.toast', function() {
+                toast.remove();
+            });
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize all functions
+            animateCounters();
+            setupRiskMeter();
+            createRandomBubbles();
+            
+            // Active link for current page
+            const currentPath = window.location.pathname.split("/").pop();
+            document.querySelectorAll('#navbarMainInfo .nav-link').forEach(link => {
+                if (link.getAttribute('href') === currentPath) {
+                    link.classList.add('active');
+                } else if (!link.classList.contains('dropdown-toggle')) {
+                    link.classList.remove('active');
+                }
+            });
+
+            // Set active for dropdown item
+            document.querySelectorAll('#navbarMainInfo .dropdown-item').forEach(item => {
+                if (item.getAttribute('href') === currentPath) {
+                    item.classList.add('active');
+                    // Also activate the parent dropdown-toggle
+                    const parentDropdownToggle = item.closest('.nav-item.dropdown').querySelector('.nav-link.dropdown-toggle');
+                    if(parentDropdownToggle) {
+                        parentDropdownToggle.classList.add('active');
+                    }
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+
+            // Handle logout
+            const logoutButtonInfo = document.getElementById('logoutButtonInfo');
+            if(logoutButtonInfo) {
+                logoutButtonInfo.addEventListener('click', function(e){
+                    e.preventDefault();
+                    logout(); // Call logout function from script.js
+                });
+            }
+            
+            // Scroll to hash if present
+            if (window.location.hash) {
+                const element = document.querySelector(window.location.hash);
+                if (element) {
+                     setTimeout(() => {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                     }, 200);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

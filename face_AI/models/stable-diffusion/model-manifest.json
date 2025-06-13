@@ -1,0 +1,59 @@
+{
+  "models": {
+    "drug-effects": {
+      "name": "Realistic Vision v5.1",
+      "path": "realistic-vision-v5/model.ckpt",
+      "config": "realistic-vision-v5/config.yaml",
+      "vae_path": "realistic-vision-v5/vae.pt",
+      "default_prompt": "realistic photo of a person, same identity, showing effects of drug use",
+      "negative_prompt": "deformed, distorted, disfigured, poorly drawn, bad anatomy, wrong anatomy, extra limb, missing limb, floating limbs, mutated hands and fingers, disconnected limbs, mutation, mutated, ugly, disgusting, blurry, amputation"
+    },
+    "alcohol-effects": {
+      "name": "Realistic Vision v5.1",
+      "path": "realistic-vision-v5/model.ckpt",
+      "config": "realistic-vision-v5/config.yaml", 
+      "vae_path": "realistic-vision-v5/vae.pt",
+      "default_prompt": "realistic photo of a person, same identity, showing effects of alcohol abuse",
+      "negative_prompt": "deformed, distorted, disfigured, poorly drawn, bad anatomy, wrong anatomy, extra limb, missing limb, floating limbs, mutated hands and fingers, disconnected limbs, mutation, mutated, ugly, disgusting, blurry, amputation"
+    },
+    "smoking-effects": {
+      "name": "Realistic Vision v5.1",
+      "path": "realistic-vision-v5/model.ckpt",
+      "config": "realistic-vision-v5/config.yaml",
+      "vae_path": "realistic-vision-v5/vae.pt",
+      "default_prompt": "realistic photo of a person, same identity, showing effects of tobacco use",
+      "negative_prompt": "deformed, distorted, disfigured, poorly drawn, bad anatomy, wrong anatomy, extra limb, missing limb, floating limbs, mutated hands and fingers, disconnected limbs, mutation, mutated, ugly, disgusting, blurry, amputation"
+    }
+  },
+  "api": {
+    "huggingface": {
+      "default_model": "stabilityai/stable-diffusion-xl-base-1.0",
+      "drug_model": "SG161222/Realistic_Vision_V5.1_noVAE",
+      "alcohol_model": "SG161222/Realistic_Vision_V5.1_noVAE",
+      "smoking_model": "SG161222/Realistic_Vision_V5.1_noVAE"
+    },
+    "replicate": {
+      "default_model": "stability-ai/sdxl:c221b2b8ef527988fb59bf24a8b97c4561f1c671f73bd389f866bfb27c061316"
+    },
+    "local": {
+      "url": "http://localhost:7860/api/v1",
+      "endpoints": {
+        "txt2img": "/txt2img",
+        "img2img": "/img2img",
+        "controlnet": "/controlnet"
+      }
+    }
+  },
+  "settings": {
+    "default_width": 768,
+    "default_height": 768,
+    "default_steps": 20,
+    "default_cfg_scale": 7.5,
+    "default_sampler": "Euler a",
+    "default_controlnet": "canny",
+    "cache_results": true,
+    "use_controlnet": true,
+    "prefer_local_models": false,
+    "fallback_to_css": true
+  }
+} 

@@ -1,0 +1,144 @@
+/* Header Support Styles */
+.support-nav-item {
+    position: relative;
+}
+
+.support-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 15px;
+    padding: 20px;
+    width: 320px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.support-nav-item:hover .support-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.support-dropdown-header {
+    text-align: center;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.support-dropdown-header i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.support-dropdown-header h6 {
+    color: var(--dark-color);
+    font-weight: 600;
+    margin: 0;
+}
+
+.support-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.support-option {
+    padding: 12px;
+    border-radius: 10px;
+    text-align: center;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: var(--dark-color);
+}
+
+.support-option:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-3px);
+}
+
+.support-option i {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.support-option span {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.emergency-support {
+    margin-top: 15px;
+    padding: 15px;
+    background: linear-gradient(135deg, #ff6b6b, #ee5253);
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.emergency-support:hover {
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(238, 82, 83, 0.3);
+    color: white;
+}
+
+.emergency-support i {
+    margin-right: 8px;
+}
+
+/* Dark mode styles */
+body.dark-mode .support-dropdown {
+    background: rgba(26, 32, 44, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .support-dropdown-header h6 {
+    color: white;
+}
+
+body.dark-mode .support-option {
+    color: #e2e8f0;
+}
+
+body.dark-mode .support-option:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Animation keyframes */
+@keyframes supportPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.emergency-support {
+    animation: supportPulse 2s infinite;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .support-dropdown {
+        position: static;
+        width: 100%;
+        margin-top: 10px;
+        box-shadow: none;
+        border-radius: 10px;
+    }
+
+    .support-options {
+        grid-template-columns: 1fr;
+    }
+} 

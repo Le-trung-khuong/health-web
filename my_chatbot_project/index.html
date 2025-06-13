@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Tư Vấn Tâm Lý</title>
+    <!-- Tải Tailwind CSS từ CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tải font Inter và Montserrat từ Google Fonts để có vẻ ngoài hiện đại hơn -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Thiết lập font và màu nền cho toàn bộ trang */
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f0f2f5, #e0e5ec); /* Nền gradient hiện đại, nhẹ nhàng */
+            color: #333d47; /* Màu chữ tổng thể đậm hơn, dễ đọc */
+        }
+        /* Container chính của chatbot */
+        .app-container {
+            display: flex;
+            max-width: 1200px; /* Tăng chiều rộng tổng thể */
+            height: 95vh; /* Chiều cao tương đối với viewport */
+            border-radius: 1.5rem; /* Bo tròn góc vừa phải, hiện đại */
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1); /* Đổ bóng mềm mại hơn */
+            background-color: #ffffff; /* Nền trắng cho container */
+            border: 1px solid #e0e0e0; /* Viền nhẹ */
+        }
+        /* Sidebar cho các cuộc trò chuyện gần đây */
+        .sidebar {
+            width: 300px; /* Chiều rộng sidebar */
+            background-color: #2d3748; /* Màu nền sidebar tối hơn */
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem;
+            box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        .new-chat-button {
+            background: linear-gradient(45deg, #4CAF50, #66bb6a); /* Gradient xanh lá cây */
+            color: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+        .new-chat-button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        .recent-chats-list {
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+        .recent-chat-item {
+            padding: 0.8rem 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .recent-chat-item:hover {
+            background-color: #4a5568;
+            transform: translateX(5px);
+        }
+        .recent-chat-item.active {
+            background-color: #4CAF50; /* Màu xanh lá cây khi active */
+            font-weight: 600;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .recent-chat-item .chat-icon {
+            font-size: 1.2rem;
+        }
+        .recent-chat-item .chat-title {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            flex-grow: 1;
+        }
+
+        /* Khu vực chat chính */
+        .chat-main {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-header {
+            background: linear-gradient(45deg, #667eea, #764ba2); /* Gradient màu tím-xanh hiện đại */
+            color: #ffffff;
+            padding: 1.5rem 2rem; /* Tăng padding */
+            border-top-right-radius: 1.5rem; /* Chỉ bo tròn góc trên bên phải */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); /* Đổ bóng nhẹ cho header */
+        }
+        .chat-header h2 {
+            font-family: 'Montserrat', sans-serif; /* Font chữ mạnh mẽ, hiện đại cho tiêu đề */
+            font-size: 2rem; /* Kích thước font lớn hơn */
+            font-weight: 700;
+            letter-spacing: -0.025em; /* Giảm khoảng cách chữ */
+        }
+        /* Thông báo an toàn */
+        .safety-notice {
+            background-color: #fffbeb; /* Màu vàng nhạt */
+            color: #78350f; /* Màu chữ nâu đậm */
+            padding: 0.75rem 1rem;
+            font-size: 0.875rem;
+            text-align: center;
+            border-bottom: 1px solid #fde68a; /* Viền dưới */
+        }
+        .safety-notice strong {
+            color: #dc2626; /* Màu đỏ cho số điện thoại khẩn cấp */
+        }
+        .chat-messages {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 2.5rem; /* Tăng padding */
+            background-color: #fcfdff; /* Nền rất nhạt */
+            border-bottom: 1px solid #f0f0f0; /* Đường viền dưới tinh tế */
+        }
+        /* Bong bóng tin nhắn chung */
+        .message-bubble {
+            max-width: 70%; /* Giảm chiều rộng tối đa một chút */
+            padding: 1.2rem 1.5rem; /* Tăng padding */
+            border-radius: 1.2rem; /* Bo tròn góc vừa phải */
+            margin-bottom: 1.2rem; /* Khoảng cách giữa các bong bóng */
+            line-height: 1.6; /* Tăng chiều cao dòng để dễ đọc */
+            word-wrap: break-word;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Đổ bóng nhẹ cho bong bóng */
+        }
+        /* Bong bóng tin nhắn của người dùng */
+        .user-message {
+            background-color: #e6eefc; /* Xanh dương rất nhạt */
+            color: #2a64c4; /* Xanh dương đậm hơn cho chữ */
+            margin-left: auto;
+            border-bottom-right-radius: 0.8rem; /* Bo tròn góc dưới bên phải ít hơn */
+        }
+        /* Bong bóng tin nhắn của bot */
+        .bot-message {
+            background-color: #f0fdf0; /* Xanh lá cây rất nhạt */
+            color: #388e3c; /* Xanh lá cây đậm hơn cho chữ */
+            margin-right: auto;
+            border-bottom-left-radius: 0.8rem; /* Bo tròn góc dưới bên trái ít hơn */
+        }
+        /* Khu vực nhập liệu */
+        .input-area {
+            background-color: #ffffff;
+            padding: 1.5rem 2rem; /* Tăng padding */
+            border-top: 1px solid #f0f0f0;
+            border-bottom-right-radius: 1.5rem; /* Chỉ bo tròn góc dưới bên phải */
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        /* Ô nhập tin nhắn */
+        .input-area input {
+            flex-grow: 1;
+            padding: 1.1rem 1.5rem; /* Tăng padding */
+            border: 1px solid #d0d0d0; /* Viền nhạt hơn */
+            border-radius: 1.8rem; /* Bo tròn góc nhiều hơn */
+            font-size: 1.05rem; /* Kích thước font lớn hơn một chút */
+            transition: all 0.3s ease;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05); /* Đổ bóng inset nhẹ */
+        }
+        /* Hiệu ứng khi ô nhập được focus */
+        .input-area input:focus {
+            outline: none;
+            border-color: #667eea; /* Màu viền khi focus (tím-xanh) */
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.25); /* Đổ bóng phát sáng khi focus */
+        }
+        /* Nút gửi tin nhắn */
+        .send-button {
+            background: linear-gradient(45deg, #667eea, #764ba2); /* Gradient màu tím-xanh */
+            color: white;
+            font-weight: 600;
+            padding: 1.1rem 2rem; /* Tăng padding */
+            border-radius: 1.8rem; /* Bo tròn góc nhiều hơn */
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            box-shadow: 0 5px 15px rgba(118, 75, 162, 0.2); /* Đổ bóng nổi bật */
+        }
+        /* Hiệu ứng khi hover nút gửi */
+        .send-button:hover {
+            opacity: 0.9;
+            transform: translateY(-3px); /* Dịch chuyển lên trên nhiều hơn */
+            box-shadow: 0 8px 20px rgba(118, 75, 162, 0.3); /* Đổ bóng mạnh hơn khi hover */
+        }
+        /* Hiệu ứng khi click nút gửi */
+        .send-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(118, 75, 162, 0.2);
+        }
+        /* Nút đặt lại cuộc trò chuyện */
+        .reset-button {
+            background-color: #a0aec0; /* Màu xám hiện đại */
+            color: white;
+            font-weight: 500;
+            padding: 0.8rem 1.5rem; /* Tăng padding */
+            border-radius: 1.5rem;
+            font-size: 0.95rem;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+        /* Hiệu ứng khi hover nút đặt lại */
+        .reset-button:hover {
+            background-color: #718096; /* Màu xám đậm hơn khi hover */
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
+        }
+        /* Hiệu ứng loading dots */
+        .loading-dots {
+            display: inline-block;
+            position: relative;
+            width: 3rem;
+            height: 0.75rem;
+            margin-left: 0.75rem;
+        }
+        .loading-dots div {
+            position: absolute;
+            width: 0.75rem;
+            height: 0.75rem;
+            border-radius: 50%;
+            background: #ffffff; /* Màu chấm loading */
+            animation-timing-function: cubic-bezier(0, 1, 1, 0);
+        }
+        .loading-dots div:nth-child(1) {
+            left: 0;
+            animation: loading-dots1 0.6s infinite;
+        }
+        .loading-dots div:nth-child(2) {
+            left: 0;
+            animation: loading-dots2 0.6s infinite;
+        }
+        .loading-dots div:nth-child(3) {
+            left: 1.125rem;
+            animation: loading-dots2 0.6s infinite;
+        }
+        .loading-dots div:nth-child(4) {
+            left: 2.25rem;
+            animation: loading-dots3 0.6s infinite;
+        }
+        @keyframes loading-dots1 {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+        @keyframes loading-dots3 {
+            0% { transform: scale(1); }
+            100% { transform: scale(0); }
+        }
+        @keyframes loading-dots2 {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(1.125rem, 0); }
+        }
+
+        /* Modal lỗi tùy chỉnh */
+        .error-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .error-modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            transform: translateY(-20px);
+            animation: modal-open 0.3s forwards ease-out;
+        }
+        @keyframes modal-open {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .error-modal-content h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            color: #ef4444; /* Màu đỏ */
+            margin-bottom: 1rem;
+        }
+        .error-modal-content p {
+            font-size: 1rem;
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+        }
+        .error-modal-content button {
+            background-color: #667eea;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        .error-modal-content button:hover {
+            background-color: #5a67d8;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .app-container {
+                flex-direction: column;
+                height: 100vh;
+                border-radius: 0;
+            }
+            .sidebar {
+                width: 100%;
+                height: 200px; /* Adjust sidebar height for mobile */
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            }
+            .chat-main {
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+            }
+            .chat-header {
+                border-top-right-radius: 0;
+            }
+            .input-area {
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+            /* Hide sidebar on mobile unless explicitly shown */
+            .sidebar.hidden-on-mobile {
+                display: none;
+            }
+            .chat-main.expanded-on-mobile {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-6">
+
+    <div class="app-container w-full">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <h2 class="text-xl">Chatbot Sessions</h2>
+            <button id="newChatBtn" class="new-chat-button">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                </svg>
+                Trò chuyện mới
+            </button>
+            <div class="recent-chats-list" id="recentChatsList">
+                <!-- Recent chat items will be loaded here -->
+            </div>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <div class="chat-main">
+            <header class="chat-header">
+                <h2 id="currentChatTitle" class="text-white">Chào bạn!</h2>
+                <div class="flex items-center space-x-4">
+                    <span id="userIdDisplay" class="text-sm font-medium text-white opacity-80">Đang tải ID...</span>
+                    <button id="resetChatBtn" class="reset-button">
+                        Đặt lại cuộc trò chuyện
+                    </button>
+                </div>
+            </header>
+
+            <!-- Thông báo an toàn rõ ràng hơn -->
+            <div class="safety-notice">
+                Lưu ý: Tôi là một chatbot AI, không phải chuyên gia y tế hay luật sư. Mọi lời khuyên chỉ mang tính chất tham khảo.
+                Nếu bạn đang gặp khủng hoảng, vui lòng liên hệ ngay:
+                <br>Tổng đài quốc gia bảo vệ trẻ em: <strong class="text-red-600">111</strong>
+                <br>Công an: <strong class="text-red-600">113</strong>
+            </div>
+
+            <div id="chatMessages" class="chat-messages">
+                <!-- Tin nhắn chào mừng ban đầu sẽ được hiển thị nếu không có lịch sử -->
+                <div class="message-bubble bot-message">
+                    Chào bạn! Tôi là chatbot tư vấn tâm lý. Bạn có câu hỏi gì không?
+                </div>
+            </div>
+
+            <div class="input-area">
+                <input type="text" id="messageInput" placeholder="Nhập tin nhắn của bạn..." autocomplete="off">
+                <button id="sendMessageBtn" class="send-button">
+                    Gửi
+                    <span id="loadingIndicator" class="loading-dots hidden">
+                        <div></div><div></div><div></div><div></div>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal lỗi tùy chỉnh -->
+    <div id="errorModalOverlay" class="error-modal-overlay hidden">
+        <div class="error-modal-content">
+            <h3 id="errorModalTitle">Lỗi!</h3>
+            <p id="errorModalMessage">Đã xảy ra lỗi không xác định.</p>
+            <button id="errorModalCloseBtn">Đóng</button>
+        </div>
+    </div>
+
+    <!-- Tất cả JavaScript được đặt ở đây -->
+    <script type="module">
+        // Import các module Firebase cần thiết
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc, addDoc, setDoc, updateDoc, deleteDoc, onSnapshot, collection, query, orderBy, limit, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // *******************************************************************
+        // CẤU HÌNH FIREBASE CỦA BẠN - ĐÃ LẤY TỪ FIREBASE CONSOLE
+        // HÃY ĐẢM BẢO THÔNG TIN NÀY CHÍNH XÁC VỚI DỰ ÁN CỦA BẠN
+        // *******************************************************************
+        const firebaseConfig = {
+          apiKey: "AIzaSyDSE1PxM3lMjyHQwg2TSMzVOBMSpjcyG-U", // <--- Thay thế bằng API Key của bạn
+          authDomain: "chat-bot-94580.firebaseapp.com",
+          projectId: "chat-bot-94580",
+          storageBucket: "chat-bot-94580.firebasestorage.app",
+          messagingSenderId: "984340367843",
+          appId: "1:984340367843:web:ff768795960ca58ba178d6",
+          measurementId: "G-XNDYJNCH8D"
+        };
+
+        const appId = firebaseConfig.appId;
+
+        // Khởi tạo Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+
+        let currentUserId = null; // Biến lưu trữ ID người dùng hiện tại
+        let isAuthReady = false; // Cờ để kiểm tra trạng thái xác thực Firebase
+        let currentChatSessionId = null; // ID của phiên trò chuyện hiện tại
+
+        // *******************************************************************
+        // LẤY CÁC PHẦN TỬ DOM VÀ ĐỊNH NGHĨA HÀM TRƯỚC KHI onAuthStateChanged
+        // *******************************************************************
+
+        // Lấy các phần tử DOM liên quan đến modal lỗi
+        const errorModalOverlay = document.getElementById('errorModalOverlay');
+        const errorModalTitle = document.getElementById('errorModalTitle');
+        const errorModalMessage = document.getElementById('errorModalMessage');
+        const errorModalCloseBtn = document.getElementById('errorModalCloseBtn');
+
+        // Hàm hiển thị modal lỗi tùy chỉnh
+        function showErrorModal(title, message) {
+            if (errorModalOverlay && errorModalTitle && errorModalMessage) {
+                errorModalTitle.textContent = title;
+                errorModalMessage.textContent = message;
+                errorModalOverlay.classList.remove('hidden');
+            } else {
+                console.error("Error: Modal elements not found. Cannot display error modal.", title, message);
+            }
+        }
+
+        // Đóng modal lỗi khi click nút "Đóng"
+        if (errorModalCloseBtn) {
+            errorModalCloseBtn.addEventListener('click', () => {
+                errorModalOverlay.classList.add('hidden');
+            });
+        }
+
+        // Lấy các phần tử DOM chính cho chat và sidebar
+        const userIdDisplay = document.getElementById('userIdDisplay');
+        const chatMessages = document.getElementById('chatMessages');
+        const messageInput = document.getElementById('messageInput');
+        const sendMessageBtn = document.getElementById('sendMessageBtn');
+        const resetChatBtn = document.getElementById('resetChatBtn');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        const newChatBtn = document.getElementById('newChatBtn');
+        const recentChatsList = document.getElementById('recentChatsList');
+        const currentChatTitle = document.getElementById('currentChatTitle');
+
+        let chatHistory = []; // Lịch sử trò chuyện cho AI (không bao gồm system instruction)
+        let currentChatMessagesUnsubscribe = null; // Biến để hủy đăng ký lắng nghe tin nhắn cũ
+
+        // Hàm hiển thị tin nhắn trên giao diện
+        function displayMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message-bubble');
+            if (sender === 'user') {
+                messageDiv.classList.add('user-message');
+            } else {
+                messageDiv.classList.add('bot-message');
+            }
+            messageDiv.textContent = text;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Hàm lưu tin nhắn vào Firestore
+        async function saveMessageToFirestore(message, sender, sessionID) {
+            if (!isAuthReady || !currentUserId || !db || !appId || !sessionID) {
+                console.error("Firebase, User ID, App ID, hoặc Session ID chưa sẵn sàng để lưu tin nhắn.");
+                return;
+            }
+            try {
+                const messagesCollectionRef = collection(db, `artifacts/${appId}/users/${currentUserId}/chats/${sessionID}/messages`);
+                await addDoc(messagesCollectionRef, {
+                    text: message,
+                    sender: sender,
+                    timestamp: serverTimestamp() // Sử dụng serverTimestamp để nhất quán
+                });
+
+                // Cập nhật lastUpdatedAt của phiên trò chuyện
+                const chatDocRef = doc(db, `artifacts/${appId}/users/${currentUserId}/chats`, sessionID);
+                await updateDoc(chatDocRef, {
+                    lastUpdatedAt: serverTimestamp()
+                });
+
+                // Nếu đây là tin nhắn đầu tiên và chưa có tiêu đề, lấy tin nhắn đầu tiên làm tiêu đề
+                if (sender === 'user') { // Chỉ lấy tiêu đề từ tin nhắn người dùng
+                    const chatDoc = await getDoc(chatDocRef);
+                    if (chatDoc.exists() && !chatDoc.data().title) {
+                        await updateDoc(chatDocRef, {
+                            title: message.substring(0, 50) + (message.length > 50 ? '...' : '') // Giới hạn 50 ký tự
+                        });
+                    }
+                }
+
+            } catch (e) {
+                console.error("Lỗi khi lưu tin nhắn vào Firestore:", e);
+                showErrorModal("Lỗi lưu trữ", "Không thể lưu tin nhắn của bạn. Vui lòng kiểm tra kết nối.");
+            }
+        }
+
+        // Hàm tải tin nhắn cho một phiên trò chuyện cụ thể
+        async function loadChatMessages(sessionID) {
+            if (currentChatMessagesUnsubscribe) {
+                currentChatMessagesUnsubscribe(); // Hủy đăng ký lắng nghe tin nhắn cũ
+            }
+
+            chatMessages.innerHTML = ''; // Xóa tin nhắn hiện tại trên UI
+            chatHistory = []; // Đặt lại lịch sử cho AI
+
+            if (!sessionID || !currentUserId || !db || !appId) {
+                console.log("Không có Session ID hoặc Firebase chưa sẵn sàng để tải tin nhắn.");
+                displayMessage("Chào bạn! Tôi là chatbot tư vấn tâm lý. Bạn có câu hỏi gì không?", 'bot');
+                currentChatTitle.textContent = "Chào bạn!";
+                return;
+            }
+
+            const messagesCollectionRef = collection(db, `artifacts/${appId}/users/${currentUserId}/chats/${sessionID}/messages`);
+            const q = query(messagesCollectionRef, orderBy('timestamp'));
+
+            currentChatMessagesUnsubscribe = onSnapshot(q, (snapshot) => {
+                chatMessages.innerHTML = ''; // Xóa tất cả tin nhắn cũ
+                chatHistory = []; // Đặt lại lịch sử cho AI
+                let initialBotMessageDisplayed = false;
+
+                snapshot.forEach((doc) => {
+                    const msg = doc.data();
+                    displayMessage(msg.text, msg.sender);
+                    chatHistory.push({ role: msg.sender === 'user' ? 'user' : 'model', parts: [{ text: msg.text }] });
+                });
+
+                // Nếu không có tin nhắn nào trong phiên và đây là phiên mới, hiển thị tin nhắn chào mừng
+                if (snapshot.empty && sessionID === currentChatSessionId) {
+                    displayMessage("Chào bạn! Tôi là chatbot tư vấn tâm lý. Bạn có câu hỏi gì không?", 'bot');
+                }
+            }, (error) => {
+                console.error("Lỗi khi tải tin nhắn phiên trò chuyện từ Firestore:", error);
+                showErrorModal("Lỗi tải tin nhắn", "Không thể tải tin nhắn cho phiên này.");
+            });
+
+            // Cập nhật tiêu đề chat chính
+            const chatDocRef = doc(db, `artifacts/${appId}/users/${currentUserId}/chats`, sessionID);
+            const chatDoc = await getDoc(chatDocRef);
+            if (chatDoc.exists()) {
+                currentChatTitle.textContent = chatDoc.data().title || "Phiên trò chuyện mới";
+            }
+        }
+
+        // Hàm tải và hiển thị danh sách các phiên trò chuyện gần đây
+        async function loadRecentChats() {
+            if (!currentUserId || !db || !appId) {
+                console.log("Firebase hoặc User ID chưa sẵn sàng để tải các phiên trò chuyện.");
+                return;
+            }
+
+            const chatsCollectionRef = collection(db, `artifacts/${appId}/users/${currentUserId}/chats`);
+            const q = query(chatsCollectionRef, orderBy('lastUpdatedAt', 'desc'), limit(10)); // Lấy 10 phiên gần nhất
+
+            onSnapshot(q, (snapshot) => {
+                recentChatsList.innerHTML = ''; // Xóa danh sách cũ
+                let firstChatLoaded = false;
+
+                if (snapshot.empty) {
+                    // Nếu không có phiên nào, tự động tạo một phiên mới
+                    if (isAuthReady) {
+                        startNewChatSession();
+                    }
+                    return;
+                }
+
+                snapshot.forEach((doc) => {
+                    const chatData = doc.data();
+                    const chatItemDiv = document.createElement('div');
+                    chatItemDiv.classList.add('recent-chat-item', 'flex', 'items-center', 'gap-2', 'py-2', 'px-3', 'rounded-lg', 'cursor-pointer', 'transition-colors', 'duration-200');
+                    chatItemDiv.setAttribute('data-session-id', doc.id);
+                    chatItemDiv.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.76c0 1.6.155 3.178.445 4.708M18.75 12.76c0 1.6-.155 3.178-.445 4.708M9 12.76a3 3 0 1 1 6 0a3 3 0 0 1 -6 0Zm-3.14 7.231a4.5 4.5 0 0 0 8.28 0m-1.354-9.351a4.5 4.5 0 0 1 8.28 0M3 12.76v7.5c0 1.036.84 1.875 1.875 1.875h14.25c1.035 0 1.875-.839 1.875-1.875v-7.5M3 12.76C3 11.2 3.155 9.622 3.445 8.1M18.75 12.76C18.75 11.2 18.595 9.622 18.305 8.1M21.75 12.76v-7.5c0-1.036-.84-1.875-1.875-1.875H4.875C3.84 3.385 3 4.224 3 5.26v7.5" />
+                        </svg>
+                        <span class="chat-title">${chatData.title || "Trò chuyện không tiêu đề"}</span>
+                    `;
+                    chatItemDiv.addEventListener('click', () => {
+                        selectChatSession(doc.id);
+                    });
+                    recentChatsList.appendChild(chatItemDiv);
+
+                    // Tự động chọn phiên trò chuyện gần nhất nếu chưa có phiên nào được chọn
+                    if (!currentChatSessionId && !firstChatLoaded) {
+                        selectChatSession(doc.id);
+                        firstChatLoaded = true;
+                    }
+                    // Đánh dấu phiên hiện tại là active
+                    if (doc.id === currentChatSessionId) {
+                        chatItemDiv.classList.add('active');
+                    }
+                });
+
+                // Nếu có các phiên, nhưng phiên hiện tại không còn trong danh sách (bị xóa hoặc hết giới hạn)
+                // Hoặc nếu người dùng vừa đặt lại và không còn phiên nào.
+                if (currentChatSessionId && !snapshot.docs.some(doc => doc.id === currentChatSessionId) && isAuthReady && snapshot.empty) {
+                    startNewChatSession();
+                } else if (currentChatSessionId && !snapshot.docs.some(doc => doc.id === currentChatSessionId)) {
+                    // Nếu phiên hiện tại bị xóa nhưng vẫn còn các phiên khác, chọn phiên gần nhất
+                    if (!snapshot.empty) {
+                        selectChatSession(snapshot.docs[0].id);
+                    } else {
+                        // Nếu không còn phiên nào, bắt đầu phiên mới
+                        startNewChatSession();
+                    }
+                }
+
+                // Cập nhật active class cho các mục trong sidebar
+                document.querySelectorAll('.recent-chat-item').forEach(item => {
+                    if (item.getAttribute('data-session-id') === currentChatSessionId) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+
+            }, (error) => {
+                console.error("Lỗi khi tải danh sách phiên trò chuyện từ Firestore:", error);
+                showErrorModal("Lỗi tải phiên chat", "Không thể tải danh sách trò chuyện gần đây.");
+            });
+        }
+
+        // Hàm bắt đầu một phiên trò chuyện mới
+        async function startNewChatSession() {
+            if (!isAuthReady || !currentUserId || !db || !appId) {
+                showErrorModal("Lỗi", "Không thể tạo phiên trò chuyện mới. Vui lòng thử lại sau.");
+                return;
+            }
+            try {
+                // Tạo một tài liệu mới cho phiên trò chuyện
+                const chatsCollectionRef = collection(db, `artifacts/${appId}/users/${currentUserId}/chats`);
+                const newChatDocRef = await addDoc(chatsCollectionRef, {
+                    title: "Trò chuyện mới", // Tiêu đề ban đầu
+                    createdAt: serverTimestamp(),
+                    lastUpdatedAt: serverTimestamp()
+                });
+                selectChatSession(newChatDocRef.id); // Chọn phiên mới tạo
+            } catch (e) {
+                console.error("Lỗi khi tạo phiên trò chuyện mới:", e);
+                showErrorModal("Lỗi tạo chat", "Không thể bắt đầu trò chuyện mới. Vui lòng thử lại.");
+            }
+        }
+
+        // Hàm chọn và tải một phiên trò chuyện
+        function selectChatSession(sessionID) {
+            currentChatSessionId = sessionID;
+            loadChatMessages(sessionID); // Tải tin nhắn cho phiên này
+            // Cập nhật active class cho các mục trong sidebar
+            document.querySelectorAll('.recent-chat-item').forEach(item => {
+                if (item.getAttribute('data-session-id') === sessionID) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        }
+
+        // Đảm bảo Firebase được khởi tạo và xác thực trước khi thực hiện các thao tác Firestore
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                currentUserId = user.uid;
+                if (userIdDisplay) {
+                    userIdDisplay.textContent = `ID người dùng: ${currentUserId}`;
+                }
+                console.log("Firebase initialized and authenticated. User ID:", currentUserId);
+                isAuthReady = true;
+                // Tải danh sách các phiên trò chuyện gần đây khi xác thực thành công
+                await loadRecentChats();
+            } else {
+                try {
+                    await signInAnonymously(auth);
+                } catch (error) {
+                    console.error("Lỗi xác thực Firebase:", error);
+                    showErrorModal("Lỗi xác thực", "Không thể đăng nhập vào dịch vụ chat. Vui lòng thử lại sau.");
+                }
+            }
+        });
+
+        // Hàm gửi tin nhắn đến backend và nhận phản hồi từ bot
+        async function getBotResponse(userMessage) {
+            if (!currentChatSessionId) {
+                showErrorModal("Lỗi", "Vui lòng chọn hoặc bắt đầu một phiên trò chuyện.");
+                return;
+            }
+
+            displayMessage(userMessage, 'user');
+            await saveMessageToFirestore(userMessage, 'user', currentChatSessionId);
+
+            messageInput.value = '';
+
+            loadingIndicator.classList.remove('hidden');
+            sendMessageBtn.disabled = true;
+
+            // Thêm tin nhắn của người dùng vào lịch sử trò chuyện cho AI (để gửi đến backend)
+            chatHistory.push({ role: "user", parts: [{ text: userMessage }] });
+
+            try {
+                const response = await fetch('http://127.0.0.1:5000/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        history: chatHistory.slice(0, -1),
+                        message: userMessage
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || 'Network response was not ok');
+                }
+
+                const data = await response.json();
+                const botResponseText = data.reply;
+
+                displayMessage(botResponseText, 'bot');
+                await saveMessageToFirestore(botResponseText, 'bot', currentChatSessionId);
+                chatHistory.push({ role: "model", parts: [{ text: botResponseText }] });
+
+            } catch (error) {
+                console.error("Lỗi khi gọi Backend:", error);
+                showErrorModal("Lỗi kết nối", "Xin lỗi, tôi gặp sự cố khi xử lý yêu cầu của bạn. Vui lòng thử lại sau.");
+                chatHistory.pop(); // Xóa tin nhắn người dùng khỏi lịch sử AI nếu lỗi
+            } finally {
+                loadingIndicator.classList.add('hidden');
+                sendMessageBtn.disabled = false;
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+        }
+
+        // Lắng nghe sự kiện click trên nút "Gửi"
+        if (sendMessageBtn) {
+            sendMessageBtn.addEventListener('click', () => {
+                const userMessage = messageInput.value.trim();
+                if (userMessage && isAuthReady && currentUserId && currentChatSessionId) {
+                    getBotResponse(userMessage);
+                } else if (!isAuthReady) {
+                    showErrorModal("Đang tải...", "Hệ thống đang khởi tạo. Vui lòng chờ một chút.");
+                } else if (!currentChatSessionId) {
+                    showErrorModal("Lỗi", "Vui lòng chọn hoặc bắt đầu một phiên trò chuyện.");
+                }
+            });
+        }
+
+        // Lắng nghe sự kiện nhấn phím trên ô nhập liệu (để gửi tin nhắn bằng phím Enter)
+        if (messageInput) {
+            messageInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    sendMessageBtn.click();
+                }
+            });
+        }
+
+        // Lắng nghe sự kiện click trên nút "Trò chuyện mới"
+        if (newChatBtn) {
+            newChatBtn.addEventListener('click', startNewChatSession);
+        }
+
+        // Lắng nghe sự kiện click trên nút "Đặt lại cuộc trò chuyện"
+        if (resetChatBtn) {
+            resetChatBtn.addEventListener('click', async () => {
+                if (!currentChatSessionId || !isAuthReady || !currentUserId || !db || !appId) {
+                    showErrorModal("Lỗi", "Không thể đặt lại cuộc trò chuyện. Vui lòng thử lại sau.");
+                    return;
+                }
+
+                const confirmReset = await new Promise(resolve => {
+                    const modal = document.createElement('div');
+                    modal.className = 'error-modal-overlay';
+                    modal.innerHTML = `
+                        <div class="error-modal-content">
+                            <h3 class="text-indigo-600">Xác nhận</h3>
+                            <p>Bạn có chắc chắn muốn xóa toàn bộ phiên trò chuyện hiện tại này không? Hành động này không thể hoàn tác.</p>
+                            <div class="flex justify-center space-x-4">
+                                <button id="confirmResetYes" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg font-semibold">Có</button>
+                                <button id="confirmResetNo" class="bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded-lg font-semibold">Không</button>
+                            </div>
+                        </div>
+                    `;
+                    document.body.appendChild(modal);
+
+                    document.getElementById('confirmResetYes').onclick = () => {
+                        modal.remove();
+                        resolve(true);
+                    };
+                    document.getElementById('confirmResetNo').onclick = () => {
+                        modal.remove();
+                        resolve(false);
+                    };
+                });
+
+                if (!confirmReset) {
+                    return;
+                }
+
+                try {
+                    // Xóa tất cả tin nhắn trong phiên hiện tại
+                    const messagesCollectionRef = collection(db, `artifacts/${appId}/users/${currentUserId}/chats/${currentChatSessionId}/messages`);
+                    const qMessages = query(messagesCollectionRef);
+                    const snapshotMessages = await getDocs(qMessages);
+                    const deleteMessagePromises = [];
+                    snapshotMessages.forEach((docMsg) => {
+                        deleteMessagePromises.push(deleteDoc(docMsg.ref));
+                    });
+                    await Promise.all(deleteMessagePromises);
+
+                    // Xóa tài liệu phiên trò chuyện chính
+                    await deleteDoc(doc(db, `artifacts/${appId}/users/${currentUserId}/chats`, currentChatSessionId));
+
+                    console.log("Phiên trò chuyện đã được xóa thành công.");
+                    currentChatSessionId = null; // Đặt lại ID phiên
+                    chatMessages.innerHTML = ''; // Xóa tin nhắn trên UI
+                    chatHistory = []; // Đặt lại lịch sử AI
+
+                    // Sau khi xóa, tự động tạo một phiên mới hoặc tải phiên gần nhất còn lại
+                    await loadRecentChats(); // Sẽ tự động tạo mới nếu không còn phiên nào
+                    if (!currentChatSessionId) { // Nếu loadRecentChats không tự động chọn phiên mới
+                         displayMessage("Chào bạn! Tôi là chatbot tư vấn tâm lý. Bạn có câu hỏi gì không?", 'bot');
+                         currentChatTitle.textContent = "Chào bạn!";
+                    }
+
+                    messageInput.value = '';
+
+                } catch (e) {
+                    console.error("Lỗi khi xóa phiên trò chuyện:", e);
+                    showErrorModal("Lỗi đặt lại", "Không thể xóa phiên trò chuyện. Vui lòng thử lại.");
+                }
+            });
+        }
+    </script>
+</body>
+</html>

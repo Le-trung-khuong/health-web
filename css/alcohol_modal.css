@@ -1,0 +1,1247 @@
+/* Alcohol Modal Styles */
+.alcohol-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.alcohol-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.alcohol-modal-content {
+    width: 90%;
+    max-width: 1200px;
+    max-height: 90vh;
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+.alcohol-modal.active .alcohol-modal-content {
+    transform: scale(1);
+}
+
+.alcohol-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.alcohol-modal-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+.alcohol-modal-header {
+    position: relative;
+    padding: 30px;
+    text-align: center;
+    color: white;
+    background: url('https://images.unsplash.com/photo-1581873372796-635b67ca2008?q=80&w=1740&auto=format&fit=crop') no-repeat center center;
+    background-size: cover;
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.alcohol-modal-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8));
+    z-index: 1;
+}
+
+.alcohol-modal-title, .alcohol-modal-subtitle, .alcohol-warning {
+    position: relative;
+    z-index: 2;
+}
+
+.alcohol-modal-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    background: linear-gradient(45deg, #f39c12, #e74c3c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.alcohol-modal-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+.alcohol-warning {
+    display: inline-block;
+    padding: 8px 15px;
+    background: rgba(231, 76, 60, 0.2);
+    border: 1px solid rgba(231, 76, 60, 0.4);
+    border-radius: 4px;
+    font-size: 0.9rem;
+    margin-top: 20px;
+}
+
+.alcohol-body {
+    padding: 0;
+    height: calc(90vh - 200px);
+    overflow-y: auto;
+    background: #f8f9fa;
+}
+
+.alcohol-tabs {
+    display: flex;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.alcohol-tab {
+    padding: 15px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    color: #555;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.alcohol-tab i {
+    font-size: 1.2rem;
+}
+
+.alcohol-tab:hover {
+    background: rgba(243, 156, 18, 0.05);
+    color: #f39c12;
+}
+
+.alcohol-tab.active {
+    color: #f39c12;
+    border-bottom: 3px solid #f39c12;
+}
+
+.alcohol-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: #f39c12;
+}
+
+.alcohol-section {
+    display: none;
+    padding: 30px;
+}
+
+.alcohol-section.active {
+    display: block;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Statistics Section */
+.alcohol-statistics {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.stat-item {
+    flex: 1;
+    min-width: 200px;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border-top: 5px solid #f39c12;
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.stat-value {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #f39c12;
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.stat-label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.stat-description {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+/* Types Section */
+.alcohol-types-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.alcohol-type-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border-left: 5px solid #e67e22;
+    position: relative;
+    overflow: hidden;
+}
+
+.alcohol-type-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle at top right, rgba(243, 156, 18, 0.2), transparent 70%);
+    border-radius: 0 0 0 100%;
+}
+
+.alcohol-type-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.type-icon {
+    font-size: 2.5rem;
+    color: #e67e22;
+    margin-bottom: 15px;
+}
+
+.type-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.type-content {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.alcohol-content {
+    display: inline-block;
+    padding: 5px 10px;
+    background: rgba(230, 126, 34, 0.1);
+    border-radius: 4px;
+    color: #e67e22;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.type-examples-container {
+    margin-top: 10px;
+}
+
+.type-examples-label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.type-examples {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.type-example {
+    display: inline-block;
+    padding: 3px 8px;
+    background: rgba(230, 126, 34, 0.05);
+    border: 1px solid rgba(230, 126, 34, 0.2);
+    border-radius: 4px;
+    font-size: 0.85rem;
+    color: #e67e22;
+}
+
+/* Effects Section */
+.alcohol-effects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.effect-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border-top: 5px solid var(--effect-color, #e74c3c);
+}
+
+.effect-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.effect-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 10px;
+}
+
+.effect-header i {
+    font-size: 1.8rem;
+    color: var(--effect-color, #e74c3c);
+}
+
+.effect-header h4 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.effect-impacts {
+    padding-left: 20px;
+    margin: 0;
+}
+
+.effect-impacts li {
+    margin-bottom: 8px;
+    color: #555;
+    position: relative;
+}
+
+.effect-impacts li::before {
+    content: '•';
+    position: absolute;
+    left: -15px;
+    color: var(--effect-color, #e74c3c);
+    font-weight: bold;
+}
+
+/* Laws Section */
+.alcohol-laws-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.law-card {
+    display: flex;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    gap: 20px;
+    border-left: 5px solid #3498db;
+}
+
+.law-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.law-icon {
+    font-size: 2.5rem;
+    color: #3498db;
+    min-width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.law-content {
+    flex: 1;
+}
+
+.law-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.law-description {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.law-details {
+    font-size: 0.9rem;
+    color: #777;
+    padding: 10px;
+    background: rgba(52, 152, 219, 0.05);
+    border-radius: 4px;
+    border-left: 3px solid #3498db;
+}
+
+/* Prevention Section */
+.alcohol-prevention-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.prevention-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.prevention-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.prevention-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background: rgba(46, 204, 113, 0.1);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: #2ecc71;
+}
+
+.prevention-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.prevention-description {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.prevention-tips {
+    text-align: left;
+    padding-left: 20px;
+    margin: 0;
+}
+
+.prevention-tips li {
+    margin-bottom: 8px;
+    color: #555;
+}
+
+/* Support Section */
+.alcohol-support-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.support-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border-top: 5px solid #9b59b6;
+    text-align: center;
+}
+
+.support-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.support-name {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.support-contact {
+    display: inline-block;
+    padding: 8px 15px;
+    background: rgba(155, 89, 182, 0.1);
+    border-radius: 30px;
+    color: #9b59b6;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.support-description {
+    font-size: 0.95rem;
+    color: #555;
+}
+
+/* FAQ Section */
+.alcohol-faq-container {
+    margin-bottom: 40px;
+}
+
+.faq-item {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.faq-question {
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 600;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.faq-question i {
+    transition: transform 0.3s ease;
+}
+
+.faq-question.active i {
+    transform: rotate(180deg);
+}
+
+.faq-question:hover {
+    background: rgba(243, 156, 18, 0.05);
+}
+
+.faq-answer {
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    color: #555;
+    background: rgba(243, 156, 18, 0.02);
+}
+
+/* Myths vs Facts Section */
+.myths-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.myth-fact-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.myth-fact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.myth-fact-icon {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    color: #f39c12;
+    background: rgba(243, 156, 18, 0.1);
+}
+
+.myth-content, .fact-content {
+    padding: 15px;
+}
+
+.myth-header, .fact-header {
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.myth-header {
+    color: #e74c3c;
+}
+
+.fact-header {
+    color: #2ecc71;
+}
+
+.myth-content p, .fact-content p {
+    margin: 0;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.myth-content {
+    border-bottom: 1px dashed #ddd;
+}
+
+/* Bubble Animation for Background */
+.bubbles-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.bubble {
+    position: absolute;
+    bottom: -100px;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 70%, transparent 100%);
+    border-radius: 50%;
+    animation: bubble 15s infinite ease-in;
+    opacity: 0;
+}
+
+@keyframes bubble {
+    0% {
+        transform: translateY(0) scale(0);
+        opacity: 0;
+    }
+    5% {
+        opacity: 0.8;
+    }
+    95% {
+        opacity: 0.4;
+    }
+    100% {
+        transform: translateY(-2000px) scale(2);
+        opacity: 0;
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .alcohol-modal-content {
+        width: 95%;
+        max-height: 95vh;
+    }
+    
+    .alcohol-modal-title {
+        font-size: 2.5rem;
+    }
+    
+    .alcohol-tab {
+        padding: 12px 15px;
+        font-size: 0.9rem;
+    }
+    
+    .alcohol-section {
+        padding: 20px;
+    }
+    
+    .alcohol-laws-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .myths-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .alcohol-modal-title {
+        font-size: 2rem;
+    }
+    
+    .alcohol-tabs {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 5px;
+    }
+    
+    .alcohol-tab {
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+    
+    .stat-item {
+        min-width: 100%;
+    }
+    
+    .alcohol-types-grid,
+    .alcohol-effects-container,
+    .alcohol-prevention-container,
+    .alcohol-support-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Interactive Elements */
+.interactive-drink-meter {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 40px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.meter-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.drink-options {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.drink-option {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background: #f8f9fa;
+    border: 2px solid #ddd;
+    transition: all 0.3s ease;
+}
+
+.drink-option:hover {
+    transform: scale(1.1);
+    border-color: #f39c12;
+}
+
+.drink-option.active {
+    background: rgba(243, 156, 18, 0.1);
+    border-color: #f39c12;
+    box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.2);
+}
+
+.drink-icon {
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+    color: #f39c12;
+}
+
+.drink-name {
+    font-size: 0.8rem;
+    text-align: center;
+    color: #555;
+}
+
+.risk-meter {
+    height: 40px;
+    background: linear-gradient(to right, #2ecc71, #f39c12, #e74c3c);
+    border-radius: 20px;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.risk-indicator {
+    width: 20px;
+    height: 40px;
+    background: white;
+    border: 3px solid #333;
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(-50%);
+    transition: left 0.3s ease;
+    cursor: pointer;
+}
+
+.risk-levels {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.risk-level {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.drink-info {
+    background: rgba(243, 156, 18, 0.05);
+    border-left: 3px solid #f39c12;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.drink-info p {
+    margin: 0;
+    color: #555;
+}
+
+/* Liquid Animation */
+.liquid-container {
+    position: relative;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-top: 40px;
+}
+
+.liquid-fill {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: #f39c12;
+    transition: height 0.3s ease, background 0.3s ease;
+}
+
+.liquid-fill::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background: var(--wave-background, url("data:image/svg+xml;utf8,<svg viewBox='0 0 350 20' xmlns='http://www.w3.org/2000/svg'><path d='M0,20 Q50,0 100,20 Q150,40 200,20 Q250,0 300,20 Q350,40 400,20 L400,150 L0,150 Z' fill='%23f39c12'/></svg>"));
+    background-repeat: repeat-x;
+    animation: wave 10s linear infinite;
+}
+
+@keyframes wave {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 350px 0;
+    }
+}
+
+.liquid-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Custom Animations */
+.glass-icon {
+    position: relative;
+    display: inline-block;
+    color: #f39c12;
+    font-size: 2.5rem;
+    animation: tilt 3s ease-in-out infinite alternate;
+}
+
+@keyframes tilt {
+    0% {
+        transform: rotate(-5deg);
+    }
+    100% {
+        transform: rotate(5deg);
+    }
+}
+
+.glow-effect {
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 5px rgba(243, 156, 18, 0.5);
+    }
+    100% {
+        text-shadow: 0 0 20px rgba(243, 156, 18, 0.8), 0 0 30px rgba(243, 156, 18, 0.6);
+    }
+}
+
+.heartbeat {
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+    0% {
+        transform: scale(1);
+    }
+    14% {
+        transform: scale(1.1);
+    }
+    28% {
+        transform: scale(1);
+    }
+    42% {
+        transform: scale(1.1);
+    }
+    70% {
+        transform: scale(1);
+    }
+}
+
+/* Toggle Switch for Interactive Comparisons */
+.toggle-switch-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    gap: 10px;
+}
+
+.toggle-label {
+    font-weight: 500;
+    color: #555;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 30px;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .toggle-slider {
+    background-color: #f39c12;
+}
+
+input:checked + .toggle-slider:before {
+    transform: translateX(30px);
+}
+
+/* Detail Popup Styles */
+.alcohol-detail-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 1100; /* Cao hơn modal chính */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.alcohol-detail-popup.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.alcohol-detail-content {
+    width: 90%;
+    max-width: 800px;
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.alcohol-detail-popup.active .alcohol-detail-content {
+    transform: scale(1);
+}
+
+.alcohol-detail-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.alcohol-detail-close:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: rotate(90deg);
+}
+
+.alcohol-detail-header {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+}
+
+.alcohol-detail-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.alcohol-detail-header-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 20px 20px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    color: white;
+}
+
+.alcohol-detail-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.alcohol-detail-content-percent {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.alcohol-detail-body {
+    padding: 30px;
+}
+
+.alcohol-detail-section {
+    margin-bottom: 20px;
+}
+
+.alcohol-detail-section-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.alcohol-detail-section-title i {
+    margin-right: 10px;
+    color: #3498db;
+}
+
+.alcohol-detail-text {
+    line-height: 1.6;
+    color: #666;
+}
+
+.alcohol-detail-tag {
+    display: inline-block;
+    background: #f1f1f1;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.alcohol-health-impact {
+    background: rgba(231, 76, 60, 0.1);
+    border-left: 4px solid #e74c3c;
+    padding: 15px;
+    border-radius: 0 5px 5px 0;
+}
+
+.alcohol-cultural-context {
+    background: rgba(46, 204, 113, 0.1);
+    border-left: 4px solid #2ecc71;
+    padding: 15px;
+    border-radius: 0 5px 5px 0;
+}
+
+@media (max-width: 768px) {
+    .alcohol-detail-header {
+        height: 200px;
+    }
+    
+    .alcohol-detail-title {
+        font-size: 1.5rem;
+    }
+    
+    .alcohol-detail-body {
+        padding: 20px;
+    }
+}
+
+/* Make examples clickable */
+.type-example {
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.type-example::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #3498db;
+    transition: width 0.3s ease;
+}
+
+.type-example:hover {
+    color: #3498db;
+    transform: translateY(-2px);
+}
+
+.type-example:hover::before {
+    width: 100%;
+}
+
+.type-example:active {
+    transform: translateY(0);
+}
+
+/* Thêm hiệu ứng pulse khi hover */
+.type-example::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(52, 152, 219, 0.1);
+    border-radius: 20px;
+    z-index: -1;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.3s ease;
+}
+
+.type-example:hover::after {
+    opacity: 1;
+    transform: scale(1);
+} 

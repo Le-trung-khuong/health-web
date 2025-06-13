@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gương Soi Tương Lai - Nhìn Nhận Hậu Quả Của Tệ Nạn Xã Hội</title>
+    <meta name="description" content="Công nghệ AI biến đổi khuôn mặt để hiển thị tác động dài hạn của các tệ nạn như ma túy, rượu bia lên ngoại hình của bạn">
+    <link rel="stylesheet" href="../css/custom.css">
+    <link rel="stylesheet" href="../css/header-support.css">
+    <link rel="stylesheet" href="../css/future_mirror.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header (giống với trang index.html) -->
+    <header class="navbar" id="main-header">
+        <div class="container navbar-container">
+            <a href="index.html" class="navbar-logo">
+                <i class="fas fa-shield-heart"></i> Vì Cộng Đồng Khỏe Mạnh
+            </a>
+            <button class="navbar-toggle" id="navbar-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="navbar-links">
+                <li class="navbar-link"><a href="index.html">Trang Chủ</a></li>
+                <li class="navbar-link">
+                    <a href="#" class="info-menu-toggle">Thông Tin</a>
+                </li>
+                <li class="navbar-link"><a href="index.html#mission">Mục Tiêu Dự Án</a></li>
+                <li class="navbar-link"><a href="index.html#hope-stories">Câu Chuyện Hy Vọng</a></li>
+                <li class="navbar-link"><a href="support.html">Hỗ Trợ</a></li>
+                <li class="navbar-link">
+                    <button class="theme-toggle" aria-label="Chuyển chế độ Sáng hoặc Tối">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="future-mirror-hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-7 col-md-12">
+                    <h1 class="hero-title">Gương Soi Tương Lai</h1>
+                    <p class="hero-description">Công nghệ AI tiên tiến giúp bạn nhìn thấy tác động trực quan của ma túy, rượu bia và các tệ nạn khác lên ngoại hình của mình sau 5, 10 hoặc 20 năm sử dụng. Đối mặt với sự thật - hành động ngay hôm nay.</p>
+                    <div class="hero-buttons">
+                        <a href="#upload-section" class="btn btn-primary me-3"><i class="fas fa-camera me-2"></i> Thử Ngay</a>
+                        <a href="#how-it-works" class="btn btn-outline"><i class="fas fa-question-circle me-2"></i> Cách Hoạt Động</a>
+                    </div>
+                </div>
+                <div class="col-5 col-md-12">
+                    <div class="mirror-preview">
+                        <div class="mirror-preview-before">
+                            <img src="https://tc.cdnchinhphu.vn/Uploaded/buikieulien/2014_11_24/A5_copy.jpg" alt="Khuôn mặt khỏe mạnh">
+                            <div class="mirror-preview-label">HIỆN TẠI</div>
+                        </div>
+                        <div class="mirror-preview-after">
+                            <img src="https://tc.cdnchinhphu.vn/Uploaded/buikieulien/2014_11_24/A6_copy.jpg" alt="Khuôn mặt sau khi sử dụng ma túy">
+                            <div class="mirror-preview-label">SAU 10 NĂM SỬ DỤNG MA TÚY</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wave divider -->
+    <div class="section-divider">
+        <div class="wave"></div>
+    </div>
+
+    <!-- Mục Upload Section -->
+    <section id="upload-section" class="py-5">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Xem Hình Ảnh Tương Lai Của Bạn</h2>
+                <p class="section-description">Tải lên ảnh khuôn mặt của bạn và trải nghiệm tác động của các tệ nạn qua thời gian</p>
+            </div>
+
+            <div class="future-mirror-container" data-aos="fade-up">
+                <div class="future-mirror-tabs">
+                    <button class="future-mirror-tab active" data-target="drug-effects">
+                        <i class="fas fa-pills"></i> Ma Túy
+                    </button>
+                    <button class="future-mirror-tab" data-target="alcohol-effects">
+                        <i class="fas fa-wine-bottle"></i> Rượu Bia
+                    </button>
+                    <button class="future-mirror-tab" data-target="smoking-effects">
+                        <i class="fas fa-smoking"></i> Thuốc Lá
+                    </button>
+                </div>
+
+                <div class="future-mirror-upload">
+                    <div class="upload-dropzone" id="upload-dropzone">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Kéo thả ảnh của bạn vào đây hoặc nhấn để chọn ảnh</p>
+                        <p class="small">Chúng tôi cam kết không lưu trữ ảnh của bạn</p>
+                        <input type="file" id="image-upload" accept="image/*" style="display: none;">
+                    </div>
+
+                    <div class="upload-requirements">
+                        <h4><i class="fas fa-check-circle"></i> Yêu cầu ảnh:</h4>
+                        <ul>
+                            <li><strong><i class="fas fa-portrait text-primary"></i> Khuôn mặt rõ ràng</strong> - Chụp thẳng mặt, không nghiêng, quay đầu</li>
+                            <li><strong><i class="fas fa-sun text-warning"></i> Đủ ánh sáng</strong> - Ánh sáng đủ, đồng đều, không phản chiếu</li>
+                            <li><strong><i class="fas fa-eye-slash text-danger"></i> Không có vật che</strong> - Không đeo kính râm, khẩu trang, mũ</li>
+                            <li><strong><i class="fas fa-smile text-primary"></i> Biểu cảm tự nhiên</strong> - Không cười quá rộng hoặc nhăn mặt</li>
+                            <li><strong><i class="fas fa-arrows-alt-h text-success"></i> Khoảng cách vừa phải</strong> - Mặt chiếm 50-70% khung hình</li>
+                            <li><strong><i class="fas fa-image text-secondary"></i> Nền đơn giản</strong> - Nền không quá phức tạp, tránh nhiều người</li>
+                            <li><strong><i class="fas fa-file-image text-info"></i> Định dạng:</strong> JPG, PNG (tối đa 5MB)</li>
+                        </ul>
+                        <div class="mt-3 upload-examples">
+                            <div class="example-good">
+                                <i class="fas fa-check-circle text-success"></i> Tốt:
+                                <div class="example-description">Mặt thẳng, đủ sáng, không vật che</div>
+                            </div>
+                            <div class="example-bad">
+                                <i class="fas fa-times-circle text-danger"></i> Tránh:
+                                <div class="example-description">Nghiêng mặt, quá tối, đeo kính râm</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="future-mirror-results" id="mirror-results" style="display: none;">
+                    <div class="timeline-slider-container">
+                        <h4>Thời gian sử dụng: <span id="years-label">5 năm</span></h4>
+                        <input type="range" min="1" max="20" value="5" class="timeline-slider" id="years-slider">
+                        <div class="timeline-markers">
+                            <span>1 năm</span>
+                            <span>5 năm</span>
+                            <span>10 năm</span>
+                            <span>15 năm</span>
+                            <span>20 năm</span>
+                        </div>
+                    </div>
+
+                    <div class="comparison-container">
+                        <div class="comparison-image">
+                            <div class="image-label">HIỆN TẠI</div>
+                            <div class="image-container" id="original-image-container">
+                                <!-- Original image will be displayed here -->
+                            </div>
+                        </div>
+                        <div class="comparison-divider">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        <div class="comparison-image">
+                            <div class="image-label" id="future-label">SAU 5 NĂM SỬ DỤNG</div>
+                            <div class="image-container" id="transformed-image-container">
+                                <!-- Transformed image will be displayed here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="health-impacts">
+                        <h4><i class="fas fa-heartbeat"></i> Tác Động Sức Khỏe:</h4>
+                        <div class="impact-container" id="health-impact-content">
+                            <!-- Health impact content will be dynamically added here -->
+                        </div>
+                    </div>
+
+                    <div class="share-container">
+                        <button class="btn btn-primary" id="reset-button">
+                            <i class="fas fa-redo"></i> Thử Với Ảnh Khác
+                        </button>
+                        <button class="btn btn-accent" id="download-button">
+                            <i class="fas fa-download"></i> Tải Ảnh So Sánh
+                        </button>
+                        <button class="btn btn-outline" id="share-button">
+                            <i class="fas fa-share-alt"></i> Chia Sẻ
+                        </button>
+                    </div>
+                </div>
+
+                <div class="loading-overlay" id="loading-overlay" style="display: none;">
+                    <div class="loading-spinner"></div>
+                    <p>Đang xử lý hình ảnh của bạn...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cách hoạt động -->
+    <section id="how-it-works" class="py-5 bg-light">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Cách Công Nghệ Hoạt Động</h2>
+                <p class="section-description">Tìm hiểu cách AI biến đổi khuôn mặt để mô phỏng tác động của tệ nạn xã hội</p>
+            </div>
+
+            <div class="ai-technology-info" data-aos="fade-up">
+                <h4><i class="fas fa-cogs"></i>Công Nghệ AI Tiên Tiến Đang Được Sử Dụng</h4>
+                <p>Chúng tôi kết hợp hai công nghệ AI hiện đại để mang lại kết quả chân thực nhất:</p>
+                <ul>
+                    <li><strong>Face-API.js</strong> - Công nghệ nhận diện khuôn mặt và phân tích khuôn mặt</li>
+                    <li><strong>Stable Diffusion</strong> - Mô hình AI tiên tiến biến đổi hình ảnh, được huấn luyện trên dữ liệu y khoa về tác động của các tệ nạn xã hội</li>
+                </ul>
+                <div class="ai-tech-note">
+                    <p><i class="fas fa-info-circle"></i> Việc xử lý có thể mất 15-30 giây tùy thuộc vào độ phức tạp của hình ảnh và tải máy chủ AI.</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-4 col-md-12" data-aos="fade-up" data-aos-delay="100">
+                    <div class="how-it-works-card">
+                        <div class="how-it-works-icon">
+                            <i class="fas fa-face-smile"></i>
+                        </div>
+                        <h4>1. Nhận Diện Khuôn Mặt</h4>
+                        <p>Công nghệ AI nhận diện 68 điểm chính trên khuôn mặt, xác định vị trí chính xác của mắt, mũi, miệng và cấu trúc xương để đảm bảo biến đổi chân thực.</p>
+                    </div>
+                </div>
+                <div class="col-4 col-md-12" data-aos="fade-up" data-aos-delay="200">
+                    <div class="how-it-works-card">
+                        <div class="how-it-works-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h4>2. Phân Tích & Biến Đổi</h4>
+                        <p>Sử dụng mô hình AI tiên tiến từ Stability AI, hệ thống mô phỏng các thay đổi vật lý thực tế dựa trên dữ liệu y khoa về tác động của ma túy, rượu bia, thuốc lá qua thời gian.</p>
+                    </div>
+                </div>
+                <div class="col-4 col-md-12" data-aos="fade-up" data-aos-delay="300">
+                    <div class="how-it-works-card">
+                        <div class="how-it-works-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>3. Phân Tích Tác Động</h4>
+                        <p>Cung cấp thông tin chi tiết về tác hại sức khỏe tiềm ẩn dựa trên nghiên cứu y khoa và mô phỏng chúng thành hình ảnh và dữ liệu trực quan.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accuracy-disclaimer" data-aos="fade-up">
+                <h4><i class="fas fa-exclamation-circle"></i> Lưu Ý Về Độ Chính Xác</h4>
+                <p>Mặc dù dựa trên dữ liệu y tế thực tế và sử dụng công nghệ AI tiên tiến, công cụ này chỉ mang tính chất mô phỏng và giáo dục. Tác động thực tế có thể khác nhau tùy thuộc vào nhiều yếu tố như di truyền, môi trường, và lối sống. Mục đích chính là nâng cao nhận thức về hậu quả lâu dài của các tệ nạn xã hội.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hướng dẫn sử dụng -->
+    <section id="usage-guide" class="py-5">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Hướng Dẫn Sử Dụng</h2>
+                <p class="section-description">Làm theo các bước đơn giản để trải nghiệm "Gương Soi Tương Lai"</p>
+            </div>
+
+            <div class="row">
+                <div class="col-12" data-aos="fade-up">
+                    <div class="usage-guide-card">
+                        <div class="usage-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Tải Ảnh Lên</h4>
+                                <p>Chọn một ảnh khuôn mặt rõ nét, nhìn thẳng vào camera, không đeo kính và không bị che khuất. Ảnh nên có đủ ánh sáng và hiển thị đầy đủ khuôn mặt.</p>
+                                <div class="tips-box">
+                                    <h5><i class="fas fa-lightbulb"></i> Mẹo cho ảnh tốt nhất:</h5>
+                                    <ul>
+                                        <li>Ánh sáng đầy đủ, đồng đều trên khuôn mặt</li>
+                                        <li>Nhìn thẳng vào camera, không nghiêng hoặc quay đầu</li>
+                                        <li>Không đeo kính, mũ, hoặc các vật che khuôn mặt</li>
+                                        <li>Nền đơn giản, không quá phức tạp</li>
+                                        <li>Biểu cảm tự nhiên, không cười quá to</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="usage-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Chọn Loại Tệ Nạn</h4>
+                                <p>Chọn một trong ba loại tệ nạn xã hội: Ma túy, Rượu bia, hoặc Thuốc lá để xem tác động lên khuôn mặt của bạn.</p>
+                            </div>
+                        </div>
+                        <div class="usage-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Điều Chỉnh Thời Gian</h4>
+                                <p>Di chuyển thanh trượt để điều chỉnh số năm sử dụng (từ 1-20 năm) để xem tác động qua thời gian.</p>
+                            </div>
+                        </div>
+                        <div class="usage-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>Xem Kết Quả & Tìm Hiểu</h4>
+                                <p>Sau khi AI xử lý, bạn sẽ thấy hình ảnh "trước" và "sau" cùng với thông tin về tác động sức khỏe tiềm ẩn.</p>
+                            </div>
+                        </div>
+                        <div class="usage-step">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                <h4>Chia Sẻ Kết Quả</h4>
+                                <p>Tải xuống hoặc chia sẻ hình ảnh kết quả để nâng cao nhận thức về tác hại của tệ nạn xã hội.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lưu ý về quyền riêng tư -->
+    <section id="privacy-notes" class="py-4 bg-light">
+        <div class="container">
+            <div class="privacy-box" data-aos="fade-up">
+                <h4><i class="fas fa-shield-alt"></i> Bảo Mật & Quyền Riêng Tư</h4>
+                <p>Ảnh và dữ liệu của bạn chỉ được xử lý cục bộ trên trình duyệt và máy chủ an toàn. Chúng tôi không lưu trữ ảnh của bạn sau khi xử lý. Tất cả quá trình xử lý đều tuân thủ các tiêu chuẩn bảo mật nghiêm ngặt.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tác Động Được Mô Phỏng -->
+    <section id="simulated-effects" class="py-5">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Tác Động Được Mô Phỏng</h2>
+                <p class="section-description">Tìm hiểu các thay đổi cụ thể được hiển thị trong công cụ Gương Soi Tương Lai</p>
+            </div>
+
+            <div class="row">
+                <div class="col-4 col-md-12" data-aos="fade-up" data-aos-delay="100">
+                    <div class="effect-card">
+                        <h3><i class="fas fa-pills"></i> Ma Túy</h3>
+                        <ul class="effect-list">
+                            <li>Sụt cân nhanh chóng và mất cơ</li>
+                            <li>Da sạm màu, nhăn nheo sớm</li>
+                            <li>Mụn, vết loét và tổn thương da</li>
+                            <li>Răng hư hỏng và nướu sưng</li>
+                            <li>Mắt trũng, quầng thâm</li>
+                            <li>Thay đổi cấu trúc xương mặt</li>
+                        </ul>
+                        <div class="effect-image">
+                            <img src="https://hellodoctors.vn/img/uploads/cac-bieu-hien-nguoi-nghien-ma-tuy_30105.png" alt="Tác động của ma túy">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 col-md-12" data-aos="fade-up" data-aos-delay="200">
+                    <div class="effect-card">
+                        <h3><i class="fas fa-wine-bottle"></i> Rượu Bia</h3>
+                        <ul class="effect-list">
+                            <li>Mặt đỏ, sưng phù</li>
+                            <li>Mạch máu nổi rõ, da xỉn màu</li>
+                            <li>Mắt vàng, đỏ và sưng</li>
+                            <li>Tăng cân, béo mặt</li>
+                            <li>Lão hóa sớm, nếp nhăn</li>
+                            <li>Tổn thương mũi to, đỏ</li>
+                        </ul>
+                        <div class="effect-image">
+                            <img src="https://medlatec.vn/media/11856/content/20210225_tac_hai_cua_ruou_bia_doi_voi_nam_gioi_2.jpg" alt="Tác động của rượu bia">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 col-md-12" data-aos="fade-up" data-aos-delay="300">
+                    <div class="effect-card">
+                        <h3><i class="fas fa-smoking"></i> Thuốc Lá</h3>
+                        <ul class="effect-list">
+                            <li>Da khô, xám xỉn</li>
+                            <li>Nếp nhăn sâu quanh miệng, mắt</li>
+                            <li>Răng ố vàng, nướu tối màu</li>
+                            <li>Môi thâm và khô nứt</li>
+                            <li>Tóc mỏng, bạc sớm</li>
+                            <li>Quầng thâm dưới mắt</li>
+                        </ul>
+                        <div class="effect-image">
+                            <img src="https://image.baophapluat.vn/w840/Uploaded/2025/athlrainaghat/2017_10_16/chongthuoclainfonetvn10_KXST.jpg" alt="Tác động của thuốc lá">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-5 text-center" data-aos="fade-up">
+                <a href="#upload-section" class="btn btn-primary">
+                    <i class="fas fa-camera me-2"></i> Thử Nghiệm Với Ảnh Của Bạn
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Câu chuyện thực tế -->
+    <section id="real-stories" class="py-5 bg-light">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Câu Chuyện Thực Tế</h2>
+                <p class="section-description">Những thay đổi ngoại hình thực tế của người sử dụng chất gây nghiện</p>
+            </div>
+
+            <div class="stories-slider" data-aos="fade-up">
+                <div class="story-slide">
+                    <div class="story-slide-images">
+                        <img src="https://tc.cdnchinhphu.vn/Uploaded/buikieulien/2014_11_24/A1_copy_copy.jpg" alt="Trước khi sử dụng ma túy" class="before-image">
+                        <img src="https://tc.cdnchinhphu.vn/Uploaded/buikieulien/2014_11_24/A2_copy_copy.jpg" alt="Sau 7 năm sử dụng ma túy" class="after-image">
+                    </div>
+                    <div class="story-slide-content">
+                        <h4>Nguyễn V.A, 32 tuổi</h4>
+                        <p>Từ một người khỏe mạnh đến trở thành nạn nhân của ma túy đá sau 7 năm sử dụng. Sự thay đổi về ngoại hình là bằng chứng rõ ràng nhất về tác hại khôn lường của chất gây nghiện.</p>
+                        <div class="story-slide-year">Sau 7 năm</div>
+                    </div>
+                </div>
+
+                <div class="story-slide">
+                    <div class="story-slide-images">
+                        <img src="https://tc.cdnchinhphu.vn/Uploaded/buikieulien/2014_11_24/A3_copy_copy_copy.jpg" alt="Trước khi lạm dụng rượu" class="before-image">
+                        <img src="https://tc.cdnchinhphu.vn/Uploaded/buikieulien/2014_11_24/A4_copy_copy.jpg" alt="Sau 10 năm lạm dụng rượu" class="after-image">
+                    </div>
+                    <div class="story-slide-content">
+                        <h4>Trần M.H, 45 tuổi</h4>
+                        <p>Hình ảnh trước và sau 10 năm lạm dụng rượu bia. Không chỉ gây tổn thương gan, thận mà còn làm thay đổi hoàn toàn diện mạo, khiến người này trông già đi hàng chục tuổi.</p>
+                        <div class="story-slide-year">Sau 10 năm</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recovery-message" data-aos="fade-up">
+                <i class="fas fa-heart"></i>
+                <h4>Không Bao Giờ Là Quá Muộn</h4>
+                <p>Dù bạn đã sử dụng chất gây nghiện bao lâu, việc dừng lại và tìm kiếm sự giúp đỡ luôn là điều có thể. Cơ thể có khả năng phục hồi đáng kinh ngạc khi được chăm sóc đúng cách.</p>
+                <a href="#" class="btn btn-accent">Tìm Hỗ Trợ Ngay</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lời kêu gọi hành động -->
+    <section class="call-to-action">
+        <div class="container">
+            <div class="cta-content" data-aos="fade-up">
+                <h2>Hãy Chọn Tương Lai Của Bạn, Ngay Bây Giờ</h2>
+                <p>Mỗi quyết định đều có hậu quả. Gương Soi Tương Lai chỉ là một công cụ giáo dục - cuộc sống thực của bạn có thể còn tệ hơn nhiều nếu rơi vào tệ nạn xã hội.</p>
+                <div class="cta-buttons">
+                    <a href="#upload-section" class="btn btn-primary me-3">
+                        <i class="fas fa-camera me-2"></i> Thử Nghiệm Gương Soi
+                    </a>
+                    <a href="tel:111" class="btn btn-accent">
+                        <i class="fas fa-phone-alt me-2"></i> Gọi Đường Dây Nóng 111
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (giống với trang index.html) -->
+    <footer id="contact-footer" class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-4 col-md-6">
+                    <h5 class="footer-title"><i class="fas fa-shield-heart me-2"></i>Vì Cộng Đồng Khỏe Mạnh</h5>
+                    <p>Chung tay đẩy lùi ma túy, bảo vệ thế hệ trẻ và xây dựng một xã hội an toàn, phát triển bền vững.</p>
+                </div>
+
+                <div class="col-2 col-md-6 col-sm-6">
+                    <h6 class="footer-title">Liên Kết</h6>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Trang Chủ</a></li>
+                        <li><a href="index.html#important-info">Thông Tin</a></li>
+                        <li><a href="index.html#mission">Mục Tiêu</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-2 col-md-6 col-sm-6">
+                    <h6 class="footer-title">Hỗ Trợ</h6>
+                    <ul class="footer-links">
+                        <li><a href="support.html">Trung Tâm Hỗ Trợ</a></li>
+                        <li><a href="tel:111">Tổng Đài 111</a></li>
+                        <li><a href="#privacy-policy">Quyền riêng tư</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-4 col-md-6">
+                    <h6 class="footer-title">Kết nối với chúng tôi</h6>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="mailto:contact@vicongdongkhoemanh.org" class="social-link"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="mt-4 mb-3">
+            <div class="row">
+                <div class="col-md-6 small">
+                    © 2023 Vì Cộng Đồng Khỏe Mạnh. Phát triển vì một tương lai không ma túy.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Thêm các script cần thiết -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <!-- Sử dụng file face-api.min.js từ thư mục gốc thay vì tải từ CDN -->
+    <script src="../face-api.min.js"></script>
+    <script src="../javaScript/main.js"></script>
+    <script src="../javaScript/face_detection.js"></script>
+    <script src="../javaScript/ai_face_transformer.js"></script>
+    <script src="../javaScript/future_mirror.js"></script>
+</body>
+</html> 

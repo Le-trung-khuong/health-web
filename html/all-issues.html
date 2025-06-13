@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tất Cả Tệ Nạn Xã Hội - Vì Cộng Đồng Khỏe Mạnh</title>
+    <meta name="description" content="Tổng hợp thông tin về các tệ nạn xã hội như ma túy, cờ bạc, mại dâm, lạm dụng rượu bia và các biện pháp phòng chống, hỗ trợ nạn nhân.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header id="main-header">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html"> 
+                    <i class="fas fa-shield-heart"></i> Vì Cộng Đồng Khỏe Mạnh
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMainInfo">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarMainInfo">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html#hero">Trang Chủ</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Thông Tin
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="information.html">Ma Túy</a></li>
+                                <li><a class="dropdown-item" href="gambling.html">Cờ Bạc</a></li>
+                                <li><a class="dropdown-item" href="prostitution.html">Mại Dâm</a></li>
+                                <li><a class="dropdown-item" href="alcohol.html">Rượu Bia</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item active" href="all-issues.html">Tất Cả Tệ Nạn</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="index.html#mission">Mục Tiêu Dự Án</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.html#hope-stories">Câu Chuyện Hy Vọng</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.html#support-resources">Hỗ Trợ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.html#contact-footer">Liên Hệ</a></li>
+                        <li class="nav-item">
+                            <button id="theme-toggle" class="btn btn-sm" aria-label="Chuyển chế độ Sáng hoặc Tối">
+                                <i class="fas fa-moon"></i>
+                            </button>
+                        </li>
+                         <li class="nav-item nav-loggedOut"><a class="nav-link" href="login.html">Đăng Nhập</a></li>
+                        <!-- Các mục khi đã đăng nhập (ví dụ) -->
+                        <li class="nav-item nav-loggedIn d-none"><a class="nav-link" href="#" id="logoutButtonInfo">Đăng Xuất</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero section cho trang tổng hợp -->
+        <section id="all-issues-hero" class="py-5 bg-light">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 mb-4 mb-lg-0">
+                        <h1 class="display-5 fw-bold mb-4">Tệ Nạn Xã Hội & Giải Pháp</h1>
+                        <p class="lead mb-4">Tìm hiểu toàn diện về các tệ nạn xã hội phổ biến, tác hại, nguyên nhân và các biện pháp phòng chống hiệu quả. Hãy cùng chung tay xây dựng một cộng đồng khỏe mạnh, an toàn và phát triển.</p>
+                        <p>Chọn tệ nạn xã hội bạn muốn tìm hiểu hoặc khám phá các chiến dịch phòng chống và nguồn lực hỗ trợ.</p>
+                        <div class="d-flex flex-wrap gap-2 mt-4">
+                            <a href="information.html" class="btn btn-primary"><i class="fas fa-pills me-2"></i>Ma Túy</a>
+                            <a href="gambling.html" class="btn btn-warning text-dark"><i class="fas fa-dice me-2"></i>Cờ Bạc</a>
+                            <a href="prostitution.html" class="btn btn-danger"><i class="fas fa-user-shield me-2"></i>Mại Dâm</a>
+                            <a href="alcohol.html" class="btn btn-info text-white"><i class="fas fa-wine-bottle me-2"></i>Rượu Bia</a>
+                            <a href="#resources" class="btn btn-success"><i class="fas fa-hands-helping me-2"></i>Nguồn Lực Hỗ Trợ</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <img src="https://cdn.pixabay.com/photo/2017/02/16/08/45/bless-you-2070774_1280.jpg" alt="Cộng đồng khỏe mạnh" class="img-fluid rounded shadow">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mục Tổng quan các tệ nạn xã hội -->
+        <section id="overview" class="py-5">
+            <div class="container">
+                <div class="section-header text-center mb-5">
+                    <h2 class="display-5 fw-bold">Tổng Quan Các Tệ Nạn Xã Hội</h2>
+                    <p class="lead">Hiểu rõ về bản chất, nguyên nhân và tác động của các tệ nạn xã hội.</p>
+                </div>
+
+                <div class="row g-4">
+                    <!-- Ma Túy -->
+                    <div class="col-lg-6 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="https://cdn.pixabay.com/photo/2018/07/16/10/54/drugs-3541680_1280.jpg" class="img-fluid rounded-start h-100" alt="Tổng quan về ma túy" style="object-fit: cover;">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h3 class="card-title h4"><i class="fas fa-pills text-danger me-2"></i>Ma Túy</h3>
+                                        <p class="card-text">Ma túy là các chất gây nghiện ảnh hưởng đến hệ thần kinh trung ương, gây ra sự phụ thuộc về thể chất và tinh thần. Tác hại nghiêm trọng đến sức khỏe, gia đình và xã hội.</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <a href="information.html#drug-types" class="btn btn-sm btn-outline-primary">Các loại</a>
+                                                <a href="information.html#drug-harm" class="btn btn-sm btn-outline-danger">Tác hại</a>
+                                                <a href="information.html#prevention-measures" class="btn btn-sm btn-outline-success">Phòng chống</a>
+                                            </div>
+                                            <a href="information.html" class="text-primary">Chi tiết <i class="fas fa-arrow-right small"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cờ Bạc -->
+                    <div class="col-lg-6 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="https://media.istockphoto.com/id/1291619175/vi/anh/tay-c%E1%BA%A7m-ti%E1%BB%81n-%C4%91%E1%BA%B7t-c%C6%B0%E1%BB%A3c-t%E1%BA%A1i-b%C3%A1nh-xe-roulette-t%E1%BA%A1i-c%C3%A2u-l%E1%BA%A1c-b%E1%BB%99-s%C3%B2ng-b%E1%BA%A1c-c%C3%A2u-l%E1%BA%A1c-b%E1%BB%99-%C3%BD-t%C6%B0%E1%BB%9Fng-tr%C3%B2-ch%C6%A1i.jpg?s=2048x2048&w=is&k=20&c=G0WgbyNeMiiqbtwuWnPbstzEbAlOz3kz7hKoGSpRNOU=" class="img-fluid rounded-start h-100" alt="Tổng quan về cờ bạc" style="object-fit: cover;">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h3 class="card-title h4"><i class="fas fa-dice text-warning me-2"></i>Cờ Bạc</h3>
+                                        <p class="card-text">Cờ bạc là hành vi đánh đổi tiền bạc hoặc vật chất dựa vào kết quả của trò chơi may rủi. Nghiện cờ bạc có thể dẫn đến khủng hoảng tài chính, gia đình và sức khỏe tâm lý.</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <a href="gambling.html#gambling-types" class="btn btn-sm btn-outline-primary">Các hình thức</a>
+                                                <a href="gambling.html#gambling-harm" class="btn btn-sm btn-outline-danger">Tác hại</a>
+                                                <a href="gambling.html#gambling-prevention" class="btn btn-sm btn-outline-success">Phòng chống</a>
+                                            </div>
+                                            <a href="gambling.html" class="text-primary">Chi tiết <i class="fas fa-arrow-right small"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mại Dâm -->
+                    <div class="col-lg-6 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="https://media.istockphoto.com/id/187749819/vi/anh/g%C3%A1i-m%E1%BA%A1i-d%C3%A2m-tr%E1%BA%BB-tu%E1%BB%95i-tr%C3%AAn-%C4%91%C6%B0%E1%BB%9Dng-ph%E1%BB%91-v%C3%A0o-ban-%C4%91%C3%AAm.jpg?s=2048x2048&w=is&k=20&c=ss_5i0H27vvmvGgjj7lkktbgrVYdBEHWxRpfp6Eijz4=" class="img-fluid rounded-start h-100" alt="Tổng quan về mại dâm" style="object-fit: cover;">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h3 class="card-title h4"><i class="fas fa-user-shield text-danger me-2"></i>Mại Dâm</h3>
+                                        <p class="card-text">Mại dâm là việc mua bán dịch vụ tình dục, thường liên quan đến buôn người, lừa đảo và cưỡng ép. Gây ảnh hưởng nghiêm trọng đến sức khỏe, nhân phẩm và xã hội.</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <a href="prostitution.html#trafficking" class="btn btn-sm btn-outline-primary">Buôn người</a>
+                                                <a href="prostitution.html#harm" class="btn btn-sm btn-outline-danger">Tác hại</a>
+                                                <a href="prostitution.html#support" class="btn btn-sm btn-outline-success">Hỗ trợ</a>
+                                            </div>
+                                            <a href="prostitution.html" class="text-primary">Chi tiết <i class="fas fa-arrow-right small"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rượu Bia -->
+                    <div class="col-lg-6 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="https://cdn.pixabay.com/photo/2016/03/27/18/47/beers-1283566_1280.jpg" class="img-fluid rounded-start h-100" alt="Tổng quan về lạm dụng rượu bia" style="object-fit: cover;">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h3 class="card-title h4"><i class="fas fa-wine-bottle text-info me-2"></i>Lạm Dụng Rượu Bia</h3>
+                                        <p class="card-text">Lạm dụng rượu bia là việc sử dụng quá mức, gây nghiện và ảnh hưởng đến sức khỏe, tăng nguy cơ tai nạn, bạo lực và các vấn đề xã hội.</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <a href="alcohol.html#abuse" class="btn btn-sm btn-outline-primary">Lạm dụng</a>
+                                                <a href="alcohol.html#harm" class="btn btn-sm btn-outline-danger">Tác hại</a>
+                                                <a href="alcohol.html#solutions" class="btn btn-sm btn-outline-success">Giải pháp</a>
+                                            </div>
+                                            <a href="alcohol.html" class="text-primary">Chi tiết <i class="fas fa-arrow-right small"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- So sánh tác hại của các tệ nạn -->
+        <section id="comparative" class="py-5 bg-light">
+            <div class="container">
+                <div class="section-header text-center mb-5">
+                    <h2 class="display-5 fw-bold">So Sánh Tác Hại Của Các Tệ Nạn Xã Hội</h2>
+                    <p class="lead">Hiểu rõ ảnh hưởng của các tệ nạn xã hội trên các khía cạnh khác nhau.</p>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead class="table-primary text-center">
+                            <tr>
+                                <th>Khía cạnh</th>
+                                <th>Ma Túy</th>
+                                <th>Cờ Bạc</th>
+                                <th>Mại Dâm</th>
+                                <th>Lạm Dụng Rượu Bia</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Sức khỏe thể chất</th>
+                                <td><i class="fas fa-exclamation-triangle text-danger me-1"></i> Rất nghiêm trọng (ảnh hưởng đến não, tim, gan, phổi, suy kiệt cơ thể)</td>
+                                <td><i class="fas fa-exclamation-circle text-warning me-1"></i> Trung bình (căng thẳng, mất ngủ, suy giảm sức khỏe do lo lắng)</td>
+                                <td><i class="fas fa-exclamation-triangle text-danger me-1"></i> Rất nghiêm trọng (bệnh lây truyền, HIV/AIDS, tổn thương cơ thể)</td>
+                                <td><i class="fas fa-exclamation-triangle text-danger me-1"></i> Rất nghiêm trọng (gan, tim mạch, tiêu hóa, suy giảm miễn dịch)</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Sức khỏe tâm lý</th>
+                                <td><i class="fas fa-exclamation-triangle text-danger me-1"></i> Rất nghiêm trọng (trầm cảm, loạn thần, tâm thần phân liệt)</td>
+                                <td><i class="fas fa-exclamation-triangle text-danger me-1"></i> Rất nghiêm trọng (lo âu, trầm cảm, ý định tự tử)</td>
+                                <td><i class="fas fa-exclamation-triangle text-danger me-1"></i> Rất nghiêm trọng (trầm cảm, sang chấn tâm lý, PTSD)</td>
+                                <td><i class="fas fa-exclamation-triangle text-danger me-1"></i> Rất nghiêm trọng (trầm cảm, lo âu, rối loạn tâm thần)</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Gia đình</th>
+                                <td><i class="fas fa-exclamation-triangle text-danger me-1"></i> Rất nghiêm trọng (tan vỡ gia đình, bạo lực, bỏ bê con cái)</td>
+                                <td><i class="fas fa-exclamation-triangle text-danger me-1"></i> Rất nghiêm trọng (nợ nần, mất lòng tin, ly hôn)</td>
+                                <td><i class="fas fa-exclamation-triangle text-danger me-1"></i> Rất nghiêm trọng (kỳ thị, tan vỡ gia đình, ảnh hưởng con cái)</td>
+                                <td><i class="fas fa-exclamation-triangle text-danger me-1"></i> Rất nghiêm trọng (bạo lực gia đình, ly hôn, ảnh hưởng con cái)</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Kinh tế</th>
+                                <td><i class="fas fa-exclamation-triangle text-danger me-1"></i> Rất nghiêm trọng (tốn kém, mất việc làm, phạm pháp)</td>
+                                <td><i class="fas fa-exclamation-triangle text-danger me-1"></i> Rất nghiêm trọng (phá sản, nợ nần, mất tài sản, tín dụng)</td>
+                                <td><i class="fas fa-exclamation-circle text-warning me-1"></i> Trung bình đến nghiêm trọng (khó tái hòa nhập, kỳ thị)</td>
+                                <td><i class="fas fa-exclamation-circle text-warning me-1"></i> Trung bình đến nghiêm trọng (mất việc, chi phí điều trị)</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Pháp luật</th>
+                                <td><i class="fas fa-exclamation-triangle text-danger me-1"></i> Rất nghiêm trọng (tù tội, phạm pháp để có tiền mua)</td>
+                                <td><i class="fas fa-exclamation-circle text-warning me-1"></i> Trung bình đến nghiêm trọng (phạm pháp, lừa đảo)</td>
+                                <td><i class="fas fa-exclamation-triangle text-danger me-1"></i> Rất nghiêm trọng (buôn người, vi phạm pháp luật)</td>
+                                <td><i class="fas fa-exclamation-circle text-warning me-1"></i> Trung bình (tai nạn, gây rối, bạo lực)</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Xã hội</th>
+                                <td><i class="fas fa-exclamation-triangle text-danger me-1"></i> Rất nghiêm trọng (tăng tội phạm, gánh nặng y tế, sức lao động)</td>
+                                <td><i class="fas fa-exclamation-circle text-warning me-1"></i> Trung bình (tội phạm liên quan, gánh nặng xã hội)</td>
+                                <td><i class="fas fa-exclamation-triangle text-danger me-1"></i> Rất nghiêm trọng (buôn người, tội phạm có tổ chức)</td>
+                                <td><i class="fas fa-exclamation-triangle text-danger me-1"></i> Rất nghiêm trọng (tai nạn, bạo lực, gánh nặng y tế)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="alert alert-info mt-4">
+                    <i class="fas fa-info-circle me-2"></i> Bảng trên chỉ mang tính chất tham khảo. Tác động của mỗi tệ nạn có thể khác nhau tùy thuộc vào từng cá nhân, hoàn cảnh và mức độ.
+                </div>
+            </div>
+        </section>
+
+        <!-- Yếu tố rủi ro và nhóm dễ bị ảnh hưởng -->
+        <section id="risk-factors" class="py-5">
+            <div class="container">
+                <div class="section-header text-center mb-5">
+                    <h2 class="display-5 fw-bold">Yếu Tố Rủi Ro & Nhóm Dễ Bị Ảnh Hưởng</h2>
+                    <p class="lead">Hiểu rõ các yếu tố làm tăng nguy cơ và các nhóm cần được bảo vệ đặc biệt.</p>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-header bg-primary text-white">
+                                <h3 class="h5 mb-0"><i class="fas fa-exclamation-triangle me-2"></i>Yếu Tố Rủi Ro Chung</h3>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item d-flex align-items-start">
+                                        <i class="fas fa-check-circle text-primary mt-1 me-2"></i>
+                                        <div>
+                                            <strong>Yếu tố gia đình:</strong> Gia đình có người nghiện, thiếu sự quan tâm, giám sát, bạo lực gia đình.
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item d-flex align-items-start">
+                                        <i class="fas fa-check-circle text-primary mt-1 me-2"></i>
+                                        <div>
+                                            <strong>Yếu tố tâm lý:</strong> Trầm cảm, lo âu, rối loạn tâm lý, tính cách dễ bị ảnh hưởng, tìm kiếm cảm giác mạnh.
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item d-flex align-items-start">
+                                        <i class="fas fa-check-circle text-primary mt-1 me-2"></i>
+                                        <div>
+                                            <strong>Yếu tố xã hội:</strong> Bạn bè xấu, môi trường dễ tiếp cận với ma túy, cờ bạc, thiếu cơ hội giáo dục và việc làm.
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item d-flex align-items-start">
+                                        <i class="fas fa-check-circle text-primary mt-1 me-2"></i>
+                                        <div>
+                                            <strong>Kinh tế:</strong> Nghèo đói, thất nghiệp, nợ nần, áp lực tài chính.
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item d-flex align-items-start">
+                                        <i class="fas fa-check-circle text-primary mt-1 me-2"></i>
+                                        <div>
+                                            <strong>Tuổi tác:</strong> Tuổi thanh thiếu niên là giai đoạn dễ bị tác động nhất do tò mò, muốn khẳng định bản thân.
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-header bg-warning text-dark">
+                                <h3 class="h5 mb-0"><i class="fas fa-users me-2"></i>Nhóm Dễ Bị Ảnh Hưởng</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="d-flex align-items-start mb-3">
+                                            <i class="fas fa-child text-warning fs-4 me-2 mt-1"></i>
+                                            <div>
+                                                <h5 class="h6">Thanh Thiếu Niên</h5>
+                                                <p class="small mb-0">Dễ bị tác động bởi áp lực bạn bè, tò mò, tìm kiếm cảm giác mạnh, thiếu kỹ năng từ chối.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="d-flex align-items-start mb-3">
+                                            <i class="fas fa-hand-holding-heart text-warning fs-4 me-2 mt-1"></i>
+                                            <div>
+                                                <h5 class="h6">Người Có Vấn Đề Tâm Lý</h5>
+                                                <p class="small mb-0">Trầm cảm, lo âu, sang chấn tâm lý dễ dẫn đến sử dụng chất gây nghiện để tự điều trị.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="d-flex align-items-start mb-3">
+                                            <i class="fas fa-user-graduate text-warning fs-4 me-2 mt-1"></i>
+                                            <div>
+                                                <h5 class="h6">Học Sinh, Sinh Viên Xa Nhà</h5>
+                                                <p class="small mb-0">Thiếu sự giám sát của gia đình, áp lực học tập, thích khám phá môi trường mới.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="d-flex align-items-start mb-3">
+                                            <i class="fas fa-female text-warning fs-4 me-2 mt-1"></i>
+                                            <div>
+                                                <h5 class="h6">Phụ Nữ & Trẻ Em Gái</h5>
+                                                <p class="small mb-0">Dễ bị buôn bán, lừa đảo, ép buộc vào mại dâm, đặc biệt là người từ vùng nghèo, thiếu hiểu biết.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="d-flex align-items-start mb-3">
+                                            <i class="fas fa-briefcase text-warning fs-4 me-2 mt-1"></i>
+                                            <div>
+                                                <h5 class="h6">Người Có Áp Lực Công Việc</h5>
+                                                <p class="small mb-0">Áp lực công việc cao, stress kéo dài dễ dẫn đến lạm dụng rượu bia hoặc chất gây nghiện.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="d-flex align-items-start mb-3">
+                                            <i class="fas fa-user-plus text-warning fs-4 me-2 mt-1"></i>
+                                            <div>
+                                                <h5 class="h6">Người Từng Mắc Nghiện</h5>
+                                                <p class="small mb-0">Có nguy cơ tái nghiện cao nếu không được hỗ trợ đầy đủ và liên tục.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nguồn lực hỗ trợ -->
+        <section id="resources" class="py-5">
+            <div class="container">
+                <div class="section-header text-center mb-5">
+                    <h2 class="display-5 fw-bold">Nguồn Lực Hỗ Trợ</h2>
+                    <p class="lead">Các trung tâm, đường dây nóng và dịch vụ hỗ trợ người gặp vấn đề với tệ nạn xã hội.</p>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-header bg-success text-white">
+                                <h5 class="mb-0"><i class="fas fa-phone-alt me-2"></i>Đường Dây Nóng 24/7</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <strong>Tổng đài quốc gia 111</strong>
+                                            <br><small class="text-muted">Hỗ trợ bảo vệ trẻ em, phòng chống mua bán người</small>
+                                        </div>
+                                        <a href="tel:111" class="btn btn-sm btn-success rounded-circle"><i class="fas fa-phone"></i></a>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <strong>Đường dây nóng phòng chống ma túy</strong>
+                                            <br><small class="text-muted">Tư vấn và tiếp nhận thông tin về ma túy</small>
+                                        </div>
+                                        <a href="tel:18008888" class="btn btn-sm btn-success rounded-circle"><i class="fas fa-phone"></i></a>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <strong>Đường dây nóng tư vấn cai nghiện</strong>
+                                            <br><small class="text-muted">Hỗ trợ người nghiện và gia đình</small>
+                                        </div>
+                                        <a href="tel:18001234" class="btn btn-sm btn-success rounded-circle"><i class="fas fa-phone"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0"><i class="fas fa-clinic-medical me-2"></i>Trung Tâm Hỗ Trợ & Cai Nghiện</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="alert alert-light border">
+                                    <i class="fas fa-map-marker-alt text-danger me-2"></i> Các trung tâm cai nghiện và hỗ trợ tâm lý có mặt tại nhiều tỉnh thành trên cả nước. Vui lòng liên hệ đường dây nóng để được hỗ trợ tìm trung tâm phù hợp gần nơi bạn sinh sống.
+                                </div>
+                                <div class="d-grid gap-2 mt-3">
+                                    <a href="index.html#support-resources" class="btn btn-outline-primary"><i class="fas fa-search-location me-2"></i>Tìm Trung Tâm Hỗ Trợ</a>
+                                    <a href="mailto:contact@vicongdongkhoemanh.org?subject=Yêu cầu hỗ trợ tìm trung tâm" class="btn btn-outline-success"><i class="fas fa-envelope me-2"></i>Gửi Email Tư Vấn</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact-footer-info" class="footer py-5"> 
+         <div class="container">
+        <div class="row">
+            <div class="col-lg-4 mb-4 mb-lg-0">
+                <h5 class="mb-4"><i class="fas fa-shield-heart me-2"></i>Vì Cộng Đồng Khỏe Mạnh</h5>
+                <p>Cung cấp thông tin chính xác và hỗ trợ kịp thời trong công cuộc phòng chống các tệ nạn xã hội - vì một cộng đồng khỏe mạnh, an toàn và phát triển.</p>
+            </div>
+            <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                <h6 class="mb-4">Liên Kết</h6>
+                <ul class="list-unstyled footer-links">
+                    <li><a href="index.html">Trang Chủ</a></li>
+                    <li><a href="index.html#mission">Mục Tiêu Dự Án</a></li>
+                    <li><a href="all-issues.html">Tệ Nạn Xã Hội</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                <h6 class="mb-4">Hỗ Trợ</h6>
+                <ul class="list-unstyled footer-links">
+                    <li><a href="index.html#support-resources">Trung Tâm Giúp Đỡ</a></li>
+                     <li><a href="tel:111">Đường Dây Nóng</a></li>
+                    <li><a href="mailto:contact@vicongdongkhoemanh.org">Liên Hệ Tư Vấn</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-md-4">
+                <h6 class="mb-4">Kết nối</h6>
+                <div class="d-flex social-links">
+                    <a href="https://facebook.com/ViCongDongKhoeManhPage" target="_blank" rel="noopener noreferrer" class="me-3"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://youtube.com/ViCongDongKhoeManhChannel" target="_blank" rel="noopener noreferrer" class="me-3"><i class="fab fa-youtube"></i></a>
+                    <a href="mailto:contact@vicongdongkhoemanh.org"><i class="fas fa-envelope"></i></a>
+                </div>
+                 <p class="mt-3">Email: contact@vicongdongkhoemanh.org</p>
+            </div>
+        </div>
+        <hr class="mt-4 mb-3 border-light opacity-50">
+        <div class="row align-items-center">
+            <div class="col-md-6 small">
+                © 2023 Vì Cộng Đồng Khỏe Mạnh.
+            </div>
+            <div class="col-md-6 text-md-end small">
+                <a href="privacy-policy.html" class="text-light me-3">Chính sách bảo mật</a>
+                <a href="terms-of-service.html" class="text-light me-3">Điều khoản sử dụng</a>
+            </div>
+        </div>
+    </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../javaScript/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Active link cho trang hiện tại
+            const currentPath = window.location.pathname.split("/").pop();
+            document.querySelectorAll('#navbarMainInfo .nav-link').forEach(link => {
+                if (link.getAttribute('href') === currentPath) {
+                    link.classList.add('active');
+                } else if (!link.classList.contains('dropdown-toggle')) {
+                    link.classList.remove('active'); // Đảm bảo chỉ có 1 active
+                }
+            });
+             // Xử lý logout riêng cho trang này nếu cần (do id nút logout khác)
+            const logoutButtonInfo = document.getElementById('logoutButtonInfo');
+            if(logoutButtonInfo) {
+                logoutButtonInfo.addEventListener('click', function(e){
+                    e.preventDefault();
+                    logout(); // Gọi hàm logout từ script.js chung
+                });
+            }
+            // Cuộn tới hash nếu có
+            if (window.location.hash) {
+                const element = document.querySelector(window.location.hash);
+                if (element) {
+                     setTimeout(() => { // Đợi chút để trang render xong
+                        element.scrollIntoView({ behavior: 'smooth' });
+                     }, 200);
+                }
+            }
+        });
+    </script>
+</body>
+</html> 

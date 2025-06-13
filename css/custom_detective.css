@@ -1,0 +1,182 @@
+/* CSS Bổ sung cho bản đồ điều tra */
+
+/* Thêm hiệu ứng vintage cho compass rose (hoa hồng phương hướng) */
+.compass-rose {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%238d6e63" stroke-width="2"/><path d="M50 5 L53 50 L50 95 L47 50 Z" fill="%23a08d70" stroke="%238d6e63"/><path d="M5 50 L50 47 L95 50 L50 53 Z" fill="%23a08d70" stroke="%238d6e63"/><circle cx="50" cy="50" r="5" fill="%238d6e63"/><text x="49" y="15" text-anchor="middle" fill="%238d6e63" style="font-size: 10px;">B</text><text x="85" y="52" text-anchor="middle" fill="%238d6e63" style="font-size: 10px;">Đ</text><text x="49" y="90" text-anchor="middle" fill="%238d6e63" style="font-size: 10px;">N</text><text x="15" y="52" text-anchor="middle" fill="%238d6e63" style="font-size: 10px;">T</text><circle cx="50" cy="50" r="42" fill="none" stroke="%238d6e63" stroke-width="1" stroke-dasharray="2,3"/></svg>');
+    background-size: contain;
+    opacity: 0.8;
+    z-index: 2;
+    right: 20px;
+    top: 20px;
+    pointer-events: none;
+    filter: sepia(30%);
+    transform: rotate(-8deg);
+}
+
+/* Tọa độ A-L và 1-12 */
+.coordinate-label {
+    position: absolute;
+    font-family: 'Times New Roman', serif;
+    color: rgba(101, 67, 33, 0.75);
+    font-size: 12px;
+    font-weight: bold;
+    z-index: 3;
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.5);
+    pointer-events: none;
+}
+
+/* Tọa độ ngang (A-L) */
+.coord-horizontal {
+    top: 4px;
+}
+
+.coord-A { left: 5.5%; }
+.coord-B { left: 13.5%; }
+.coord-C { left: 21.5%; }
+.coord-D { left: 29.5%; }
+.coord-E { left: 37.5%; }
+.coord-F { left: 45.5%; }
+.coord-G { left: 53.5%; }
+.coord-H { left: 61.5%; }
+.coord-I { left: 69.5%; }
+.coord-J { left: 77.5%; }
+.coord-K { left: 85.5%; }
+.coord-L { left: 93.5%; }
+
+/* Tọa độ dọc (1-12) */
+.coord-vertical {
+    left: 4px;
+}
+
+.coord-1 { top: 5.5%; }
+.coord-2 { top: 13.5%; }
+.coord-3 { top: 21.5%; }
+.coord-4 { top: 29.5%; }
+.coord-5 { top: 37.5%; }
+.coord-6 { top: 45.5%; }
+.coord-7 { top: 53.5%; }
+.coord-8 { top: 61.5%; }
+.coord-9 { top: 69.5%; }
+.coord-10 { top: 77.5%; }
+.coord-11 { top: 85.5%; }
+.coord-12 { top: 93.5%; }
+
+/* Thêm một số trang trí cổ điển trên bản đồ */
+.map-decoration {
+    position: absolute;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.75;
+}
+
+.map-decoration.dragon {
+    width: 120px;
+    height: 80px;
+    left: 20px;
+    bottom: 20px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 60"><path d="M10,30 C15,20 20,10 30,15 C40,20 50,10 60,5 C70,0 80,10 85,20 C90,30 80,40 70,35 C60,30 50,40 40,45 C30,50 20,40 10,30 Z" fill="none" stroke="%238d6e63" stroke-width="1"/><text x="50" y="30" text-anchor="middle" fill="%238d6e63" style="font-size: 8px; font-style: italic;">Vùng Đất Bí Ẩn</text></svg>');
+    background-repeat: no-repeat;
+    transform: rotate(-5deg);
+}
+
+.map-decoration.note {
+    width: 80px;
+    height: 40px;
+    right: 25%;
+    bottom: 12%;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 40"><rect x="2" y="2" width="76" height="36" rx="2" ry="2" fill="%23efe9d9" stroke="%23a08d70" stroke-width="0.5"/><text x="40" y="22" text-anchor="middle" fill="%238d6e63" style="font-size: 6px; font-style: italic;">Hãy báo cáo ngay khi phát hiện tệ nạn!</text></svg>');
+    background-repeat: no-repeat;
+    transform: rotate(3deg);
+}
+
+.map-decoration.border {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border: 10px solid transparent;
+    box-sizing: border-box;
+    background-clip: padding-box;
+    background-image: 
+        linear-gradient(45deg, rgba(139, 69, 19, 0.1) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(139, 69, 19, 0.1) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, rgba(139, 69, 19, 0.1) 75%),
+        linear-gradient(-45deg, transparent 75%, rgba(139, 69, 19, 0.1) 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    -webkit-mask-image: linear-gradient(to right, transparent 10px, black 30px, black calc(100% - 30px), transparent calc(100% - 10px)),
+                      linear-gradient(to bottom, transparent 10px, black 30px, black calc(100% - 30px), transparent calc(100% - 10px));
+    mask-image: linear-gradient(to right, transparent 10px, black 30px, black calc(100% - 30px), transparent calc(100% - 10px)),
+              linear-gradient(to bottom, transparent 10px, black 30px, black calc(100% - 30px), transparent calc(100% - 10px));
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    z-index: 1;
+}
+
+/* Thêm dấu đánh dấu cho vị trí hiện tại */
+.current-position-marker {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="none" stroke="%23800000" stroke-width="1" stroke-dasharray="2,2"/><circle cx="10" cy="10" r="3" fill="%23800000"/></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.7;
+    z-index: 4;
+    transform-origin: center;
+    animation: pulse-marker 2s infinite;
+}
+
+@keyframes pulse-marker {
+    0% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.2); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 0.7; }
+}
+
+/* Thêm hiệu ứng vết mực loang màu */
+.ink-blot {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-image: radial-gradient(circle, rgba(101, 67, 33, 0.5) 0%, rgba(101, 67, 33, 0.2) 40%, transparent 70%);
+    opacity: 0.4;
+    z-index: 1;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+}
+
+.ink-blot.one {
+    top: 70%;
+    left: 20%;
+    transform: scale(1.2) rotate(15deg);
+}
+
+.ink-blot.two {
+    top: 25%;
+    right: 15%;
+    transform: scale(0.8) rotate(-10deg);
+}
+
+.ink-blot.three {
+    bottom: 15%;
+    right: 30%;
+    transform: scale(1.5) rotate(5deg);
+}
+
+/* Điều chỉnh cho phân chia vùng */
+.map-region {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Times New Roman', serif;
+    font-style: italic;
+    background-color: rgba(232, 224, 204, 0.6);
+    padding: 4px 8px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(139, 69, 19, 0.3);
+} 

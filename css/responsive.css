@@ -1,0 +1,1109 @@
+/* Responsive Design for Vietnamese Website About Social Issues Prevention */
+
+/* Variables for consistent breakpoints */
+:root {
+  --breakpoint-xs: 480px;
+  --breakpoint-sm: 768px;
+  --breakpoint-md: 992px;
+  --breakpoint-lg: 1200px;
+  --text-color-dark: #333333;
+  --text-color-light: #f8f9fa;
+  --header-contrast-bg: rgba(0, 42, 94, 0.97);
+}
+
+/* ===== HEADER RESPONSIVENESS ===== */
+
+/* Large Desktop (default styles are already set) */
+#main-header {
+  transition: all 0.3s ease;
+}
+
+/* Desktop and smaller */
+@media (max-width: 1400px) {
+  .navbar-container {
+    max-width: 100%;
+    padding: 0.6rem 1rem;
+  }
+
+  .navbar-links-container {
+    gap: 0.8rem;
+  }
+
+  .navbar-link a {
+    padding: 0.7rem 0.8rem;
+  }
+}
+
+@media (max-width: 1199px) {
+  #main-header .navbar-container {
+    width: 95%;
+  }
+  
+  .navbar-links li {
+    margin: 0 10px;
+  }
+  
+  .logo-text {
+    font-size: 1.1rem;
+  }
+}
+
+/* Tablets */
+@media (max-width: 991px) {
+  #main-header .navbar-container {
+    padding: 10px 0;
+  }
+  
+  .logo-text {
+    font-size: 1rem;
+    color: var(--text-color-light) !important; /* Ensure logo text is visible */
+    text-shadow: 0 1px 3px rgba(0,0,0,0.4); /* Add shadow for better visibility */
+  }
+  
+  .navbar-links li {
+    margin: 0 8px;
+  }
+  
+  .navbar-links a {
+    font-size: 0.9rem;
+    color: var(--text-color-light) !important; /* Ensure link text is visible */
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  }
+  
+  .navbar-toggle {
+    display: flex;
+  }
+  
+  .navbar-links-container {
+    position: fixed;
+    top: 70px;
+    left: -100%;
+    width: 80%;
+    height: calc(100vh - 70px);
+    background: var(--header-contrast-bg);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    transition: left 0.3s ease;
+    z-index: 1000;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+  }
+  
+  .navbar-links-container.active {
+    left: 0;
+  }
+  
+  .navbar-links {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .navbar-links li {
+    margin: 0;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .navbar-links a {
+    padding: 15px 0;
+    display: block;
+    width: 100%;
+  }
+  
+  .navbar-dropdown {
+    position: static;
+    width: 100%;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    padding: 0 0 0 15px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background-color: rgba(0, 35, 80, 0.9) !important; /* Darker background for dropdown */
+  }
+  
+  .navbar-links li:hover .navbar-dropdown,
+  .navbar-dropdown.show {
+    max-height: 500px;
+  }
+  
+  .dropdown-item {
+    padding: 10px 0;
+    color: var(--text-color-light) !important;
+  }
+  
+  .dropdown-item:hover {
+    background-color: rgba(52, 152, 219, 0.2) !important;
+  }
+  
+  .auth-buttons {
+    width: 100%;
+    margin-top: 20px;
+    justify-content: flex-start;
+  }
+  
+  .login-btn {
+    width: 100%;
+    text-align: center;
+    color: var(--text-color-light) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(52, 152, 219, 0.3);
+  }
+  
+  .header-shimmer {
+    display: none;
+  }
+  
+  /* Ensure all header text is visible */
+  #main-header,
+  #main-header * {
+    color: var(--text-color-light);
+  }
+  
+  /* Ensure the header has a dark enough background */
+  #main-header {
+    background: var(--header-contrast-bg) !important;
+  }
+}
+
+/* Large Phones */
+@media (max-width: 767px) {
+  #main-header {
+    padding: 5px 0;
+    background: var(--header-contrast-bg) !important;
+  }
+  
+  .navbar-container {
+    padding: 8px 15px;
+  }
+  
+  .navbar-logo {
+    font-size: 0.9rem;
+  }
+  
+  .logo-icon-wrapper {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .logo-icon-wrapper i {
+    font-size: 1rem;
+  }
+  
+  .navbar-links-container {
+    width: 100%;
+    top: 60px;
+  }
+  
+  .navbar-toggle {
+    width: 40px;
+    height: 40px;
+    color: var(--text-color-light);
+  }
+  
+  .navbar-toggle i {
+    font-size: 1.2rem;
+  }
+  
+  /* Support dropdown positioning */
+  .support-dropdown {
+    width: 100%;
+    left: 0;
+    right: 0;
+  }
+  
+  /* Adjust logo animations for better performance on mobile */
+  @keyframes logo-pulse {
+    0% {
+      transform: scale(1);
+      text-shadow: 0 0 3px rgba(52, 152, 219, 0.4);
+    }
+    100% {
+      transform: scale(1.05);
+      text-shadow: 0 0 8px rgba(52, 152, 219, 0.6);
+    }
+  }
+  
+  @keyframes logo-rotate {
+    0% { transform: rotateY(0deg); }
+    100% { transform: rotateY(360deg); }
+  }
+  
+  /* Fix for the logo appearance on mobile */
+  .navbar-logo i {
+    animation: logo-pulse 2s infinite alternate, logo-rotate 10s linear infinite;
+    color: var(--text-color-light);
+  }
+  
+  /* Ensure the logo text is visible */
+  .navbar-logo .logo-text, 
+  .navbar-logo .logo-text .highlight {
+    color: var(--text-color-light) !important;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  }
+  
+  /* Adjust header background for better mobile appearance */
+  #main-header {
+    background: var(--header-contrast-bg) !important;
+  }
+  
+  /* Make dropdown items easier to tap */
+  .navbar-dropdown .dropdown-item {
+    padding: 12px 0;
+    font-size: 1rem;
+    color: var(--text-color-light) !important;
+  }
+  
+  /* Improve visibility of active states */
+  .navbar-links a.active,
+  .navbar-links a:active {
+    color: #3498db !important;
+    font-weight: bold;
+  }
+  
+  /* Add visible indicator for items with dropdowns in mobile view */
+  .info-menu-toggle::after,
+  .navbar-links a:has(i.fa-chevron-down)::after,
+  .has-dropdown::after {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    margin-left: 8px;
+    transform: rotate(45deg);
+    transition: transform 0.3s;
+    position: relative;
+    top: -2px;
+  }
+  
+  .navbar-dropdown.show + .info-menu-toggle::after,
+  .navbar-dropdown.show + .has-dropdown::after {
+    transform: rotate(-135deg);
+    top: 2px;
+  }
+  
+  /* Hero section adjustments */
+  .hero-title {
+    font-size: 2.8rem;
+  }
+
+  .hero-message {
+    font-size: 1.1rem;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+    max-width: 100%;
+    margin: 0 auto 1.5rem;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .hero-buttons .btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .hero-image {
+    max-width: 80%;
+    margin: 0 auto;
+  }
+  
+  /* Counter section adjustments */
+  .counter-item {
+    padding: 2rem 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .counter-value {
+    font-size: 2.2rem;
+  }
+
+  .counter-icon {
+    font-size: 2.2rem;
+  }
+  
+  .counter-label {
+    font-size: 1rem;
+  }
+
+  /* Card adjustments */
+  .main-issue-card, .info-card {
+    height: auto;
+  }
+  
+  .issue-title {
+    font-size: 1.5rem;
+  }
+
+  .issue-desc {
+    font-size: 0.9rem;
+  }
+
+  /* Section adjustments */
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .section-description {
+    font-size: 1rem;
+  }
+
+  .section-divider {
+    height: 80px;
+    margin-top: -30px;
+  }
+
+  /* Footer modifications */
+  .footer-column {
+    margin-bottom: 2rem;
+  }
+  
+  .footer-title {
+    font-size: 1.4rem;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+
+  .text-right {
+    text-align: center;
+  }
+
+  /* Modal adjustments */
+  .prostitution-modal-content,
+  .alcohol-modal-content {
+    width: 90%;
+    height: 80%;
+  }
+  
+  .section-tabs {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .section-tab {
+    width: 100%;
+    text-align: center;
+    padding: 0.8rem;
+  }
+
+  .myth-fact {
+    margin-bottom: 1rem;
+  }
+
+  /* Intro experience adjustments */
+  .slide-content {
+    flex-direction: column;
+    height: auto;
+    max-height: 85vh;
+    overflow-y: auto;
+  }
+
+  .slide-image-wrapper, .slide-video-wrapper {
+    height: 40vh;
+  }
+
+  .slide-text {
+    padding: 1.5rem;
+  }
+
+  .slide-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .intro-slide {
+    overflow-y: auto;
+  }
+
+  .intro-controls {
+    bottom: 1rem;
+  }
+
+  .icon-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  /* Circular Menu Adjustments */
+  .circular-menu {
+    width: 300px;
+    height: 300px;
+  }
+
+  .circular-menu .center-logo {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+
+  .circular-menu .social-issue-circle {
+    width: 60px;
+    height: 60px;
+  }
+
+  .social-issue-circle i {
+    font-size: 1.3rem;
+  }
+
+  .social-issue-name {
+    font-size: 0.7rem;
+    margin-top: 5px;
+  }
+  
+  /* Floating shapes adjustments */
+  .floating-shapes {
+    display: none;
+  }
+}
+
+/* Small Phones */
+@media (max-width: 575.98px) {
+  .container {
+    padding: 0 10px;
+  }
+
+  /* Grid system adjustments for smallest screens */
+  .col, .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Hero section adjustments */
+  .hero-section {
+    padding: 6rem 0 3rem;
+  }
+
+  .hero-title {
+    font-size: 2.3rem;
+  }
+
+  .hero-message {
+    font-size: 1rem;
+  }
+
+  .hero-description {
+    font-size: 0.9rem;
+    padding: 1rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+    margin-bottom: 0.8rem;
+    text-align: center;
+  }
+  
+  /* Section adjustments */
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .section-title::before, .section-title::after {
+    display: none;
+  }
+
+  .section-description {
+    font-size: 0.9rem;
+  }
+
+  /* Modal adjustments */
+  .prostitution-modal-content,
+  .alcohol-modal-content {
+    width: 95%;
+    height: 85%;
+    padding: 1rem;
+  }
+
+  .prostitution-modal-header,
+  .alcohol-modal-header {
+    padding: 0.5rem 1rem;
+  }
+
+  .prostitution-modal-title,
+  .alcohol-modal-title {
+    font-size: 1.3rem;
+  }
+
+  .prostitution-modal-subtitle,
+  .alcohol-modal-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  /* Improve modal scrolling on mobile */
+  .prostitution-modal-body,
+  .alcohol-modal-body {
+    max-height: calc(85vh - 120px);
+    overflow-y: auto;
+    padding-right: 5px;
+  }
+
+  /* Intro Experience */
+  .slide-content {
+    flex-direction: column;
+    width: 90%;
+    padding: 0.5rem;
+  }
+
+  .slide-image-wrapper, .slide-video-wrapper {
+    height: 35vh;
+  }
+
+  .answer-btn {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  
+  .answer-options {
+    flex-direction: column;
+  }
+
+  .intro-controls {
+    bottom: 0.5rem;
+  }
+
+  .intro-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .intro-skip-btn {
+    top: 10px;
+    right: 10px;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 479px) {
+  .navbar-container {
+    padding: 5px 10px;
+  }
+  
+  .logo-text {
+    font-size: 0.85rem;
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--text-color-light) !important;
+  }
+  
+  .logo-icon-wrapper {
+    margin-right: 8px;
+    width: 30px;
+    height: 30px;
+  }
+  
+  .navbar-toggle {
+    width: 35px;
+    height: 35px;
+    color: var(--text-color-light);
+  }
+  
+  .info-menu-toggle i,
+  .navbar-links a i {
+    margin-left: 3px;
+    font-size: 0.6rem;
+  }
+  
+  .dropdown-item i {
+    width: 15px;
+    margin-right: 5px;
+  }
+  
+  /* Further optimize the header for very small screens */
+  .navbar-logo .highlight::after {
+    height: 5px;
+    bottom: 2px;
+    background: rgba(52, 152, 219, 0.7) !important;
+  }
+  
+  /* Simplify logo animation on very small screens for better performance */
+  .navbar-logo i {
+    animation: logo-pulse 2s infinite alternate;
+    color: var(--text-color-light);
+  }
+  
+  /* Adjust login button for better mobile layout */
+  .login-btn {
+    font-size: 0.9rem;
+    padding: 8px 15px;
+    color: var(--text-color-light) !important;
+    background-color: rgba(52, 152, 219, 0.4);
+  }
+  
+  /* Ensure the mobile menu is scrollable on very small screens */
+  .navbar-links-container {
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Improve tap targets for better mobile accessibility */
+  .navbar-links a,
+  .dropdown-item {
+    padding: 15px 0;
+    min-height: 44px; /* Minimum touch target size */
+    color: var(--text-color-light) !important;
+  }
+  
+  /* Card adjustments */
+  .main-issue-card, .info-card {
+    margin-bottom: 1.5rem;
+  }
+
+  .issue-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    margin: -30px auto 15px;
+  }
+
+  .issue-icon-wrapper i {
+    font-size: 1.8rem;
+  }
+
+  .issue-title {
+    font-size: 1.3rem;
+  }
+
+  .issue-desc {
+    font-size: 0.85rem;
+    padding: 0 1rem;
+  }
+  
+  /* Info card adjustments */
+  .info-card-image {
+    height: 160px;
+  }
+
+  .info-card-body {
+    padding: 1rem;
+  }
+
+  .info-card-title {
+    font-size: 1.2rem;
+  }
+
+  .info-card-text {
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+
+  .info-card .btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .info-card-footer {
+    padding: 0.5rem 1rem 1rem;
+    font-size: 0.8rem;
+  }
+  
+  /* Creative text animations adjustments */
+  .wave-text span {
+    animation: none;
+  }
+
+  .typing-text {
+    animation: none;
+    border-right: none;
+    white-space: normal;
+  }
+  
+  /* Circular Menu Adjustments */
+  .circular-menu {
+    width: 280px;
+    height: 280px;
+    max-width: 90vw;
+    max-height: 90vw;
+  }
+
+  .circular-menu .center-logo {
+    width: 50px;
+    height: 50px;
+    font-size: 1.3rem;
+  }
+
+  .circular-menu .social-issue-circle {
+    width: 50px;
+    height: 50px;
+  }
+
+  .social-issue-circle i {
+    font-size: 1.2rem;
+  }
+
+  .social-issue-name {
+    display: none;
+  }
+
+  .gambling-highlight {
+    width: 15px;
+    height: 15px;
+    top: -3px;
+    right: -3px;
+    font-size: 10px;
+  }
+}
+
+/* Extra extra small devices (small portrait phones, less than 400px) */
+@media (max-width: 399.98px) {
+  /* Header extra small adjustments */
+  #main-header {
+    height: 50px;
+  }
+
+  body {
+    padding-top: 50px;
+  }
+
+  .navbar-container {
+    padding: 0.2rem 0.5rem;
+  }
+
+  .navbar-logo {
+    font-size: 0;
+    padding: 0.2rem 0.5rem;
+  }
+
+  .navbar-logo .logo-text {
+    display: none;
+  }
+
+  .navbar-logo .logo-icon-wrapper {
+    width: 32px;
+    height: 32px;
+  }
+
+  .navbar-logo i {
+    font-size: 1.1rem;
+    color: var(--text-color-light);
+  }
+
+  .navbar-toggle {
+    width: 34px;
+    height: 34px;
+    font-size: 0.8rem;
+    color: var(--text-color-light);
+  }
+
+  .theme-toggle {
+    width: 32px;
+    height: 32px;
+    right: 45px;
+    font-size: 0.8rem;
+  }
+
+  .navbar-links-container {
+    width: 240px;
+  }
+
+  .navbar-link a {
+    padding: 0.7rem 0.8rem;
+    font-size: 0.9rem;
+    color: var(--text-color-light) !important;
+  }
+
+  .dropdown-item {
+    padding: 0.6rem 0.7rem;
+    font-size: 0.85rem;
+    color: var(--text-color-light) !important;
+  }
+  
+  /* Hero section adjustments */
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-message {
+    font-size: 0.9rem;
+  }
+  
+  /* Section adjustments */
+  .section-title {
+    font-size: 1.6rem;
+  }
+
+  /* Counter adjustments */
+  .counter-value {
+    font-size: 1.8rem;
+  }
+
+  .counter-icon {
+    font-size: 1.8rem;
+  }
+  
+  /* Intro experience adjustments */
+  .slide-title {
+    font-size: 1.3rem;
+  }
+
+  .slide-question {
+    font-size: 0.9rem;
+  }
+
+  .answer-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .final-title {
+    font-size: 1.7rem;
+  }
+
+  .final-description {
+    font-size: 0.9rem;
+  }
+  
+  /* Improved Animation Performance */
+  .creative-text, .wave-text span, .typing-text,
+  .reveal-text, .bounce-text, .rotate-text,
+  .blur-text, .zoom-text, .glitch-text,
+  .floating-shape, .blur-animation, .pulse-animation {
+    animation: none !important;
+  }
+}
+
+/* Mobile menu backdrop */
+.mobile-menu-backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+.mobile-menu-backdrop.active {
+  display: block;
+  opacity: 1;
+}
+
+/* Fix for when menu is open to prevent body scrolling */
+body.menu-open {
+  overflow: hidden;
+}
+
+/* Fix for iOS devices to prevent scrolling when menu is open */
+@supports (-webkit-touch-callout: none) {
+  body.menu-open {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* Print styles */
+@media print {
+  header, footer, button, .hero-buttons, .floating-shapes, .animated-bg {
+    display: none !important;
+  }
+
+  body {
+    font-size: 12pt;
+    line-height: 1.5;
+    color: #000;
+    background: #fff;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  a {
+    text-decoration: underline;
+    color: #000;
+  }
+
+  img {
+    max-width: 100% !important;
+    page-break-inside: avoid;
+  }
+
+  p, h2, h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2, h3 {
+    page-break-after: avoid;
+  }
+}
+
+/* Custom transitions for smooth resizing */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-title, .hero-message, .hero-description,
+  .section-title, .section-description,
+  .counter-item, .main-issue-card, .info-card,
+  .navbar-container, .footer {
+    transition: font-size 0.3s ease, padding 0.3s ease, margin 0.3s ease;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: more) {
+  body {
+    --header-bg-primary: rgba(0, 20, 40, 1);
+    --header-accent: #00ff00;
+    --header-highlight: #00ffff;
+  }
+
+  .hero-section {
+    background: #000080;
+  }
+
+  .footer {
+    background: #000080;
+  }
+
+  a:focus, button:focus {
+    outline: 3px solid yellow !important;
+  }
+}
+
+/* Dark theme support */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #121212;
+    color: #f1f1f1;
+  }
+
+  .bg-light {
+    background-color: #1e1e1e !important;
+  }
+
+  .info-card, .main-issue-card, .counter-item {
+    background-color: #2d2d2d;
+    color: #f1f1f1;
+  }
+
+  .info-card-title, .issue-title, .counter-value, .counter-label {
+    color: #f1f1f1;
+  }
+
+  .info-card-text, .issue-desc {
+    color: #bbbbbb;
+  }
+}
+
+/* Improve performance on mobile devices */
+@media (max-width: 767.98px) {
+  /* Reduce animation complexity on mobile */
+  .wave-text span {
+    animation-duration: 3s;
+  }
+
+  .animated-bg .animate-icon {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  /* Fix for modal scrolling issues on mobile */
+  .prostitution-modal-body,
+  .alcohol-modal-body {
+    max-height: calc(85vh - 120px);
+    overflow-y: auto;
+    padding-right: 5px;
+  }
+
+  /* Fix for intro slide scrolling on mobile */
+  .intro-slide {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Better touch interaction */
+  button, .btn, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Fix text selection on mobile */
+  p, h1, h2, h3, h4, h5, h6 {
+    -webkit-user-select: text;
+    user-select: text;
+  }
+
+  /* Responsive table adjustments */
+  table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  table th, table td {
+    white-space: nowrap;
+  }
+
+  /* Alternative for responsive tables - stack on mobile */
+  .table-responsive-stack th {
+    display: none;
+  }
+
+  .table-responsive-stack td {
+    display: block;
+    width: 100%;
+    text-align: right;
+    position: relative;
+    padding-left: 50%;
+  }
+
+  .table-responsive-stack td:before {
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    width: 45%;
+    text-align: left;
+    font-weight: bold;
+  }
+}
+
+/* Additional accessibility fixes */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Global Responsive Settings */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+} 

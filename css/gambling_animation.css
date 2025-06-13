@@ -1,0 +1,606 @@
+/* === ANIMATION ENHANCEMENTS FOR GAMBLING PREVENTION UI === */
+
+/* Gradient background */
+.casino-content {
+    background: linear-gradient(to bottom, #2c3e50, #1a1a2e);
+    border: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.casino-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(to right, #e74c3c, #f39c12, #3498db);
+}
+
+/* Header animations */
+.casino-header {
+    position: relative;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.casino-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 3px;
+    background: linear-gradient(to right, #e74c3c, #f39c12);
+}
+
+.casino-title {
+    position: relative;
+    display: inline-block;
+    color: #fff;
+    letter-spacing: 1.5px;
+    animation: textShadowPulse 2s infinite;
+}
+
+@keyframes textShadowPulse {
+    0% {
+        text-shadow: 0 0 5px rgba(231, 76, 60, 0.5);
+    }
+    50% {
+        text-shadow: 0 0 15px rgba(231, 76, 60, 0.8), 0 0 5px rgba(231, 76, 60, 0.4);
+    }
+    100% {
+        text-shadow: 0 0 5px rgba(231, 76, 60, 0.5);
+    }
+}
+
+/* Warning banner improvements */
+.warning-banner {
+    background: linear-gradient(to right, #e74c3c, #c0392b);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+    padding: 15px 20px;
+    margin-bottom: 25px;
+    transform: translateY(0);
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.warning-banner i {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+/* Card improvements */
+.casino-grid {
+    perspective: 1000px;
+}
+
+.casino-card {
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    border: none;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.casino-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right, #e74c3c, #f39c12);
+}
+
+.casino-card:hover {
+    transform: translateY(-10px) rotateX(5deg);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.casino-card-icon {
+    background: linear-gradient(135deg, #2c3e50, #1a1a2e);
+    color: #e74c3c;
+    transition: all 0.3s ease;
+    transform: translateY(0);
+    animation: iconFloat 3s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.casino-card:hover .casino-card-icon {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(231, 76, 60, 0.5);
+}
+
+.example-tag {
+    background-color: rgba(231, 76, 60, 0.2);
+    border: 1px solid rgba(231, 76, 60, 0.3);
+    transition: all 0.3s ease;
+}
+
+.example-tag:hover {
+    background-color: rgba(231, 76, 60, 0.5);
+    transform: translateY(-2px);
+}
+
+/* Stats improvements */
+.casino-stats {
+    margin: 40px 0;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, #34495e, #2c3e50);
+    border: none;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right, #3498db, #2980b9);
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.stat-number {
+    background: linear-gradient(to right, #e74c3c, #c0392b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 700;
+}
+
+/* Detail modal improvements */
+.casino-detail-modal {
+    perspective: 1000px;
+}
+
+.casino-detail-content {
+    background: linear-gradient(to bottom, #2c3e50, #1a1a2e);
+    transform: translateY(20px);
+    opacity: 0;
+    animation: modalFadeIn 0.5s forwards;
+}
+
+@keyframes modalFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.detail-header {
+    border-bottom: 2px solid rgba(231, 76, 60, 0.3);
+}
+
+.detail-icon {
+    background: linear-gradient(135deg, #2c3e50, #1a1a2e);
+    border: none;
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+    animation: iconPulse 2s infinite;
+}
+
+@keyframes iconPulse {
+    0%, 100% {
+        box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+    }
+    50% {
+        box-shadow: 0 5px 25px rgba(231, 76, 60, 0.5);
+    }
+}
+
+.detail-title {
+    background: linear-gradient(to right, #e74c3c, #c0392b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.detail-image {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.5s ease;
+}
+
+.detail-image:hover {
+    transform: scale(1.02);
+}
+
+/* Effects columns */
+.effects-container {
+    perspective: 1000px;
+}
+
+.effects-column {
+    transform: translateY(0);
+    transition: all 0.3s ease;
+}
+
+.effects-column:hover {
+    transform: translateY(-5px);
+}
+
+.effects-column.short-term {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+}
+
+.effects-column.long-term {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+.effects-title {
+    position: relative;
+}
+
+.effects-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.effects-list li {
+    transition: all 0.3s ease;
+    position: relative;
+    padding-left: 30px;
+}
+
+.effects-list li:hover {
+    transform: translateX(5px);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Help section */
+.help-section {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(52, 152, 219, 0.05));
+    border-left: 5px solid #3498db;
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.1);
+    transform: translateY(0);
+    transition: all 0.3s ease;
+}
+
+.help-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(52, 152, 219, 0.2);
+}
+
+.help-button {
+    background: linear-gradient(to right, #3498db, #2980b9);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+    transition: all 0.3s ease;
+}
+
+.help-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
+}
+
+/* New visual elements */
+.animated-bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Graph containers */
+.graph-container {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    position: relative;
+}
+
+.bar-graph {
+    display: flex;
+    height: 200px;
+    align-items: flex-end;
+    padding-top: 20px;
+}
+
+.bar {
+    flex: 1;
+    margin: 0 5px;
+    background: linear-gradient(to top, #e74c3c, #f39c12);
+    border-radius: 4px 4px 0 0;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    height: 0;
+    animation: barGrow 1.5s forwards;
+}
+
+@keyframes barGrow {
+    to {
+        height: var(--height);
+    }
+}
+
+.bar-label {
+    position: absolute;
+    top: -25px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #fff;
+}
+
+.bar-value {
+    position: absolute;
+    bottom: -25px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Statistics infographic */
+.stat-infographic {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.info-stat {
+    flex: 1;
+    min-width: 200px;
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.2), rgba(52, 152, 219, 0.1));
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.info-stat:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.info-stat-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: #3498db;
+}
+
+.info-stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    background: linear-gradient(to right, #3498db, #2980b9);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.info-stat-label {
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+/* Visual diagram */
+.diagram-container {
+    position: relative;
+    padding: 20px;
+    margin: 20px 0;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+.diagram-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+.cycle-diagram {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+}
+
+.cycle-step {
+    width: 150px;
+    height: 150px;
+    margin: 20px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 15px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.cycle-step:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.cycle-step:nth-child(1) {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+}
+
+.cycle-step:nth-child(2) {
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+}
+
+.cycle-step:nth-child(3) {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+.cycle-step:nth-child(4) {
+    background: linear-gradient(135deg, #9b59b6, #8e44ad);
+}
+
+.cycle-step-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.cycle-step-text {
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.cycle-arrow {
+    position: absolute;
+    width: 50px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* Floating facts */
+.floating-fact {
+    position: relative;
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.2), rgba(231, 76, 60, 0.1));
+    border-radius: 8px;
+    padding: 15px;
+    margin: 15px 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    animation: factFloat 5s ease-in-out infinite;
+}
+
+@keyframes factFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.floating-fact:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.fact-icon {
+    position: absolute;
+    top: -15px;
+    left: 20px;
+    width: 30px;
+    height: 30px;
+    background: #e74c3c;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 0.8rem;
+}
+
+.fact-content {
+    padding-top: 10px;
+    color: #fff;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Scrollbar styling */
+.casino-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.casino-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.casino-container::-webkit-scrollbar-thumb {
+    background: rgba(231, 76, 60, 0.5);
+    border-radius: 4px;
+}
+
+.casino-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(231, 76, 60, 0.7);
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+    .casino-header::after {
+        width: 100px;
+    }
+    
+    .cycle-step {
+        width: 120px;
+        height: 120px;
+        margin: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .stat-infographic {
+        flex-direction: column;
+    }
+    
+    .cycle-step {
+        width: 100px;
+        height: 100px;
+        margin: 8px;
+    }
+    
+    .cycle-step-icon {
+        font-size: 1.5rem;
+    }
+    
+    .cycle-step-text {
+        font-size: 0.8rem;
+    }
+} 

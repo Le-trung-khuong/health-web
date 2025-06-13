@@ -1,0 +1,484 @@
+/* community.css */
+:root {
+    --community-primary: #3498db;
+    --community-secondary: #2ecc71;
+    --community-accent: #e74c3c;
+    --community-background: #f4f6f8;
+    --community-card-bg: #ffffff;
+    --community-text: #333;
+    --community-text-muted: #6c757d;
+    --community-border: #e0e0e0;
+    --community-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+    --community-border-radius: 10px;
+    --community-input-bg: #fdfdfe;
+}
+
+body.dark-mode {
+    --community-primary: #5dade2;
+    --community-secondary: #58d68d;
+    --community-accent: #ec7063;
+    --community-background: #1e2733; /* Nền tối hơn cho page */
+    --community-card-bg: #2c3a4a;    /* Nền card tối */
+    --community-text: #e0e0e0;
+    --community-text-muted: #a0a0a0;
+    --community-border: #404f61;
+    --community-input-bg: #37475a;
+}
+
+/* Trong community.css */
+body {
+    padding-top: 70px; /* Điều chỉnh giá trị này bằng chiều cao của navbar */
+}
+/* Hoặc nếu bạn có thẻ <main> bọc nội dung chính */
+main.community-page {
+    padding-top: 100px; /* Tăng padding-top tổng thể (ví dụ từ 70px lên 100px) */
+                         /* Giá trị này = chiều cao navbar + khoảng trống bạn muốn */
+    background-color: var(--community-background);
+    padding-bottom: 40px;
+    min-height: calc(100vh - 100px - var(--footer-height, 150px));
+    color: var(--community-text);
+}
+
+
+/* Navbar adjustments (nếu cần ghi đè từ custom.css hoặc styles-index.css) */
+/* Đảm bảo rằng file này được load sau các file CSS chung để có thể ghi đè */
+#main-header .navbar-links .navbar-link a[href="community.html"].active {
+    color: var(--accent-color) !important; /* Màu active nổi bật hơn cho trang hiện tại */
+    background-color: rgba(255, 255, 255, 0.15) !important; /* Nền active nổi bật hơn */
+}
+/* Khi ở dark mode */
+body.dark-mode #main-header .navbar-links .navbar-link a[href="community.html"].active {
+    color: var(--accent-light) !important; /* Màu vàng/cam cho dark mode */
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+
+.community-header {
+    text-align: center;
+    /* margin-bottom: 30px; */ /* Không cần margin-top ở đây nữa nếu đã tăng padding cho main */
+    padding: 30px 20px;
+    background: linear-gradient(135deg, var(--community-primary), var(--community-secondary));
+    color: white;
+    border-radius: var(--community-border-radius);
+    box-shadow: var(--community-shadow);
+}
+.community-header h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+.community-header h1 i {
+    margin-right: 12px;
+}
+.community-header p {
+    font-size: 1.15rem;
+    opacity: 0.9;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Post Form */
+.post-form-container {
+    background-color: var(--community-card-bg);
+    padding: 30px;
+    border-radius: var(--community-border-radius);
+    box-shadow: var(--community-shadow);
+    margin-bottom: 40px;
+}
+.post-form-container h2 {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    color: var(--community-primary);
+    display: flex;
+    align-items: center;
+}
+.post-form-container h2 i {
+    margin-right: 10px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    position: relative; /* Cho char-counter */
+}
+
+.form-group textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid var(--community-border);
+    border-radius: var(--community-border-radius);
+    min-height: 120px;
+    font-size: 1rem;
+    resize: vertical;
+    background-color: var(--community-input-bg); /* Áp dụng biến cho input */
+    color: var(--community-text);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--community-primary);
+    box-shadow: 0 0 0 0.2rem rgba(var(--community-primary-rgb, 52, 152, 219), 0.25); /* Cần định nghĩa --community-primary-rgb */
+}
+body.dark-mode .form-group textarea::placeholder {
+    color: #8899aa;
+}
+
+.char-counter { /* Sửa id thành class */
+    display: block;
+    text-align: right;
+    font-size: 0.85rem;
+    color: var(--community-text-muted);
+    margin-top: 5px;
+}
+
+.image-upload-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.post-image-label {
+    display: inline-block;
+    padding: 10px 18px;
+    background-color: var(--community-secondary);
+    color: white;
+    border-radius: var(--community-border-radius);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 0.9rem;
+    text-align: center;
+    width: fit-content;
+}
+.post-image-label:hover {
+    background-color: #27ae60;
+}
+.post-image-label i {
+    margin-right: 8px;
+}
+
+#post-image-upload {
+    display: none;
+}
+
+#post-image-preview {
+    max-width: 100%;
+    max-height: 250px;
+    margin-top: 10px;
+    border-radius: var(--community-border-radius);
+    border: 2px dashed var(--community-border);
+    object-fit: contain; /* Để ảnh không bị méo */
+    padding: 5px;
+    background-color: var(--community-background);
+}
+
+.remove-image-btn {
+    background: var(--community-accent);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    border-radius: var(--community-border-radius);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 5px;
+    width: fit-content;
+}
+.remove-image-btn:hover {
+    background: #c0392b; /* Darken accent */
+}
+
+.post-form-container .btn-primary {
+    background: var(--community-primary);
+    border-color: var(--community-primary);
+    padding: 12px 30px;
+}
+.post-form-container .btn-primary:hover {
+    background: #2980b9;
+    border-color: #2980b9;
+}
+
+/* Posts Feed */
+.posts-feed .feed-title {
+    font-size: 2rem;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid var(--community-primary);
+    color: var(--community-text);
+    display: flex;
+    align-items: center;
+}
+.posts-feed .feed-title i {
+    margin-right: 10px;
+    color: var(--community-primary);
+}
+
+.post-item {
+    background-color: var(--community-card-bg);
+    padding: 25px;
+    border-radius: var(--community-border-radius);
+    box-shadow: var(--community-shadow);
+    margin-bottom: 25px;
+    border-left: 5px solid var(--community-primary);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.post-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.post-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--community-secondary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+.post-author-time h5 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 3px;
+    color: var(--community-text);
+}
+.post-author-time p {
+    font-size: 0.8rem;
+    color: var(--community-text-muted);
+    margin: 0;
+}
+
+.post-content-text {
+    margin-bottom: 15px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    color: var(--community-text);
+    font-size: 1rem;
+}
+
+.post-image {
+    max-width: 100%;
+    border-radius: var(--community-border-radius);
+    margin-bottom: 20px;
+    border: 1px solid var(--community-border);
+}
+
+.post-actions {
+    display: flex;
+    gap: 20px; /* Tăng khoảng cách */
+    border-top: 1px solid var(--community-border);
+    padding-top: 15px;
+    margin-top: 15px;
+}
+
+.post-action-btn {
+    background: none;
+    border: none;
+    color: var(--community-text-muted);
+    cursor: pointer;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+    padding: 5px 10px; /* Thêm padding */
+    border-radius: 5px;
+}
+.post-action-btn:hover {
+    color: var(--community-primary);
+    background-color: rgba(var(--community-primary-rgb, 52, 152, 219), 0.1);
+}
+.post-action-btn i {
+    margin-right: 6px;
+    font-size: 1.1em; /* Làm icon to hơn một chút */
+}
+.post-action-btn .like-count, .post-action-btn .comment-count {
+    margin-left: 5px;
+    font-size: 0.85rem;
+}
+.post-action-btn.liked {
+    color: var(--community-primary);
+    font-weight: bold;
+}
+
+/* Comments Section */
+.comments-section {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--community-border);
+    animation: fadeInComment 0.5s ease; /* Animation khi mở comment */
+}
+
+@keyframes fadeInComment {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.comment-item {
+    display: flex;
+    margin-bottom: 18px;
+    padding: 12px;
+    background-color: var(--community-background);
+    border-radius: var(--community-border-radius);
+    border-left: 3px solid var(--community-secondary);
+}
+
+.comment-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--community-secondary);
+    opacity: 0.9;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+.comment-content {
+    flex-grow: 1;
+}
+.comment-content strong {
+    font-size: 0.95rem;
+    color: var(--community-text);
+    font-weight: 600;
+}
+.comment-content p {
+    font-size: 0.9rem;
+    margin: 5px 0 3px;
+    color: var(--community-text-muted);
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+.comment-content .comment-time {
+    font-size: 0.75rem;
+    color: var(--community-text-muted);
+    opacity: 0.8;
+    display: block;
+}
+
+.comment-form {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.comment-form textarea {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px solid var(--community-border);
+    border-radius: var(--community-border-radius);
+    min-height: 45px;
+    font-size: 0.9rem;
+    resize: none;
+    background-color: var(--community-input-bg);
+    color: var(--community-text);
+}
+.comment-form textarea:focus {
+    outline: none;
+    border-color: var(--community-primary);
+}
+body.dark-mode .comment-form textarea::placeholder {
+    color: #8899aa;
+}
+
+
+.comment-form button {
+    padding: 10px 18px;
+    background-color: var(--community-primary);
+    color: white;
+    border: none;
+    border-radius: var(--community-border-radius);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.comment-form button:hover {
+    background-color: #2980b9;
+}
+
+.no-posts-message, .no-comments-message-inner {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--community-text-muted);
+    padding: 40px 20px;
+    border: 2px dashed var(--community-border);
+    border-radius: var(--community-border-radius);
+    background-color: var(--community-card-bg);
+    margin-top: 20px;
+}
+.no-posts-message i, .no-comments-message-inner i {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    display: block;
+    color: var(--community-primary);
+    opacity: 0.7;
+}
+.no-comments-message-inner {
+    font-size: 0.9rem;
+    padding: 20px;
+    margin-top: 0;
+    background-color: transparent;
+    border: none;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    body {
+        padding-top: 60px; /* Điều chỉnh nếu navbar mobile có chiều cao khác */
+    }
+    main.community-page {
+        /* padding-top: 60px; */
+    }
+    .community-header h1 {
+        font-size: 2.2rem;
+    }
+    .post-form-container h2, .posts-feed .feed-title {
+        font-size: 1.4rem;
+    }
+    .post-avatar {
+        width: 40px;
+        height: 40px;
+        font-size: 1.4rem;
+    }
+    .comment-avatar {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+    .post-author-time h5 {
+        font-size: 1rem;
+    }
+    .post-actions {
+        gap: 10px;
+        flex-wrap: wrap; /* Cho phép nút xuống dòng nếu không đủ chỗ */
+    }
+    .post-action-btn {
+        font-size: 0.85rem;
+    }
+}
+
+/* Thêm biến RGB cho màu primary để dùng trong box-shadow */
+:root {
+    /* ... các biến khác ... */
+    --community-primary-rgb: 52, 152, 219; /* RGB của #3498db */
+}
+body.dark-mode {
+    /* ... các biến dark mode khác ... */
+    --community-primary-rgb: 93, 173, 226; /* RGB của #5dade2 */
+}

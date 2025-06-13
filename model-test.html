@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiểm tra tải mô hình face-api.js</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .progress-bar {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            height: 20px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        .progress {
+            height: 100%;
+            background-color: #3498db;
+            width: 0%;
+            transition: width 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+        }
+        .log {
+            border: 1px solid #ddd;
+            padding: 10px;
+            height: 300px;
+            overflow-y: auto;
+            font-family: monospace;
+            background-color: #f8f8f8;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .success {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .error {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .warning {
+            color: #f39c12;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Kiểm tra tải mô hình face-api.js</h1>
+        
+        <div class="progress-bar">
+            <div class="progress" id="progress">0%</div>
+        </div>
+        
+        <div class="buttons">
+            <button id="loadMainApi">Tải từ API Chính</button>
+            <button id="loadLocalProxy">Tải từ Local Proxy</button>
+            <button id="clearLog">Xóa Log</button>
+        </div>
+        
+        <div class="log" id="log"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+    <script>
+        // Các biến cho UI
+        const progressBar = document.getElementById('progress');
+        const logElement = document.getElementById('log');
+        const loadMainApiButton = document.getElementById('loadMainApi');
+        const loadLocalProxyButton = document.getElementById('loadLocalProxy');
+        const clearLogButton = document.getElementById('clearLog');
+        
+        // Danh sách mô hình cần tải
+        const modelsList = [
+            'tiny_face_detector_model-weights_manifest.json',
+            'face_landmark_68_model-weights_manifest.json',
+            'face_recognition_model-weights_manifest.json',
+            'ssd_mobilenetv1_model-weights_manifest.json'
+        ];
+        
+        // Hàm ghi log
+        function log(message, type = 'info') {
+            const now = new Date();
+            const time = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`;
+            
+            const logItem = document.createElement('div');
+            logItem.innerHTML = `<span>[${time}]</span> <span class="${type}">${message}</span>`;
+            logElement.appendChild(logItem);
+            logElement.scrollTop = logElement.scrollHeight;
+        }
+        
+        // Hàm cập nhật thanh tiến trình
+        function updateProgress(current, total) {
+            const percent = Math.round((current / total) * 100);
+            progressBar.style.width = `${percent}%`;
+            progressBar.textContent = `${percent}%`;
+        }
+        
+        // Hàm tải mô hình từ URL
+        async function loadModel(url) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error ${response.status}`);
+                }
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                throw error;
+            }
+        }
+        
+        // Hàm tải các mô hình từ API
+        async function loadModels(apiPath) {
+            log(`Bắt đầu tải mô hình từ ${apiPath}`, 'info');
+            updateProgress(0, modelsList.length);
+            
+            let loadedCount = 0;
+            
+            for (const model of modelsList) {
+                try {
+                    const url = `${apiPath}${model}`;
+                    log(`Đang tải ${model}...`, 'info');
+                    
+                    const data = await loadModel(url);
+                    log(`Đã tải ${model} thành công`, 'success');
+                    loadedCount++;
+                    updateProgress(loadedCount, modelsList.length);
+                } catch (error) {
+                    log(`Lỗi khi tải ${model}: ${error.message}`, 'error');
+                }
+            }
+            
+            log(`Đã hoàn thành tải ${loadedCount}/${modelsList.length} mô hình`, loadedCount === modelsList.length ? 'success' : 'warning');
+        }
+        
+        // Sự kiện nút tải từ API chính
+        loadMainApiButton.addEventListener('click', () => {
+            loadModels('../api/serve-models.php?model=');
+        });
+        
+        // Sự kiện nút tải từ Local Proxy
+        loadLocalProxyButton.addEventListener('click', () => {
+            loadModels('../api/local-proxy.php?model=');
+        });
+        
+        // Sự kiện nút xóa log
+        clearLogButton.addEventListener('click', () => {
+            logElement.innerHTML = '';
+            progressBar.style.width = '0%';
+            progressBar.textContent = '0%';
+        });
+        
+        // Khởi tạo
+        log('Sẵn sàng tải mô hình face-api.js. Nhấn nút để bắt đầu.', 'info');
+    </script>
+</body>
+</html> 

@@ -1,0 +1,1706 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hỗ Trợ & Tư Vấn - Vì Cộng Đồng Khỏe Mạnh</title>
+    <meta name="description" content="Cung cấp hỗ trợ, tư vấn và nguồn lực cho những người cần giúp đỡ về các vấn đề tệ nạn xã hội. Liên hệ để được hỗ trợ kịp thời.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles-suport.css">
+    <link rel="stylesheet" href="../css/styles-information.css">
+    <link rel="stylesheet" href="../css/header-support.css">
+    <link rel="stylesheet" href="../css/style-quy.css">
+    <link rel="stylesheet" href="../css/auth-ui.css">
+    <style>
+        /* Add necessary CSS for the new header */
+        :root {
+            --header-bg-primary: linear-gradient(135deg, rgba(0, 18, 50, 0.8), rgba(0, 42, 94, 0.8));
+            --header-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --header-border: rgba(255, 255, 255, 0.1);
+            --header-text: rgba(255, 255, 255, 0.95);
+            --header-highlight: #3498db;
+            --header-accent: #58d5f7;
+            --header-glow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+        
+        /* Header styles from index.html */
+        #main-header {
+            background: var(--header-bg-primary);
+            box-shadow: var(--header-shadow);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--header-border);
+            padding: 0;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        #main-header.scrolled {
+            padding: 0;
+            background: linear-gradient(135deg, rgba(0, 18, 50, 0.98), rgba(0, 42, 94, 0.95));
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .navbar-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.6rem 2rem;
+            position: relative;
+        }
+        
+        .navbar-logo {
+            position: relative;
+            font-weight: 700;
+            font-size: 1.4rem;
+            text-decoration: none;
+            color: var(--header-text);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            overflow: visible;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.5rem 1.2rem;
+            border-radius: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .navbar-logo:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            box-shadow: var(--header-glow);
+        }
+        
+        .navbar-logo .logo-icon-wrapper {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--header-highlight), var(--header-accent));
+            overflow: hidden;
+        }
+        
+        .navbar-logo .logo-icon-wrapper i {
+            position: relative;
+            font-size: 1.5rem;
+            color: #ffffff;
+            z-index: 2;
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+        }
+        
+        .navbar-logo .logo-text {
+            position: relative;
+            display: inline-block;
+            background: linear-gradient(to right, #ffffff, #88cfff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+        
+        .navbar-logo .logo-text .highlight {
+            color: var(--header-accent);
+            -webkit-text-fill-color: initial;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .navbar-links-container {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .navbar-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 0.2rem;
+        }
+        
+        .navbar-link {
+            position: relative;
+            margin: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-link a {
+            display: block;
+            color: var(--header-text);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 0.7rem 1rem;
+            border-radius: 10px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            z-index: 1;
+            letter-spacing: 0.2px;
+        }
+        
+        .navbar-link a::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--header-accent), var(--header-highlight));
+            border-radius: 10px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.4s ease;
+        }
+        
+        .navbar-link a:hover::before,
+        .navbar-link a.active::before {
+            opacity: 1;
+        }
+        
+        .navbar-link a:hover,
+        .navbar-link a.active {
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Header shimmer effect */
+                 .header-shimmer {
+             position: absolute;
+             top: 0;
+             left: 0;
+             right: 0;
+             height: 1px;
+             background: linear-gradient(90deg, 
+                 transparent, 
+                 rgba(255,255,255,0.2), 
+                 rgba(255,255,255,0.5), 
+                 rgba(255,255,255,0.2), 
+                 transparent);
+             animation: shimmer 3s infinite linear;
+         }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .navbar-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 220px;
+            background: linear-gradient(135deg, rgba(0, 18, 50, 0.98), rgba(0, 42, 94, 0.95));
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            padding: 1rem;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 0.5rem;
+        }
+        
+        .navbar-link:hover .navbar-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-item {
+            display: block;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            position: relative;
+            border-left: 2px solid transparent;
+        }
+        
+        .dropdown-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            padding-left: 1.5rem;
+            border-left: 2px solid var(--header-accent);
+        }
+        
+        .dropdown-item i {
+            margin-right: 0.8rem;
+            color: var(--header-accent);
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown-item:hover i {
+            transform: scale(1.2);
+        }
+        
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            cursor: pointer;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .auth-buttons {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .login-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .login-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            color: #ffffff;
+        }
+        
+                 .navbar-toggle {
+             display: none;
+             background: linear-gradient(135deg, var(--header-highlight), var(--header-accent));
+             color: #ffffff;
+             border: none;
+             width: 45px;
+             height: 45px;
+             border-radius: 50%;
+             cursor: pointer;
+             font-size: 1.2rem;
+             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+             transition: all 0.3s ease;
+             position: relative;
+             z-index: 100;
+         }
+        
+        /* Media queries for responsive design */
+        @media (max-width: 992px) {
+            .navbar-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .navbar-links-container {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: linear-gradient(135deg, rgba(0, 18, 50, 0.98), rgba(0, 42, 94, 0.98));
+                flex-direction: column;
+                justify-content: center;
+                transform: translateX(-100%);
+                transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+                z-index: 99;
+                padding: 2rem;
+            }
+            
+            .navbar-links-container.active {
+                transform: translateX(0);
+            }
+            
+            .navbar-links {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                margin-bottom: 2rem;
+            }
+            
+            .navbar-link {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .navbar-link a {
+                width: 100%;
+                padding: 1rem;
+            }
+            
+            .navbar-dropdown {
+                position: static;
+                width: 100%;
+                margin-top: 0.5rem;
+                visibility: visible;
+                opacity: 1;
+                transform: none;
+                display: none;
+                transition: none;
+            }
+            
+            .navbar-link.active .navbar-dropdown {
+                display: block;
+            }
+        }
+        
+        #supportInfoModal.modal {
+            position: fixed !important;
+        }
+
+        /* Đặt dialog fixed ngay giữa viewport */
+        #supportInfoModal .modal-dialog {
+            position: fixed !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            margin: 0 !important;
+        }
+        
+        /* Style cho phần gây quỹ và ý nghĩa */
+        .purpose-section {
+            position: relative;
+            padding: 80px 0;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: white;
+            overflow: hidden;
+        }
+        
+        .purpose-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070') center/cover no-repeat;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        
+        .purpose-container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .purpose-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .purpose-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .purpose-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            font-size: 2rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .purpose-card:hover .purpose-icon {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1) rotate(10deg);
+        }
+        
+        .purpose-card h3 {
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+        
+        .purpose-card p {
+            font-size: 1rem;
+            line-height: 1.6;
+            text-align: center;
+            flex-grow: 1;
+        }
+        
+        .goal-counter {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .counter-item {
+            text-align: center;
+            margin: 0 10px 20px;
+            min-width: 150px;
+        }
+        
+        .counter-value {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #fff, #f5f5f5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .counter-title {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        /* Nút đóng góp */
+        .donate-btn {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff512f, #dd2476);
+            color: white;
+            font-weight: 600;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(221, 36, 118, 0.4);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        
+        .donate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(221, 36, 118, 0.6);
+            color: white;
+        }
+        
+        /* Section gây quỹ */
+        .fundraising-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+        
+        .fund-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            position: relative;
+        }
+        
+        .fund-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .fund-image {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .fund-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .fund-card:hover .fund-image img {
+            transform: scale(1.1);
+        }
+        
+        .fund-category {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 123, 255, 0.8);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .fund-content {
+            padding: 25px;
+            background: white;
+        }
+        
+        .fund-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .fund-desc {
+            color: #6c757d;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .fund-progress {
+            height: 10px;
+            background: #e9ecef;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+        
+        .fund-bar {
+            height: 100%;
+            border-radius: 5px;
+            background: linear-gradient(90deg, #00c6ff, #0072ff);
+        }
+        
+        .fund-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .fund-raised {
+            font-weight: 600;
+            color: #0072ff;
+        }
+        
+        .fund-goal {
+            color: #6c757d;
+        }
+        
+        .fund-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #e9ecef;
+            padding-top: 15px;
+        }
+        
+        .fund-donor {
+            display: flex;
+            align-items: center;
+        }
+        
+        .donor-avatars {
+            display: flex;
+            margin-right: 10px;
+        }
+        
+        .donor-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid white;
+            overflow: hidden;
+            margin-left: -10px;
+        }
+        
+        .donor-avatar:first-child {
+            margin-left: 0;
+        }
+        
+        .donor-count {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        
+        .fund-time {
+            font-size: 0.9rem;
+            color: #6c757d;
+            display: flex;
+            align-items: center;
+        }
+        
+        .fund-time i {
+            margin-right: 5px;
+            color: #0072ff;
+        }
+        
+        /* Hiệu ứng nhịp tim */
+        .heart-beat {
+            animation: heartbeat 1.5s ease-in-out infinite;
+            transform-origin: center;
+            display: inline-block;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+    </style>
+    
+</head>
+<body>
+    <header class="navbar" id="main-header">
+        <div class="header-shimmer"></div>
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">
+                <div class="logo-icon-wrapper">
+                    <i class="fas fa-shield-heart"></i>
+                </div>
+                <span class="logo-text">Vì <span class="highlight">Cộng Đồng</span> Khỏe Mạnh</span>
+            </a>
+            <button class="navbar-toggle" id="navbar-toggle" aria-label="Mở menu điều hướng">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="navbar-links-container">
+                <ul class="navbar-links">
+                    <li class="navbar-link"><a href="index.html">Trang Chủ</a></li>
+                    <li class="navbar-link">
+                        <a href="#" class="info-menu-toggle">Thông Tin <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-left: 5px;"></i></a>
+                        <div class="navbar-dropdown">
+                            <a href="#" class="dropdown-item" id="drugs-info-link"><i class="fas fa-pills"></i> Ma Túy</a>
+                            <a href="#" class="dropdown-item" id="gambling-info-link"><i class="fas fa-dice"></i> Cờ Bạc</a>
+                            <a href="#" class="dropdown-item" id="prostitution-info-link"><i class="fas fa-venus-mars"></i> Mại Dâm</a>
+                            <a href="#" class="dropdown-item" id="alcohol-info-link"><i class="fas fa-wine-bottle"></i> Rượu Bia</a>
+                            <a href="information.html" class="dropdown-item"><i class="fas fa-info-circle"></i> Tất Cả Thông Tin</a>
+                        </div>
+                    </li>
+                    <li class="navbar-link"><a href="#mission">Mục Tiêu Dự Án</a></li>
+                    <li class="navbar-link"><a href="support.html" class="active">Hỗ Trợ</a></li>
+                    <li class="navbar-link">
+                        <a href="#">Trải Nghiệm <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-left: 5px;"></i></a>
+                        <div class="navbar-dropdown">
+                            <a href="future_mirror.html" class="dropdown-item"><i class="fas fa-mirror"></i> Gương Soi Tương Lai</a>
+                            <a href="detective_game.html" class="dropdown-item"><i class="fas fa-search"></i> Nhà Điều Tra Tệ Nạn</a>
+                            <a href="community.html" class="dropdown-item"><i class="fas fa-users"></i> Cộng Đồng</a>
+                        </div>
+                    </li>
+                    <li class="navbar-link">
+                        <button class="theme-toggle" aria-label="Chuyển chế độ Sáng hoặc Tối">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+                <div class="auth-buttons">
+                    <a href="login.php" class="login-btn"><i class="fas fa-sign-in-alt"></i> Đăng Nhập</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section với hiệu ứng Particle -->
+        <section class="support-hero">
+            <div class="particles-container" id="particles-js"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 hero-content">
+                        <h1 class="hero-title">Hỗ Trợ & Tư Vấn</h1>
+                        <p class="hero-subtitle">Chúng tôi luôn sẵn sàng đồng hành cùng bạn trong cuộc chiến đẩy lùi tệ nạn xã hội. Liên hệ ngay để được hỗ trợ kịp thời và chuyên nghiệp.</p>
+                        <div class="d-flex flex-wrap gap-2 mt-4">
+                            <a href="#support-form" class="btn btn-light rounded-pill px-4 py-2">
+                                <i class="fas fa-envelope me-2"></i>Gửi Yêu Cầu Hỗ Trợ
+                            </a>
+                            <a href="#help-centers" class="btn btn-outline-light rounded-pill px-4 py-2">
+                                <i class="fas fa-map-marker-alt me-2"></i>Trung Tâm Gần Bạn
+                            </a>
+                            <a href="tel:111" class="btn btn-danger rounded-pill px-4 py-2">
+                                <i class="fas fa-phone-alt me-2"></i>Đường Dây Nóng 111
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Phần mới: Mục Đích và Ý Nghĩa -->
+        <section class="purpose-section" id="mission">
+            <div class="container purpose-container">
+                <div class="section-header text-center mb-5">
+                    <h2 class="section-title" style="color: white; font-weight: 700; font-size: 2.5rem; margin-bottom: 20px;">Sứ Mệnh Của Chúng Tôi</h2>
+                    <p class="section-description" style="color: rgba(255, 255, 255, 0.9); font-size: 1.2rem; max-width: 800px; margin: 0 auto;">
+                        Chung tay xây dựng một cộng đồng lành mạnh, hỗ trợ người cần giúp đỡ và đẩy lùi các tệ nạn xã hội
+                    </p>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="purpose-card">
+                            <div class="purpose-icon">
+                                <i class="fas fa-heart heart-beat"></i>
+                            </div>
+                            <h3>Truyền Tải Yêu Thương</h3>
+                            <p>Chúng tôi tin rằng sự cảm thông và yêu thương là nền tảng của mọi giải pháp. Bằng việc kết nối những tấm lòng nhiệt huyết, chúng tôi tạo ra mạng lưới hỗ trợ bền vững cho những người cần giúp đỡ.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="purpose-card">
+                            <div class="purpose-icon">
+                                <i class="fas fa-hands-helping"></i>
+                            </div>
+                            <h3>Hỗ Trợ Toàn Diện</h3>
+                            <p>Chúng tôi không chỉ cung cấp hỗ trợ tài chính mà còn đồng hành cùng đối tượng từ giai đoạn khó khăn đến khi họ có thể tự lập, tái hòa nhập cộng đồng và xây dựng cuộc sống ổn định.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="purpose-card">
+                            <div class="purpose-icon">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                            <h3>Phát Triển Bền Vững</h3>
+                            <p>Chúng tôi tập trung vào các giải pháp dài hạn, bền vững, giúp cá nhân và cộng đồng phát triển kỹ năng và nguồn lực để tự vượt qua khó khăn và ngăn chặn các tệ nạn xã hội từ gốc rễ.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="goal-counter mt-5">
+                    <div class="counter-item">
+                        <div class="counter-value">5,000+</div>
+                        <div class="counter-title">Người được hỗ trợ</div>
+                    </div>
+                    <div class="counter-item">
+                        <div class="counter-value">120+</div>
+                        <div class="counter-title">Trung tâm hỗ trợ</div>
+                    </div>
+                    <div class="counter-item">
+                        <div class="counter-value">15+</div>
+                        <div class="counter-title">Tỉnh thành</div>
+                    </div>
+                    <div class="counter-item">
+                        <div class="counter-value">1,200+</div>
+                        <div class="counter-title">Tình nguyện viên</div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-5">
+                    <a href="#fundraising" class="donate-btn">
+                        <i class="fas fa-hand-holding-heart me-2"></i>Đóng Góp Ngay
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Phần mới: Các Dự Án Gây Quỹ -->
+        <section class="fundraising-section" id="fundraising">
+            <div class="container">
+                <div class="section-header text-center mb-5">
+                    <h2 class="section-title" style="font-weight: 700; font-size: 2.5rem; margin-bottom: 20px;">Các Dự Án Gây Quỹ</h2>
+                    <p class="section-description" style="color: #6c757d; font-size: 1.2rem; max-width: 800px; margin: 0 auto;">
+                        Chung tay đóng góp cho các dự án nhằm cải thiện đời sống và phòng chống tệ nạn xã hội trên khắp cả nước
+                    </p>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="fund-card">
+                            <div class="fund-image">
+                                <img src="https://images.unsplash.com/photo-1542810634-71277d95dcbb?q=80&w=2070" alt="Dự án hỗ trợ trẻ em">
+                                <div class="fund-category">Trẻ Em</div>
+                            </div>
+                            <div class="fund-content">
+                                <h3 class="fund-title">Xây Dựng Trung Tâm Hỗ Trợ Thanh Thiếu Niên</h3>
+                                <p class="fund-desc">Xây dựng không gian an toàn cho trẻ em và thanh thiếu niên có nguy cơ cao, nơi các em được tư vấn, giáo dục và phát triển kỹ năng sống.</p>
+                                <div class="fund-progress">
+                                    <div class="fund-bar" style="width: 75%"></div>
+                                </div>
+                                <div class="fund-stats">
+                                    <div class="fund-raised">750,000,000 VNĐ</div>
+                                    <div class="fund-goal">Mục tiêu: 1,000,000,000 VNĐ</div>
+                                </div>
+                                <div class="fund-footer">
+                                    <div class="fund-donor">
+                                        <div class="donor-avatars">
+                                            <div class="donor-avatar">
+                                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Donor" width="100%">
+                                            </div>
+                                            <div class="donor-avatar">
+                                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Donor" width="100%">
+                                            </div>
+                                            <div class="donor-avatar">
+                                                <img src="https://randomuser.me/api/portraits/men/78.jpg" alt="Donor" width="100%">
+                                            </div>
+                                        </div>
+                                        <div class="donor-count">120+ người ủng hộ</div>
+                                    </div>
+                                    <div class="fund-time">
+                                        <i class="far fa-clock"></i> Còn 30 ngày
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="fund-card">
+                            <div class="fund-image">
+                                <img src="https://images.unsplash.com/photo-1518949396226-d2de1c75d3da?q=80&w=2071" alt="Dự án cai nghiện">
+                                <div class="fund-category">Cai Nghiện</div>
+                            </div>
+                            <div class="fund-content">
+                                <h3 class="fund-title">Trang Thiết Bị Cho Trung Tâm Cai Nghiện</h3>
+                                <p class="fund-desc">Nâng cấp cơ sở vật chất, trang thiết bị y tế và phương tiện giảng dạy cho các trung tâm cai nghiện trên toàn quốc.</p>
+                                <div class="fund-progress">
+                                    <div class="fund-bar" style="width: 45%"></div>
+                                </div>
+                                <div class="fund-stats">
+                                    <div class="fund-raised">270,000,000 VNĐ</div>
+                                    <div class="fund-goal">Mục tiêu: 600,000,000 VNĐ</div>
+                                </div>
+                                <div class="fund-footer">
+                                    <div class="fund-donor">
+                                        <div class="donor-avatars">
+                                            <div class="donor-avatar">
+                                                <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Donor" width="100%">
+                                            </div>
+                                            <div class="donor-avatar">
+                                                <img src="https://randomuser.me/api/portraits/men/44.jpg" alt="Donor" width="100%">
+                                            </div>
+                                            <div class="donor-avatar">
+                                                <img src="https://randomuser.me/api/portraits/women/78.jpg" alt="Donor" width="100%">
+                                            </div>
+                                        </div>
+                                        <div class="donor-count">85+ người ủng hộ</div>
+                                    </div>
+                                    <div class="fund-time">
+                                        <i class="far fa-clock"></i> Còn 45 ngày
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="fund-card">
+                            <div class="fund-image">
+                                <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2070" alt="Dự án đào tạo nghề">
+                                <div class="fund-category">Đào Tạo</div>
+                            </div>
+                            <div class="fund-content">
+                                <h3 class="fund-title">Chương Trình Đào Tạo Nghề Và Tái Hòa Nhập</h3>
+                                <p class="fund-desc">Tạo cơ hội việc làm cho người sau cai nghiện và nạn nhân của tệ nạn xã hội thông qua đào tạo kỹ năng nghề và kết nối doanh nghiệp.</p>
+                                <div class="fund-progress">
+                                    <div class="fund-bar" style="width: 85%"></div>
+                                </div>
+                                <div class="fund-stats">
+                                    <div class="fund-raised">425,000,000 VNĐ</div>
+                                    <div class="fund-goal">Mục tiêu: 500,000,000 VNĐ</div>
+                                </div>
+                                <div class="fund-footer">
+                                    <div class="fund-donor">
+                                        <div class="donor-avatars">
+                                            <div class="donor-avatar">
+                                                <img src="https://randomuser.me/api/portraits/men/62.jpg" alt="Donor" width="100%">
+                                            </div>
+                                            <div class="donor-avatar">
+                                                <img src="https://randomuser.me/api/portraits/women/54.jpg" alt="Donor" width="100%">
+                                            </div>
+                                            <div class="donor-avatar">
+                                                <img src="https://randomuser.me/api/portraits/men/18.jpg" alt="Donor" width="100%">
+                                            </div>
+                                        </div>
+                                        <div class="donor-count">150+ người ủng hộ</div>
+                                    </div>
+                                    <div class="fund-time">
+                                        <i class="far fa-clock"></i> Còn 15 ngày
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-5">
+                    <a href="#" class="btn btn-primary btn-lg rounded-pill">
+                        <i class="fas fa-search me-2"></i>Xem Tất Cả Dự Án
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Phần mới: Phương thức đóng góp và Câu chuyện thành công -->
+        <section class="donation-methods py-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-5 mb-4 mb-lg-0">
+                        <div class="donation-info p-4" style="background: linear-gradient(135deg, #2c3e50, #4ca1af); border-radius: 15px; color: white;">
+                            <h3 class="mb-4"><i class="fas fa-donate me-2"></i>Phương Thức Đóng Góp</h3>
+                            <div class="donation-method mb-3 p-3" style="background: rgba(255,255,255,0.1); border-radius: 10px;">
+                                <h5><i class="fas fa-university me-2"></i>Chuyển khoản ngân hàng</h5>
+                                <p class="mb-1">Ngân hàng: <strong>Vietcombank</strong></p>
+                                <p class="mb-1">Số tài khoản: <strong>1234567890123</strong></p>
+                                <p class="mb-0">Chủ tài khoản: <strong>QUỸ VÌ CỘNG ĐỒNG KHỎE MẠNH</strong></p>
+                            </div>
+                            <div class="donation-method mb-3 p-3" style="background: rgba(255,255,255,0.1); border-radius: 10px;">
+                                <h5><i class="fas fa-qrcode me-2"></i>Quét mã QR</h5>
+                                <div class="row align-items-center">
+                                    <div class="col-4">
+                                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Donation" alt="QR Code" class="img-fluid" style="background: white; padding: 5px; border-radius: 5px;">
+                                    </div>
+                                    <div class="col-8">
+                                        <p class="mb-0">Quét mã QR bằng ứng dụng ngân hàng để chuyển khoản nhanh chóng.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="donation-method p-3" style="background: rgba(255,255,255,0.1); border-radius: 10px;">
+                                <h5><i class="fas fa-handshake me-2"></i>Đóng góp trực tiếp</h5>
+                                <p class="mb-0">Quý vị có thể đến trực tiếp văn phòng của chúng tôi tại: <strong>123 Nguyễn Huệ, Quận 1, TP.HCM</strong> hoặc các trung tâm hỗ trợ trên toàn quốc.</p>
+                            </div>
+                            <div class="text-center mt-4">
+                                <a href="#" class="btn btn-light rounded-pill px-4 py-2">
+                                    <i class="fas fa-info-circle me-2"></i>Hướng dẫn chi tiết
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <h3 class="mb-4" style="color: #2c3e50;"><i class="fas fa-star me-2"></i>Câu Chuyện Thành Công</h3>
+                        <div class="success-stories">
+                            <div id="successCarousel" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <div class="success-story p-4" style="background: #f8f9fa; border-radius: 15px; border-left: 5px solid #4ca1af;">
+                                            <div class="row align-items-center">
+                                                <div class="col-md-4 mb-3 mb-md-0">
+                                                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1976" alt="Nguyễn Thị Hồng" class="img-fluid rounded-circle" style="max-width: 150px; margin: 0 auto; display: block; border: 3px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <h4>Nguyễn Thị Hồng</h4>
+                                                    <p class="text-muted"><i class="fas fa-map-marker-alt me-2"></i>TP. Hồ Chí Minh</p>
+                                                    <p>"Nhờ sự hỗ trợ từ Quỹ cộng đồng khỏe mạnh, con trai tôi đã vượt qua giai đoạn khó khăn, cai nghiện thành công và hiện đang có công việc ổn định. Gia đình tôi sẽ mãi biết ơn những tấm lòng hảo tâm đã giúp đỡ chúng tôi trong giai đoạn tuyệt vọng nhất."</p>
+                                                    <div class="text-end">
+                                                        <span class="badge bg-primary">Cai nghiện thành công</span>
+                                                        <span class="badge bg-success">Tái hòa nhập cộng đồng</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <div class="success-story p-4" style="background: #f8f9fa; border-radius: 15px; border-left: 5px solid #4ca1af;">
+                                            <div class="row align-items-center">
+                                                <div class="col-md-4 mb-3 mb-md-0">
+                                                    <img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=2070" alt="Trần Văn Minh" class="img-fluid rounded-circle" style="max-width: 150px; margin: 0 auto; display: block; border: 3px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <h4>Trần Văn Minh</h4>
+                                                    <p class="text-muted"><i class="fas fa-map-marker-alt me-2"></i>Hà Nội</p>
+                                                    <p>"Tôi đã từng bị cuốn vào tệ nạn cờ bạc và rượu chè, tưởng chừng như đã đánh mất tất cả. Nhưng nhờ chương trình hỗ trợ tâm lý và đào tạo nghề, tôi đã có cơ hội làm lại từ đầu. Giờ đây tôi có công việc ổn định và còn là tình nguyện viên giúp đỡ những người khác."</p>
+                                                    <div class="text-end">
+                                                        <span class="badge bg-warning text-dark">Vượt qua cờ bạc</span>
+                                                        <span class="badge bg-info">Hỗ trợ tâm lý</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <div class="success-story p-4" style="background: #f8f9fa; border-radius: 15px; border-left: 5px solid #4ca1af;">
+                                            <div class="row align-items-center">
+                                                <div class="col-md-4 mb-3 mb-md-0">
+                                                    <img src="https://images.unsplash.com/photo-1581992652564-44c42f5ad3ad?q=80&w=2070" alt="Lê Thị Mai" class="img-fluid rounded-circle" style="max-width: 150px; margin: 0 auto; display: block; border: 3px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <h4>Lê Thị Mai</h4>
+                                                    <p class="text-muted"><i class="fas fa-map-marker-alt me-2"></i>Đà Nẵng</p>
+                                                    <p>"Dự án đào tạo nghề của quỹ đã thực sự thay đổi cuộc đời tôi. Sau khi học xong khóa làm bánh, tôi đã mở được tiệm bánh nhỏ của riêng mình và có thể tự lo cho hai con. Cảm ơn tất cả những người đã đóng góp cho quỹ và tạo nên cơ hội này."</p>
+                                                    <div class="text-end">
+                                                        <span class="badge bg-danger">Đào tạo nghề</span>
+                                                        <span class="badge bg-secondary">Khởi nghiệp</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#successCarousel" data-bs-slide="prev" style="width: 40px; height: 40px; background: rgba(76, 161, 175, 0.5); border-radius: 50%; top: 50%; transform: translateY(-50%); left: -20px;">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#successCarousel" data-bs-slide="next" style="width: 40px; height: 40px; background: rgba(76, 161, 175, 0.5); border-radius: 50%; top: 50%; transform: translateY(-50%); right: -20px;">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                                <div class="carousel-indicators" style="bottom: -40px;">
+                                    <button type="button" data-bs-target="#successCarousel" data-bs-slide-to="0" class="active" style="width: 10px; height: 10px; background-color: #4ca1af; border-radius: 50%;"></button>
+                                    <button type="button" data-bs-target="#successCarousel" data-bs-slide-to="1" style="width: 10px; height: 10px; background-color: #4ca1af; border-radius: 50%;"></button>
+                                    <button type="button" data-bs-target="#successCarousel" data-bs-slide-to="2" style="width: 10px; height: 10px; background-color: #4ca1af; border-radius: 50%;"></button>
+                                </div>
+                            </div>
+                            <div class="text-center mt-5">
+                                <a href="#" class="btn btn-outline-primary rounded-pill px-4 py-2">
+                                    <i class="fas fa-book-open me-2"></i>Xem Thêm Câu Chuyện
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Các loại hỗ trợ -->
+        <section class="py-5">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Chúng Tôi Hỗ Trợ Gì?</h2>
+                    <p class="section-description">Đa dạng các hình thức hỗ trợ phù hợp với nhu cầu của bạn và người thân</p>
+                </div>
+
+                <div class="row g-4 mt-4">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="support-card h-100">
+                            <div class="support-card-icon">
+                                <i class="fas fa-user-md"></i>
+                            </div>
+                            <h3>Tư Vấn Chuyên Sâu</h3>
+                            <p>Đội ngũ chuyên gia tâm lý, bác sĩ và nhân viên công tác xã hội sẵn sàng tư vấn về các vấn đề liên quan đến ma túy, cờ bạc và các tệ nạn xã hội khác.</p>
+                            <div class="support-card-footer">
+                                <span><i class="far fa-clock"></i> 24/7</span>
+                                <a href="#support-form" class="btn btn-sm btn-primary">Đặt Lịch Tư Vấn</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="support-card h-100">
+                            <div class="support-card-icon">
+                                <i class="fas fa-hands-helping"></i>
+                            </div>
+                            <h3>Hỗ Trợ Cai Nghiện</h3>
+                            <p>Kết nối với các trung tâm cai nghiện uy tín, cung cấp thông tin về quy trình, chi phí, và các phương pháp điều trị phù hợp với từng đối tượng.</p>
+                            <div class="support-card-footer">
+                                <span><i class="fas fa-check-circle"></i> Bảo mật</span>
+                                <a href="#help-centers" class="btn btn-sm btn-primary">Tìm Trung Tâm</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="support-card h-100">
+                            <div class="support-card-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3>Hỗ Trợ Gia Đình</h3>
+                            <p>Giúp gia đình có người thân vướng vào tệ nạn xã hội hiểu và ứng phó đúng cách, tạo môi trường thuận lợi cho việc phục hồi.</p>
+                            <div class="support-card-footer">
+                                <span><i class="fas fa-heart"></i> Đồng cảm</span>
+                                <a href="#family-support" class="btn btn-sm btn-primary">Tìm Hiểu Thêm</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="support-card h-100">
+                            <div class="support-card-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h3>Giáo Dục Cộng Đồng</h3>
+                            <p>Tổ chức các buổi nói chuyện, hội thảo về phòng chống tệ nạn xã hội tại trường học, doanh nghiệp và các tổ chức cộng đồng.</p>
+                            <div class="support-card-footer">
+                                <span><i class="far fa-calendar-alt"></i> Linh hoạt</span>
+                                <a href="#" class="btn btn-sm btn-primary">Đăng Ký Chương Trình</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="support-card h-100">
+                            <div class="support-card-icon">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <h3>Hỗ Trợ Việc Làm</h3>
+                            <p>Kết nối cơ hội việc làm phù hợp cho những người đã cai nghiện thành công, giúp họ tái hòa nhập cộng đồng và ổn định cuộc sống.</p>
+                            <div class="support-card-footer">
+                                <span><i class="fas fa-handshake"></i> Tái hòa nhập</span>
+                                <a href="#" class="btn btn-sm btn-primary">Tìm Cơ Hội</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="support-card h-100">
+                            <div class="support-card-icon">
+                                <i class="fas fa-gavel"></i>
+                            </div>
+                            <h3>Tư Vấn Pháp Lý</h3>
+                            <p>Cung cấp thông tin về khía cạnh pháp lý liên quan đến các tệ nạn xã hội, quyền lợi và trách nhiệm của các bên liên quan.</p>
+                            <div class="support-card-footer">
+                                <span><i class="fas fa-balance-scale"></i> Minh bạch</span>
+                                <a href="#" class="btn btn-sm btn-primary">Tư Vấn Ngay</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trung tâm hỗ trợ với bản đồ -->
+        <section class="help-centers-section" id="help-centers">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Trung Tâm Hỗ Trợ Gần Bạn</h2>
+                    <p class="section-description">Tìm kiếm trung tâm hỗ trợ phù hợp tại địa phương của bạn</p>
+                </div>
+
+                <div class="row mt-5">
+                    <div class="col-lg-7">
+  <div class="map-container" id="support-centers-map">
+    <!-- Chỉ chứa SVG, không có backdrop/form ở đây -->
+  </div>
+</div>
+
+
+
+
+                    <div class="col-lg-5">
+                        <h4 class="mb-4">Trung Tâm Tiêu Biểu</h4>
+                        <div class="support-center-card">
+                            <div class="center-icon">
+                                <i class="fas fa-clinic-medical"></i>
+                            </div>
+                            <div class="center-info">
+                                <h4>Trung Tâm Hỗ Trợ Cai Nghiện Hà Nội</h4>
+                                <p>15 Trần Hưng Đạo, Hoàn Kiếm, Hà Nội</p>
+                                <div class="center-contact">
+                                    <a href="tel:0987654321"><i class="fas fa-phone"></i> 0987.654.321</a>
+                                    <a href="mailto:hanoi@supportcenter.org"><i class="fas fa-envelope"></i> Email</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="support-center-card">
+                            <div class="center-icon">
+                                <i class="fas fa-clinic-medical"></i>
+                            </div>
+                            <div class="center-info">
+                                <h4>Trung Tâm Tư Vấn TP. Hồ Chí Minh</h4>
+                                <p>123 Nguyễn Huệ, Quận 1, TP. Hồ Chí Minh</p>
+                                <div class="center-contact">
+                                    <a href="tel:0901234567"><i class="fas fa-phone"></i> 090.123.4567</a>
+                                    <a href="mailto:hcm@supportcenter.org"><i class="fas fa-envelope"></i> Email</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="support-center-card">
+                            <div class="center-icon">
+                                <i class="fas fa-clinic-medical"></i>
+                            </div>
+                            <div class="center-info">
+                                <h4>Trung Tâm Cai Nghiện Đà Nẵng</h4>
+                                <p>45 Trần Phú, Hải Châu, Đà Nẵng</p>
+                                <div class="center-contact">
+                                    <a href="tel:0912345678"><i class="fas fa-phone"></i> 091.234.5678</a>
+                                    <a href="mailto:danang@supportcenter.org"><i class="fas fa-envelope"></i> Email</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <a href="#" class="btn btn-primary rounded-pill px-4">
+                                <i class="fas fa-search me-2"></i>Tìm Trung Tâm Khác
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+      <div class="col-12">
+        <div id="regionDetail" class="collapse mt-4">
+          <iframe
+            id="regionDetailFrame"
+            src=""
+            style="border: none; width: 100%; min-height: 600px;"
+            frameborder="0"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+                </div>
+            </div>
+              <!-- Đặt ngay dưới <body> hoặc trong .container nhưng ngoài map-container -->
+
+        </section>
+
+        <!-- Form gửi yêu cầu hỗ trợ -->
+        <section class="support-form-section py-5" id="support-form">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="section-header text-center">
+                            <h2 class="section-title">Gửi Yêu Cầu Hỗ Trợ</h2>
+                            <p class="section-description">Điền thông tin dưới đây, chúng tôi sẽ liên hệ lại trong thời gian sớm nhất</p>
+                        </div>
+
+                        <div class="form-container">
+                            <form id="supportRequestForm">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="fullName" placeholder="Họ và tên" required>
+                                            <label for="fullName">Họ và tên</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="tel" class="form-control" id="phone" placeholder="Số điện thoại">
+                                            <label for="phone">Số điện thoại</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-floating">
+                                            <input type="email" class="form-control" id="email" placeholder="Email liên hệ" required>
+                                            <label for="email">Email liên hệ</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-floating">
+                                            <select class="form-select" id="supportType" aria-label="Loại hỗ trợ">
+                                                <option selected value="">Chọn loại hỗ trợ cần thiết</option>
+                                                <option value="counseling">Tư vấn chuyên sâu</option>
+                                                <option value="rehabilitation">Hỗ trợ cai nghiện</option>
+                                                <option value="family">Hỗ trợ gia đình</option>
+                                                <option value="education">Giáo dục cộng đồng</option>
+                                                <option value="job">Hỗ trợ việc làm</option>
+                                                <option value="legal">Tư vấn pháp lý</option>
+                                            </select>
+                                            <label for="supportType">Loại hỗ trợ</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-floating">
+                                            <textarea class="form-control" id="message" placeholder="Mô tả chi tiết" style="height: 150px"></textarea>
+                                            <label for="message">Mô tả chi tiết vấn đề của bạn</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="privacyCheck" required>
+                                            <label class="form-check-label" for="privacyCheck">
+                                                Tôi đồng ý với <a href="privacy-policy.html">chính sách bảo mật</a> và cho phép liên hệ lại
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 text-center mt-4">
+                                        <button type="submit" class="btn btn-primary btn-lg px-5 rounded-pill">
+                                            <i class="fas fa-paper-plane me-2"></i>Gửi Yêu Cầu
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Banner liên hệ khẩn cấp -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <div class="emergency-contact">
+                    <div class="emergency-content">
+                        <h3><i class="fas fa-exclamation-triangle me-2"></i>Đường Dây Nóng Hỗ Trợ Khẩn Cấp</h3>
+                        <p>Nếu bạn hoặc người thân đang gặp tình huống nguy hiểm, cần hỗ trợ ngay lập tức, vui lòng gọi:</p>
+                        <div class="emergency-phone pulse">
+                            <a href="tel:111" style="color: white; text-decoration: none;"><i class="fas fa-phone-alt me-3"></i>111</a>
+                        </div>
+                        <p class="mb-0">Đường dây hỗ trợ bảo vệ trẻ em và phòng chống tệ nạn xã hội - Hoạt động 24/7</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section" id="faq">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Câu Hỏi Thường Gặp</h2>
+                    <p class="section-description">Giải đáp những thắc mắc phổ biến về dịch vụ hỗ trợ của chúng tôi</p>
+                </div>
+
+                <div class="row mt-5">
+                    <div class="col-lg-8 mx-auto">
+                        <div class="accordion" id="faqAccordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faqHeading1">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse1" aria-expanded="true" aria-controls="faqCollapse1">
+                                        Các dịch vụ hỗ trợ có tính phí không?
+                                    </button>
+                                </h2>
+                                <div id="faqCollapse1" class="accordion-collapse collapse show" aria-labelledby="faqHeading1" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        <p>Các dịch vụ tư vấn cơ bản và đường dây nóng của chúng tôi hoàn toàn miễn phí. Đối với các dịch vụ chuyên sâu như cai nghiện, điều trị y tế, có thể phát sinh chi phí tùy thuộc vào điều kiện cụ thể và trung tâm hỗ trợ. Chúng tôi sẽ tư vấn chi tiết về chi phí trước khi bắt đầu quá trình hỗ trợ.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faqHeading2">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
+                                        Thông tin của tôi có được bảo mật không?
+                                    </button>
+                                </h2>
+                                <div id="faqCollapse2" class="accordion-collapse collapse" aria-labelledby="faqHeading2" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        <p>Tuyệt đối. Chúng tôi cam kết bảo mật thông tin cá nhân của bạn theo quy định pháp luật. Mọi thông tin bạn cung cấp chỉ được sử dụng cho mục đích hỗ trợ và không được tiết lộ cho bên thứ ba mà không có sự đồng ý của bạn, trừ trường hợp yêu cầu của cơ quan pháp luật.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faqHeading3">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
+                                        Làm thế nào để giúp người thân vượt qua cơn nghiện?
+                                    </button>
+                                </h2>
+                                <div id="faqCollapse3" class="accordion-collapse collapse" aria-labelledby="faqHeading3" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        <p>Giúp người thân vượt qua nghiện là một quá trình đòi hỏi kiên nhẫn và sự đồng hành. Bước đầu tiên là tạo niềm tin và động viên họ tìm kiếm sự giúp đỡ chuyên nghiệp. Gia đình cần tạo môi trường hỗ trợ, không phán xét, và có thể tham gia vào các nhóm gia đình cùng cảnh ngộ để chia sẻ kinh nghiệm. Liên hệ với chuyên gia tư vấn của chúng tôi để được hướng dẫn cụ thể cho từng trường hợp.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faqHeading4">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse4" aria-expanded="false" aria-controls="faqCollapse4">
+                                        Quá trình cai nghiện kéo dài bao lâu?
+                                    </button>
+                                </h2>
+                                <div id="faqCollapse4" class="accordion-collapse collapse" aria-labelledby="faqHeading4" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        <p>Thời gian cai nghiện phụ thuộc vào nhiều yếu tố như loại chất gây nghiện, mức độ nghiện, sức khỏe cá nhân và phương pháp điều trị. Thông thường, giai đoạn cắt cơn vật lý kéo dài từ 3-14 ngày, nhưng quá trình phục hồi tâm lý và xã hội có thể kéo dài từ vài tháng đến vài năm. Điều quan trọng là kiên trì và có sự hỗ trợ liên tục trong suốt hành trình này.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faqHeading5">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse5" aria-expanded="false" aria-controls="faqCollapse5">
+                                        Làm thế nào để nhận biết người thân đang sử dụng ma túy?
+                                    </button>
+                                </h2>
+                                <div id="faqCollapse5" class="accordion-collapse collapse" aria-labelledby="faqHeading5" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        <p>Một số dấu hiệu nhận biết có thể bao gồm thay đổi đột ngột về hành vi, tâm trạng thất thường, suy giảm hiệu suất học tập/làm việc, thay đổi nhóm bạn bè, xa lánh gia đình, thay đổi thói quen ăn uống/ngủ nghỉ, thiếu quan tâm đến ngoại hình, mất tiền hoặc đồ vật trong nhà không rõ lý do. Nếu nghi ngờ, hãy tiếp cận một cách nhẹ nhàng, thể hiện sự quan tâm thay vì buộc tội, và tìm kiếm sự tư vấn chuyên nghiệp.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Đăng ký nhận thông tin -->
+        <section class="py-5">
+            <div class="container">
+                <div class="newsletter-box">
+                    <div class="newsletter-content">
+                        <h3 class="text-center mb-4"><i class="fas fa-envelope-open-text me-2"></i>Đăng Ký Nhận Thông Tin</h3>
+                        <p class="text-center">Cập nhật các thông tin mới nhất về chương trình hỗ trợ, sự kiện và tài liệu giáo dục từ chúng tôi.</p>
+                        
+                        <div class="newsletter-form">
+                            <input type="email" class="newsletter-input" placeholder="Nhập địa chỉ email của bạn">
+                            <button class="newsletter-btn">Đăng Ký Ngay</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact-footer-support" class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5 class="footer-title"><i class="fas fa-shield-heart me-2"></i>Vì Cộng Đồng Khỏe Mạnh</h5>
+                    <p>Cung cấp thông tin chính xác và hỗ trợ kịp thời trong công cuộc phòng chống tệ nạn xã hội.</p>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h6 class="footer-title">Liên Kết</h6>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Trang Chủ</a></li>
+                        <li><a href="information.html">Thông Tin & Kiến Thức</a></li>
+                        <li><a href="index.html#mission">Mục Tiêu Dự Án</a></li>
+                        <li><a href="support.html">Hỗ Trợ</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h6 class="footer-title">Hỗ Trợ</h6>
+                    <ul class="footer-links">
+                        <li><a href="#help-centers">Trung Tâm Giúp Đỡ</a></li>
+                        <li><a href="tel:111">Tổng Đài 111</a></li>
+                        <li><a href="#support-form">Liên Hệ Tư Vấn</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <h6 class="footer-title">Kết nối</h6>
+                    <div class="d-flex social-links">
+                        <a href="https://facebook.com/ViCongDongKhoeManhPage" target="_blank" rel="noopener noreferrer" class="me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://youtube.com/ViCongDongKhoeManhChannel" target="_blank" rel="noopener noreferrer" class="me-3"><i class="fab fa-youtube"></i></a>
+                        <a href="mailto:contact@vicongdongkhoemanh.org"><i class="fas fa-envelope"></i></a>
+                    </div>
+                    <p class="mt-3">Email: contact@vicongdongkhoemanh.org</p>
+                </div>
+            </div>
+            <hr class="mt-4 mb-3 border-light opacity-50">
+            <div class="row align-items-center">
+                <div class="col-md-6 small">
+                    © 2023 Vì Cộng Đồng Khỏe Mạnh.
+                </div>
+                <div class="col-md-6 text-md-end small">
+                    <a href="privacy-policy.html" class="text-light me-3">Chính sách bảo mật</a>
+                    <a href="terms-of-service.html" class="text-light me-3">Điều khoản sử dụng</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <a href="#" class="to-top-btn" id="toTopBtn">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="../javaScript/main.js"></script>
+    <script src="../javaScript/auth-ui.js"></script>
+    <script>
+        // Định nghĩa hàm riêng để load bản đồ
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hiệu ứng particles cho hero section
+            if (typeof particlesJS !== 'undefined') {
+                particlesJS('particles-js', {
+                    particles: {
+                        number: { value: 80, density: { enable: true, value_area: 800 } },
+                        color: { value: "#ffffff" },
+                        shape: { type: "circle" },
+                        opacity: { value: 0.5, random: true },
+                        size: { value: 3, random: true },
+                        line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
+                        move: { enable: true, speed: 2, direction: "none", random: true, straight: false, out_mode: "out" }
+                    },
+                    interactivity: {
+                        detect_on: "canvas",
+                        events: { onhover: { enable: true, mode: "bubble" }, onclick: { enable: true, mode: "repulse" } }
+                    }
+                });
+            }
+
+            // Theme toggle
+            const themeToggle = document.querySelector('.theme-toggle');
+            if(themeToggle) {
+                themeToggle.addEventListener('click', function() {
+                    document.body.classList.toggle('dark-theme');
+                    this.querySelector('i').classList.toggle('fa-sun');
+                    this.querySelector('i').classList.toggle('fa-moon');
+                });
+            }
+
+            // Back to top button
+            const toTopBtn = document.getElementById('toTopBtn');
+            if(toTopBtn) {
+                window.addEventListener('scroll', function() {
+                    if(window.pageYOffset > 300) {
+                        toTopBtn.classList.add('show');
+                    } else {
+                        toTopBtn.classList.remove('show');
+                    }
+                });
+            }
+            
+            // Header scroll effect
+            const header = document.getElementById('main-header');
+            if (header) {
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 50) {
+                        header.classList.add('scrolled');
+                    } else {
+                        header.classList.remove('scrolled');
+                    }
+                });
+            }
+
+            // Navbar toggle for mobile view
+            const navbarToggle = document.getElementById('navbar-toggle');
+            const navbarLinksContainer = document.querySelector('.navbar-links-container');
+            
+            if (navbarToggle && navbarLinksContainer) {
+                navbarToggle.addEventListener('click', function() {
+                    navbarLinksContainer.classList.toggle('active');
+                    navbarToggle.querySelector('i').classList.toggle('fa-bars');
+                    navbarToggle.querySelector('i').classList.toggle('fa-times');
+                });
+            }
+
+            // Handle dropdown menus on mobile
+            const dropdownLinks = document.querySelectorAll('.navbar-link a[href="#"]');
+            if (dropdownLinks) {
+                dropdownLinks.forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        if (window.innerWidth < 992) {
+                            e.preventDefault();
+                            this.parentNode.classList.toggle('active');
+                        }
+                    });
+                });
+            }
+        });
+        
+        // Load bản đồ hỗ trợ
+        (function initSupportMap() {
+            const regionData = {
+                VNTS: { name: "Trường Sa", volunteers: 120, funds: 50000000 },
+                VNHS: { name: "Hoàng Sa", volunteers: 120, funds: 50000000 },
+                VN01: { name: "Lai Châu", volunteers: 120, funds: 50000000 },
+                VN02: { name: "Lào Cai", volunteers: 120, funds: 50000000 },
+                VN03: { name: "Hà Giang", volunteers: 120, funds: 50000000 },
+                VN04: { name: "Cao Bằng", volunteers: 120, funds: 50000000 },
+                VN05: { name: "Sơn La", volunteers: 120, funds: 50000000 },
+                VN06: { name: "Yên Bái", volunteers: 120, funds: 50000000 },
+                VN07: { name: "Tuyên Quang", volunteers: 120, funds: 50000000 },
+                VN09: { name: "Lạng Sơn", volunteers: 120, funds: 50000000 },
+                VN13: { name: "Quảng Ninh", volunteers: 120, funds: 50000000 },
+                VN14: { name: "Hòa Bình", volunteers: 120, funds: 50000000 },
+                VN15: { name: "Hà Tây", volunteers: 120, funds: 50000000 },
+                VN18: { name: "Ninh Bình", volunteers: 120, funds: 50000000 },
+                VN20: { name: "Thái Bình", volunteers: 120, funds: 50000000 },
+                VN21: { name: "Thanh Hóa", volunteers: 120, funds: 50000000 },
+                VN22: { name: "Nghệ An", volunteers: 120, funds: 50000000 },
+                VN23: { name: "Hà Tĩnh", volunteers: 120, funds: 50000000 },
+                VN24: { name: "Quảng Bình", volunteers: 120, funds: 50000000 },
+                VN25: { name: "Quảng Trị", volunteers: 120, funds: 50000000 },
+                VN26: { name: "Thừa Thiên–Huế", volunteers: 120, funds: 50000000 },
+                VN27: { name: "Quảng Nam", volunteers: 120, funds: 50000000 },
+                VN28: { name: "Kon Tum", volunteers: 120, funds: 50000000 },
+                VN29: { name: "Quảng Ngãi", volunteers: 120, funds: 50000000 },
+                VN30: { name: "Gia Lai", volunteers: 120, funds: 50000000 },
+                VN31: { name: "Bình Định", volunteers: 120, funds: 50000000 },
+                VN32: { name: "Phú Yên", volunteers: 120, funds: 50000000 },
+                VN33: { name: "Đắk Lắk", volunteers: 120, funds: 50000000 },
+                VN34: { name: "Khánh Hòa", volunteers: 120, funds: 50000000 },
+                VN35: { name: "Lâm Đồng", volunteers: 120, funds: 50000000 },
+                VN36: { name: "Ninh Thuận", volunteers: 120, funds: 50000000 },
+                VN37: { name: "Tây Ninh", volunteers: 120, funds: 50000000 },
+                VN39: { name: "Đồng Nai", volunteers: 120, funds: 50000000 },
+                VN40: { name: "Bình Thuận", volunteers: 120, funds: 50000000 },
+                VN41: { name: "Long An", volunteers: 120, funds: 50000000 },
+                VN43: { name: "Bà Rịa–Vũng Tàu", volunteers: 120, funds: 50000000 },
+                VN44: { name: "An Giang", volunteers: 120, funds: 50000000 },
+                VN45: { name: "Đồng Tháp", volunteers: 120, funds: 50000000 },
+                VN46: { name: "Tiền Giang", volunteers: 120, funds: 50000000 },
+                VN47: { name: "Kiên Giang", volunteers: 120, funds: 50000000 },
+                VN49: { name: "Vĩnh Long", volunteers: 120, funds: 50000000 },
+                VN50: { name: "Bến Tre", volunteers: 120, funds: 50000000 },
+                VN51: { name: "Trà Vinh", volunteers: 120, funds: 50000000 },
+                VN52: { name: "Sóc Trăng", volunteers: 120, funds: 50000000 },
+                VN53: { name: "Bắc Kạn", volunteers: 120, funds: 50000000 },
+                VN54: { name: "Bắc Giang", volunteers: 120, funds: 50000000 },
+                VN55: { name: "Bạc Liêu", volunteers: 120, funds: 50000000 },
+                VN56: { name: "Bắc Ninh", volunteers: 120, funds: 50000000 },
+                VN57: { name: "Bình Dương", volunteers: 120, funds: 50000000 },
+                VN58: { name: "Bình Phước", volunteers: 120, funds: 50000000 },
+                VN59: { name: "Cà Mau", volunteers: 120, funds: 50000000 },
+                VN61: { name: "Hải Dương", volunteers: 120, funds: 50000000 },
+                VN63: { name: "Hà Nam", volunteers: 120, funds: 50000000 },
+                VN66: { name: "Hưng Yên", volunteers: 120, funds: 50000000 },
+                VN67: { name: "Nam Định", volunteers: 120, funds: 50000000 },
+                VN68: { name: "Phú Thọ", volunteers: 120, funds: 50000000 },
+                VN69: { name: "Thái Nguyên", volunteers: 120, funds: 50000000 },
+                VN70: { name: "Vĩnh Phúc", volunteers: 120, funds: 50000000 },
+                VN71: { name: "Điện Biên", volunteers: 120, funds: 50000000 },
+                VN72: { name: "Đắk Nông", volunteers: 120, funds: 50000000 },
+                VN73: { name: "Hậu Giang", volunteers: 120, funds: 50000000 },
+                VNCT: { name: "Cần Thơ", volunteers: 120, funds: 50000000 },
+                VNDN: { name: "Đà Nẵng", volunteers: 120, funds: 50000000 },
+                VNHN: { name: "Hà Nội", volunteers: 120, funds: 50000000 },
+                VNHP: { name: "Hải Phòng", volunteers: 120, funds: 50000000 },
+                VNSG: { name: "Hồ Chí Minh", volunteers: 120, funds: 50000000 }
+            };
+          
+            let currentRegion = null;  // lưu region đang mở
+
+            const mapContainer = document.getElementById('support-centers-map');
+            if (!mapContainer) return;
+
+            fetch('/images/map.svg')
+                .then(res => res.ok ? res.text() : Promise.reject(res.status))
+                .then(svgText => {
+                    mapContainer.innerHTML = '';
+                    const parser = new DOMParser();
+                    const svgEl = parser.parseFromString(svgText, 'image/svg+xml').querySelector('svg');
+                    svgEl.setAttribute('width', '100%');
+                    svgEl.style.height = '100%';
+                    svgEl.style.display = 'block';
+
+                    // Lưu fill gốc của mỗi vùng
+                    Object.keys(regionData).forEach(id => {
+                        const el = svgEl.querySelector('#' + id);
+                        if (el) el.dataset.origFill = el.getAttribute('fill') || '';
+                    });
+
+                    mapContainer.appendChild(svgEl);
+
+                    // Gắn sự kiện click
+                    Object.keys(regionData).forEach(id => {
+                        const regionEl = svgEl.querySelector('#' + id);
+                        if (!regionEl) return;
+                        regionEl.style.cursor = 'pointer';
+                        regionEl.addEventListener('click', () => onRegionClick(id, regionEl));
+                    });
+                })
+                .catch(err => {
+                    console.error(err);
+                    mapContainer.innerHTML = '<p>Không thể tải bản đồ.</p>';
+                });
+
+            function onRegionClick(id, regionEl) {
+                const collapseEl = document.getElementById('regionDetail');
+                const bsCollapse = bootstrap.Collapse.getOrCreateInstance(collapseEl);
+
+                if (currentRegion === id) {
+                    // Click lại cùng vùng → toggle mở/đóng
+                    bsCollapse.toggle();
+                    return;
+                }
+
+                // Click vùng mới → reset màu cũ, tô đỏ vùng mới
+                const svgEl = mapContainer.querySelector('svg');
+                Object.keys(regionData).forEach(otherId => {
+                    const otherEl = svgEl.querySelector('#' + otherId);
+                    if (otherEl) otherEl.setAttribute('fill', otherEl.dataset.origFill);
+                });
+                regionEl.setAttribute('fill', 'red');
+
+                // Load file HTML tương ứng với ID vùng
+                const iframe = document.getElementById('regionDetailFrame');
+                iframe.src = `/html/regions/${id}.html?region=${id}`;
+                bootstrap.Collapse.getOrCreateInstance(document.getElementById('regionDetail')).show();
+                currentRegion = id;
+            }
+        })();
+    </script>
+</body>
+</html>

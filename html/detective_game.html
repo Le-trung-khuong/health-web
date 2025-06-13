@@ -1,0 +1,2030 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhà Điều Tra Tệ Nạn - Trò Chơi Giáo Dục</title>
+    <link rel="stylesheet" href="../css/custom_detective.css">
+    <link rel="stylesheet" href="../css/detective_game.css">
+    <link rel="stylesheet" href="../css/detective_map_locations.css">
+    <link rel="stylesheet" href="../css/detective_tutorial.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <style>
+        /* CSS cho màn hình intro - Thiết kế mới cực kỳ sáng tạo */
+        .intro-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            color: white;
+            padding: 20px;
+            overflow: hidden;
+            perspective: 1500px;
+        }
+
+        /* Container chính cho nội dung intro - Thiết kế 3D */
+        .intro-container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            height: 100%;
+            max-height: 800px;
+            transform-style: preserve-3d;
+            z-index: 10;
+        }
+
+        /* Hiệu ứng nền kiểu mới với grid holographic */
+        .intro-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            transform-style: preserve-3d;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .intro-bg::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background-image: 
+                linear-gradient(#0a0a0a 1px, transparent 1px),
+                linear-gradient(90deg, #0a0a0a 1px, transparent 1px);
+            background-size: 40px 40px;
+            transform: perspective(500px) rotateX(60deg) translateZ(-200px);
+            animation: gridMove 25s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes gridMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 40px; }
+        }
+
+        /* Lớp gradient sáng tạo với hiệu ứng blend mode */
+        .cyber-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(28, 99, 242, 0.5) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(242, 28, 123, 0.5) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(10, 20, 40, 1) 0%, rgba(0, 0, 0, 1) 100%);
+            mix-blend-mode: normal;
+            z-index: 1;
+            animation: pulseGradient 8s ease infinite alternate;
+        }
+
+        @keyframes pulseGradient {
+            0% { opacity: 0.8; filter: hue-rotate(0deg); }
+            100% { opacity: 1; filter: hue-rotate(45deg); }
+        }
+
+        /* Lớp hiệu ứng quét ánh sáng */
+        .scan-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, 
+                transparent 0%, 
+                rgba(32, 128, 255, 0.2) 50%, 
+                transparent 100%);
+            background-size: 100% 20px;
+            animation: scanAnimation 8s linear infinite;
+            opacity: 0.5;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        @keyframes scanAnimation {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        /* Hiệu ứng Glitch */
+        .glitch-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(255, 255, 255, 0.03) 0px,
+                rgba(255, 255, 255, 0.03) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            z-index: 3;
+            pointer-events: none;
+            animation: glitchEffect 10s infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes glitchEffect {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.1; }
+            51%, 52% { opacity: 0.8; transform: translateX(2px); }
+            53% { opacity: 0.3; transform: translateX(0); }
+            75%, 76% { opacity: 0.8; transform: translateX(-2px); }
+            77% { opacity: 0.3; transform: translateX(0); }
+        }
+
+        /* Hiệu ứng particles sáng tạo */
+        .particles-3d {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 4;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #fff;
+            border-radius: 50%;
+            animation: float 15s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes float {
+            0% { transform: translateZ(0) translateX(0) translateY(0); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateZ(500px) translateX(var(--tx)) translateY(var(--ty)); opacity: 0; }
+        }
+
+        /* Banner thiết kế hiện đại kiểu cyber/tech */
+        .intro-banner {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            transform-style: preserve-3d;
+            z-index: 10;
+            margin-bottom: 40px;
+        }
+
+        /* Logo và title */
+        .intro-logo {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            transform-style: preserve-3d;
+            animation: floatLogo 6s ease-in-out infinite;
+        }
+
+        @keyframes floatLogo {
+            0%, 100% { transform: translateY(0) rotateX(0deg); }
+            50% { transform: translateY(-15px) rotateX(5deg); }
+        }
+
+        .logo-hexagon {
+            position: relative;
+            width: 150px;
+            height: 173px;
+            background: rgba(32, 128, 255, 0.2);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: translateZ(50px);
+            box-shadow: 
+                0 0 30px rgba(32, 128, 255, 0.5),
+                inset 0 0 20px rgba(32, 128, 255, 0.5);
+            animation: pulseLogo 3s infinite alternate;
+        }
+
+        @keyframes pulseLogo {
+            0% { box-shadow: 0 0 30px rgba(32, 128, 255, 0.5), inset 0 0 20px rgba(32, 128, 255, 0.5); }
+            100% { box-shadow: 0 0 50px rgba(32, 128, 255, 0.8), inset 0 0 30px rgba(32, 128, 255, 0.8); }
+        }
+
+        .logo-inner {
+            position: relative;
+            width: 120px;
+            height: 138px;
+            background: rgba(10, 20, 40, 0.9);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-inner .main-icon {
+            font-size: 60px;
+            color: #fff;
+            transform: translateZ(20px);
+            text-shadow: 
+                0 0 10px rgba(32, 128, 255, 1),
+                0 0 20px rgba(32, 128, 255, 0.8),
+                0 0 30px rgba(32, 128, 255, 0.6);
+        }
+
+        /* Thiết kế tiêu đề theo phong cách cyber */
+        .intro-title {
+            position: relative;
+            text-align: center;
+            margin-top: 20px;
+            transform-style: preserve-3d;
+        }
+
+        .intro-title h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            margin: 0;
+            transform: translateZ(40px);
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.8);
+            position: relative;
+        }
+
+        .intro-title h1::before {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, #1c63f2, #f21c7b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            opacity: 0.8;
+            animation: glitchText 5s infinite;
+        }
+
+        @keyframes glitchText {
+            0%, 100% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+            97%, 98% { clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%); }
+            98.5% { clip-path: polygon(0 5%, 100% 15%, 100% 85%, 0 95%); }
+            99% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+        }
+
+        .intro-title .text-glitch {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            animation: textGlitch 0.5s infinite alternate;
+        }
+
+        @keyframes textGlitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        .intro-tagline {
+            font-size: 1.5rem;
+            margin-top: 15px;
+            background: linear-gradient(90deg, #1c63f2, #f21c7b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            transform: translateZ(30px);
+            text-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+            letter-spacing: 1px;
+        }
+
+        /* Hiệu ứng tính năng 3D */
+        .intro-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 800px;
+            margin: 50px 0;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+            z-index: 5;
+        }
+
+        .feature {
+            position: relative;
+            height: 180px;
+            background: rgba(10, 20, 40, 0.6);
+            border: 1px solid rgba(32, 128, 255, 0.3);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            transform-style: preserve-3d;
+            transition: all 0.5s ease;
+            animation: featureAppear 1s forwards;
+            opacity: 0;
+            transform: translateY(50px) translateZ(0);
+            overflow: hidden;
+        }
+
+        .feature:nth-child(1) { animation-delay: 0.2s; }
+        .feature:nth-child(2) { animation-delay: 0.4s; }
+        .feature:nth-child(3) { animation-delay: 0.6s; }
+        .feature:nth-child(4) { animation-delay: 0.8s; }
+
+        @keyframes featureAppear {
+            to { opacity: 1; transform: translateY(0) translateZ(10px); }
+        }
+
+        .feature::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(32, 128, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            animation: lightSweep 8s infinite;
+        }
+
+        @keyframes lightSweep {
+            0% { transform: rotate(45deg) translateX(-100%); }
+            50%, 100% { transform: rotate(45deg) translateX(100%); }
+        }
+
+        .feature i {
+            font-size: 40px;
+            margin-bottom: 15px;
+            transform: translateZ(30px);
+            color: #fff;
+            text-shadow: 0 0 10px rgba(32, 128, 255, 1);
+            transition: all 0.5s ease;
+        }
+
+        .feature span {
+            font-size: 16px;
+            font-weight: 500;
+            transform: translateZ(20px);
+            transition: all 0.3s ease;
+            background: linear-gradient(90deg, #fff, #1c63f2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .feature:hover {
+            transform: translateZ(20px) scale(1.05);
+            border-color: rgba(32, 128, 255, 0.8);
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.3),
+                0 0 30px rgba(32, 128, 255, 0.5);
+        }
+
+        .feature:hover i {
+            transform: translateZ(40px) scale(1.2);
+            text-shadow: 0 0 20px rgba(32, 128, 255, 1), 0 0 40px rgba(32, 128, 255, 0.8);
+        }
+
+        /* Nút bắt đầu sáng tạo */
+        .start-button-container {
+            position: relative;
+            margin-top: 40px;
+            perspective: 1000px;
+            animation: fadeIn 1s ease-out 2s forwards;
+            opacity: 0;
+            z-index: 10;
+        }
+
+        .start-button {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 40px;
+            background: rgba(10, 20, 40, 0.8);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+            transform: translateZ(20px);
+            overflow: hidden;
+            letter-spacing: 1px;
+        }
+
+        .start-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, #1c63f2, #f21c7b);
+            opacity: 0.8;
+            z-index: -1;
+            transition: all 0.5s ease;
+        }
+
+        .start-button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                rgba(255, 255, 255, 0.3),
+                rgba(255, 255, 255, 0.05)
+            );
+            transform: rotate(45deg) translateX(-100%);
+            z-index: 1;
+        }
+
+        .start-button:hover {
+            transform: translateZ(30px) scale(1.05);
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.5),
+                0 0 30px rgba(32, 128, 255, 0.8);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .start-button:hover::after {
+            animation: buttonSweep 1s forwards;
+        }
+
+        @keyframes buttonSweep {
+            to { transform: rotate(45deg) translateX(100%); }
+        }
+
+        .start-button span {
+            position: relative;
+            z-index: 2;
+        }
+
+        .start-button i {
+            margin-left: 10px;
+            position: relative;
+            z-index: 2;
+            animation: arrowPulse 1.5s infinite;
+        }
+
+        @keyframes arrowPulse {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(5px); }
+        }
+
+        /* Nút bỏ qua intro */
+        .skip-intro-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            background: rgba(10, 20, 40, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            z-index: 100;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out 3s forwards;
+        }
+
+        .skip-intro-button:hover {
+            background: rgba(32, 128, 255, 0.2);
+            color: white;
+            border-color: rgba(32, 128, 255, a0.5);
+            box-shadow: 0 0 15px rgba(32, 128, 255, 0.5);
+        }
+
+        .skip-intro-button i {
+            margin-right: 8px;
+        }
+
+        /* Hiệu ứng chuyển trang */
+        .intro-exit {
+            animation: exitAnimation 1s ease forwards;
+        }
+
+        @keyframes exitAnimation {
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(1.2); visibility: hidden; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Các đường nét công nghệ trang trí */
+        .tech-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .tech-line {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, rgba(32, 128, 255, 0.5), transparent);
+            height: 1px;
+        }
+
+        .tech-line:nth-child(1) {
+            top: 15%;
+            left: 0;
+            width: 100%;
+            animation: techLine 15s infinite alternate;
+        }
+
+        .tech-line:nth-child(2) {
+            top: 45%;
+            right: 0;
+            width: 80%;
+            animation: techLine 12s infinite alternate-reverse;
+        }
+
+        .tech-line:nth-child(3) {
+            top: 75%;
+            left: 0;
+            width: 60%;
+            animation: techLine 10s infinite alternate;
+        }
+
+        @keyframes techLine {
+            0% { transform: scaleX(0.8); opacity: 0.2; }
+            50% { transform: scaleX(1); opacity: 0.5; }
+            100% { transform: scaleX(0.8); opacity: 0.2; }
+        }
+
+        /* Hiệu ứng sáng tạo khung viền */
+        .cyber-frame {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .corner {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-color: rgba(32, 128, 255, 0.8);
+        }
+
+        .corner-top-left {
+            top: 20px;
+            left: 20px;
+            border-top: 2px solid;
+            border-left: 2px solid;
+        }
+
+        .corner-top-right {
+            top: 20px;
+            right: 20px;
+            border-top: 2px solid;
+            border-right: 2px solid;
+        }
+
+        .corner-bottom-left {
+            bottom: 20px;
+            left: 20px;
+            border-bottom: 2px solid;
+            border-left: 2px solid;
+        }
+
+        .corner-bottom-right {
+            bottom: 20px;
+            right: 20px;
+            border-bottom: 2px solid;
+            border-right: 2px solid;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .intro-title h1 {
+                font-size: 3rem;
+            }
+            
+            .intro-tagline {
+                font-size: 1.2rem;
+            }
+            
+            .logo-hexagon {
+                width: 120px;
+                height: 138px;
+            }
+            
+            .logo-inner {
+                width: 100px;
+                height: 115px;
+            }
+            
+            .logo-inner .main-icon {
+                font-size: 45px;
+            }
+            
+            .intro-features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .feature {
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .intro-title h1 {
+                font-size: 2rem;
+            }
+            
+            .intro-tagline {
+                font-size: 1rem;
+            }
+            
+            .logo-hexagon {
+                width: 90px;
+                height: 104px;
+            }
+            
+            .logo-inner {
+                width: 70px;
+                height: 81px;
+            }
+            
+            .logo-inner .main-icon {
+                font-size: 35px;
+            }
+            
+            .intro-features {
+                grid-template-columns: 1fr;
+            }
+            
+            .feature {
+                height: 120px;
+            }
+            
+            .feature i {
+                font-size: 30px;
+            }
+        }
+
+        /* Viền bảo mật xung quanh màn hình */
+        .screen-border {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9000;
+            overflow: hidden;
+        }
+        
+        /* Góc viền trang trí kiểu công nghệ cao */
+        .border-corner {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-width: 3px;
+            border-style: solid;
+            border-color: rgba(28, 99, 242, 0.7);
+            z-index: 9001;
+            filter: drop-shadow(0 0 8px rgba(32, 128, 255, 0.7));
+        }
+        
+        /* Dùng clip-path để tạo hình tam giác ở góc */
+        .corner-decoration {
+            position: absolute;
+            width: 75px;
+            height: 75px;
+            background: rgba(10, 20, 40, 0.7);
+            z-index: 9002;
+        }
+        
+        /* Vị trí cho từng góc */
+        .top-left {
+            top: 10px;
+            left: 10px;
+            border-top: 3px solid rgba(28, 99, 242, 0.7);
+            border-left: 3px solid rgba(28, 99, 242, 0.7);
+            border-right: none;
+            border-bottom: none;
+        }
+        
+        .top-right {
+            top: 10px;
+            right: 10px;
+            border-top: 3px solid rgba(28, 99, 242, 0.7);
+            border-right: 3px solid rgba(28, 99, 242, 0.7);
+            border-left: none;
+            border-bottom: none;
+        }
+        
+        .bottom-left {
+            bottom: 10px;
+            left: 10px;
+            border-bottom: 3px solid rgba(28, 99, 242, 0.7);
+            border-left: 3px solid rgba(28, 99, 242, 0.7);
+            border-right: none;
+            border-top: none;
+        }
+        
+        .bottom-right {
+            bottom: 10px;
+            right: 10px;
+            border-bottom: 3px solid rgba(28, 99, 242, 0.7);
+            border-right: 3px solid rgba(28, 99, 242, 0.7);
+            border-left: none;
+            border-top: none;
+        }
+        
+        /* Viền phát sáng xung quanh màn hình */
+        .border-edge {
+            position: absolute;
+            background: rgba(32, 128, 255, 0.2);
+            z-index: 9000;
+        }
+        
+        .border-top {
+            top: 0;
+            left: 120px;
+            right: 120px;
+            height: 2px;
+            animation: pulseBorder 3s infinite alternate;
+        }
+        
+        .border-right {
+            top: 120px;
+            bottom: 120px;
+            right: 0;
+            width: 2px;
+            animation: pulseBorder 3s infinite alternate 0.5s;
+        }
+        
+        .border-bottom {
+            bottom: 0;
+            left: 120px;
+            right: 120px;
+            height: 2px;
+            animation: pulseBorder 3s infinite alternate 1s;
+        }
+        
+        .border-left {
+            top: 120px;
+            bottom: 120px;
+            left: 0;
+            width: 2px;
+            animation: pulseBorder 3s infinite alternate 1.5s;
+        }
+        
+        @keyframes pulseBorder {
+            0% { box-shadow: 0 0 10px rgba(32, 128, 255, 0.5); opacity: 0.3; }
+            100% { box-shadow: 0 0 20px rgba(32, 128, 255, 0.8); opacity: 0.8; }
+        }
+        
+        /* Trạng thái hệ thống */
+        .system-status {
+            position: absolute;
+            padding: 10px;
+            background: rgba(10, 20, 40, 0.7);
+            border: 1px solid rgba(32, 128, 255, 0.5);
+            color: #fff;
+            font-size: 12px;
+            border-radius: 5px;
+            z-index: 9002;
+            backdrop-filter: blur(5px);
+            font-family: 'Courier New', monospace;
+            width: 200px;
+        }
+        
+        .status-top-left {
+            top: 60px;
+            left: 30px;
+        }
+        
+        .status-top-right {
+            top: 60px;
+            right: 30px;
+            text-align: right;
+        }
+        
+        .status-bottom-left {
+            bottom: 30px;
+            left: 30px;
+        }
+        
+        .status-bottom-right {
+            bottom: 30px;
+            right: 30px;
+            text-align: right;
+        }
+        
+        .system-status h4 {
+            margin: 0 0 5px 0;
+            font-size: 14px;
+            color: rgba(32, 128, 255, 1);
+            text-shadow: 0 0 5px rgba(32, 128, 255, 0.5);
+        }
+        
+        .system-status .status-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        
+        .status-value {
+            color: rgba(242, 28, 123, 0.9);
+            text-shadow: 0 0 5px rgba(242, 28, 123, 0.5);
+        }
+        
+        /* Hiệu ứng quét kỹ thuật số */
+        .scan-line {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, 
+                transparent 0%,
+                rgba(32, 128, 255, 0.1) 30%,
+                rgba(32, 128, 255, 0.3) 50%,
+                rgba(32, 128, 255, 0.1) 70%,
+                transparent 100%);
+            z-index: 9003;
+            pointer-events: none;
+            animation: scanDown 8s linear infinite;
+        }
+        
+        @keyframes scanDown {
+            0% { top: 0; opacity: 0; }
+            5% { opacity: 1; }
+            95% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+        
+        /* Nút trên viền */
+        .edge-button {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(10, 20, 40, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(32, 128, 255, 0.7);
+            color: white;
+            font-size: 14px;
+            z-index: 9004;
+            cursor: pointer;
+            box-shadow: 0 0 8px rgba(32, 128, 255, 0.5);
+            pointer-events: all;
+            transition: all 0.3s ease;
+        }
+        
+        .help-button {
+            top: 20px;
+            right: 50px;
+        }
+        
+        .settings-button {
+            top: 65px;
+            right: 50px;
+        }
+        
+        .home-button {
+            bottom: 65px;
+            left: 50px;
+        }
+        
+        .lab-button {
+            bottom: 20px;
+            left: 50px;
+        }
+        
+        /* Hiệu ứng cổng lượng tử */
+        .quantum-gate {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: 
+                radial-gradient(circle at center, 
+                rgba(32, 128, 255, 0.7) 0%, 
+                rgba(10, 20, 40, 0.3) 70%, 
+                transparent 100%);
+            z-index: 9000;
+            border-radius: 50%;
+            filter: blur(3px);
+            opacity: 0.5;
+            pointer-events: none;
+            animation: quantumPulse 5s infinite;
+        }
+        
+        .gate-1 { top: 50%; left: 0; transform: translateY(-50%); }
+        .gate-2 { top: 0; left: 50%; transform: translateX(-50%); }
+        .gate-3 { top: 50%; right: 0; transform: translateY(-50%); }
+        .gate-4 { bottom: 0; left: 50%; transform: translateX(-50%); }
+        
+        @keyframes quantumPulse {
+            0% { transform: scale(0.8) translateX(0) translateY(0); opacity: 0.3; }
+            50% { transform: scale(1.2) translateX(var(--tx, 0)) translateY(var(--ty, 0)); opacity: 0.7; }
+            100% { transform: scale(0.8) translateX(0) translateY(0); opacity: 0.3; }
+        }
+        
+        /* Mã hóa di chuyển trên viền */
+        .code-line {
+            position: absolute;
+            width: 80px;
+            height: 16px;
+            font-family: 'Courier New', monospace;
+            font-size: 8px;
+            color: rgba(32, 128, 255, 0.7);
+            text-align: center;
+            overflow: hidden;
+            z-index: 9001;
+            animation: codeMove 15s linear infinite;
+        }
+        
+        .code-line-1 {
+            top: 200px;
+            left: 0;
+            transform-origin: left center;
+            transform: rotate(90deg);
+        }
+        
+        .code-line-2 {
+            top: 20px;
+            left: 300px;
+        }
+        
+        .code-line-3 {
+            top: 400px;
+            right: 0;
+            transform-origin: right center;
+            transform: rotate(-90deg);
+        }
+        
+        .code-line-4 {
+            bottom: 20px;
+            right: 300px;
+        }
+        
+        @keyframes codeMove {
+            0% { text-shadow: 0 0 5px rgba(32, 128, 255, 0.8); }
+            25% { text-shadow: 0 0 8px rgba(242, 28, 123, 0.8); }
+            50% { text-shadow: 0 0 5px rgba(32, 128, 255, 0.8); }
+            75% { text-shadow: 0 0 8px rgba(242, 28, 123, 0.8); }
+            100% { text-shadow: 0 0 5px rgba(32, 128, 255, 0.8); }
+        }
+        
+        /* Hiệu ứng đếm ngược */
+        .countdown-bar {
+            position: absolute;
+            width: 120px;
+            height: 3px;
+            background: rgba(10, 20, 40, 0.5);
+            border: 1px solid rgba(32, 128, 255, 0.3);
+            z-index: 9001;
+        }
+        
+        .countdown-progress {
+            height: 100%;
+            background: linear-gradient(90deg, rgba(28, 99, 242, 0.7), rgba(242, 28, 123, 0.7));
+            width: 75%;
+            animation: countDown 30s linear infinite;
+        }
+        
+        .countdown-top { top: 30px; left: 50%; transform: translateX(-50%); }
+        .countdown-right { top: 50%; right: 30px; transform: translateY(-50%) rotate(90deg); }
+        .countdown-bottom { bottom: 30px; left: 50%; transform: translateX(-50%); }
+        .countdown-left { top: 50%; left: 30px; transform: translateY(-50%) rotate(90deg); }
+        
+        @keyframes countDown {
+            0% { width: 100%; }
+            100% { width: 0%; }
+        }
+        
+        /* Đa giác phản chiếu */
+        .reflection-poly {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: rgba(10, 20, 40, 0.2);
+            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+            border: 1px solid rgba(32, 128, 255, 0.2);
+            z-index: 9001;
+            backdrop-filter: blur(5px);
+            animation: rotatePoly 20s linear infinite;
+        }
+        
+        .reflection-top-left { top: 120px; left: 45px; }
+        .reflection-top-right { top: 120px; right: 45px; }
+        .reflection-bottom-right { bottom: 120px; right: 45px; }
+        .reflection-bottom-left { bottom: 120px; left: 45px; }
+        
+        @keyframes rotatePoly {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Radar hiển thị */
+        .radar-display {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: rgba(10, 20, 40, 0.5);
+            border: 2px solid rgba(32, 128, 255, 0.5);
+            z-index: 9002;
+            overflow: hidden;
+        }
+        
+        .radar-top-right { top: 80px; right: 20px; }
+        
+        .radar-sweep {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 50%;
+            background: linear-gradient(to right,
+                rgba(32, 128, 255, 0.3) 0%,
+                rgba(32, 128, 255, 0.1) 100%);
+            transform-origin: bottom right;
+            animation: radarSweep 4s linear infinite;
+        }
+        
+        @keyframes radarSweep {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .radar-dot {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(242, 28, 123, 0.9);
+            border-radius: 50%;
+            z-index: 9003;
+            box-shadow: 0 0 5px rgba(242, 28, 123, 0.7);
+        }
+        
+        .dot-1 { top: 30%; left: 70%; }
+        .dot-2 { top: 60%; left: 40%; }
+        .dot-3 { top: 80%; left: 20%; }
+        
+        /* Chỉ hiển thị viền khi không ở intro screen */
+        .intro-screen-active .screen-border {
+            display: none;
+        }
+        
+        /* CSS cho các trang trí góc */
+        .top-left .corner-decoration {
+            top: 0;
+            left: 0;
+            clip-path: polygon(0 0, 100% 0, 0 100%);
+            border-top: 2px solid rgba(242, 28, 123, 0.7);
+            border-left: 2px solid rgba(242, 28, 123, 0.7);
+        }
+        
+        .top-right .corner-decoration {
+            top: 0;
+            right: 0;
+            clip-path: polygon(0 0, 100% 0, 100% 100%);
+            border-top: 2px solid rgba(242, 28, 123, 0.7);
+            border-right: 2px solid rgba(242, 28, 123, 0.7);
+        }
+        
+        .bottom-left .corner-decoration {
+            bottom: 0;
+            left: 0;
+            clip-path: polygon(0 0, 0 100%, 100% 100%);
+            border-bottom: 2px solid rgba(242, 28, 123, 0.7);
+            border-left: 2px solid rgba(242, 28, 123, 0.7);
+        }
+        
+        .bottom-right .corner-decoration {
+            bottom: 0;
+            right: 0;
+            clip-path: polygon(100% 0, 0 100%, 100% 100%);
+            border-bottom: 2px solid rgba(242, 28, 123, 0.7);
+            border-right: 2px solid rgba(242, 28, 123, 0.7);
+        }
+        
+        /* Hiệu ứng hover cho các nút */
+        .edge-button:hover {
+            background: rgba(32, 128, 255, 0.3);
+            transform: scale(1.1);
+            box-shadow: 0 0 12px rgba(32, 128, 255, 0.8);
+        }
+        
+        /* Hiệu ứng thông báo hệ thống */
+        @keyframes notificationAppear {
+            0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+            10% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            80% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+        }
+        
+        .border-notification {
+            position: fixed;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(10, 20, 40, 0.8);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(32, 128, 255, 0.6);
+            font-size: 14px;
+            z-index: 9100;
+            box-shadow: 0 0 15px rgba(32, 128, 255, 0.5);
+            opacity: 0;
+            animation: notificationAppear 3s forwards;
+            backdrop-filter: blur(5px);
+        }
+        
+        .border-message-slider {
+            position: absolute;
+            white-space: nowrap;
+            left: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.9);
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            animation: messageSlide 15s linear infinite;
+        }
+        
+        @keyframes messageSlide {
+            0% { left: 100%; }
+            100% { left: -100%; }
+        }
+        
+        .border-message-container::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 50px;
+            height: 100%;
+            background: linear-gradient(to right, rgba(10, 20, 40, 0.7), transparent);
+            z-index: 1;
+        }
+        
+        .border-message-container::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 50px;
+            height: 100%;
+            background: linear-gradient(to left, rgba(10, 20, 40, 0.7), transparent);
+            z-index: 1;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .border-corner {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .corner-decoration {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .edge-button {
+                width: 28px;
+                height: 28px;
+                font-size: 12px;
+            }
+            
+            .help-button, .settings-button {
+                right: 40px;
+            }
+            
+            .home-button, .lab-button {
+                left: 40px;
+            }
+            
+            .quantum-gate {
+                width: 30px;
+                height: 30px;
+            }
+            
+            .reflection-poly {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .radar-display {
+                width: 60px;
+                height: 60px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .border-corner {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .corner-decoration {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .reflection-poly {
+                display: none;
+            }
+            
+            .edge-button {
+                width: 24px;
+                height: 24px;
+                font-size: 10px;
+            }
+            
+            .radar-display {
+                width: 45px;
+                height: 45px;
+            }
+        }
+        
+        /* Hiệu ứng tin nhắn hệ thống */
+        .border-message-container {
+            position: fixed;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 500px;
+            max-width: 80%;
+            height: 30px;
+            background: rgba(10, 20, 40, 0.7);
+            border: 1px solid rgba(32, 128, 255, 0.5);
+            border-radius: 15px;
+            z-index: 9005;
+            overflow: hidden;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="detective-game-container">
+        <!-- Viền màn hình hiệu ứng -->
+        <div class="screen-border" id="screen-border">
+            <!-- Góc viền -->
+            <div class="border-corner top-left">
+                <div class="corner-decoration"></div>
+            </div>
+            <div class="border-corner top-right">
+                <div class="corner-decoration"></div>
+            </div>
+            <div class="border-corner bottom-left">
+                <div class="corner-decoration"></div>
+            </div>
+            <div class="border-corner bottom-right">
+                <div class="corner-decoration"></div>
+            </div>
+            
+            <!-- Viền các cạnh -->
+            <div class="border-edge border-top"></div>
+            <div class="border-edge border-right"></div>
+            <div class="border-edge border-bottom"></div>
+            <div class="border-edge border-left"></div>
+            
+            <!-- Hiệu ứng quét màn hình -->
+            <div class="scan-line"></div>
+            
+            <!-- Các nút chức năng trên viền -->
+            <div class="edge-button help-button" id="edge-help-btn" title="Trợ giúp">
+                <i class="fas fa-question"></i>
+            </div>
+            <div class="edge-button settings-button" id="edge-settings-btn" title="Cài đặt">
+                <i class="fas fa-cog"></i>
+            </div>
+            <div class="edge-button home-button" id="edge-home-btn" title="Trang chủ">
+                <i class="fas fa-home"></i>
+            </div>
+            <div class="edge-button lab-button" id="edge-lab-btn" title="Phòng thí nghiệm">
+                <i class="fas fa-flask"></i>
+            </div>
+            
+            <!-- Thông tin hệ thống góc trên trái -->
+            <!-- Các khối thông tin đã bị xóa theo yêu cầu người dùng -->
+            
+            <!-- Cổng lượng tử -->
+            <div class="quantum-gate gate-1" style="--tx: 10px; --ty: 0px;"></div>
+            <div class="quantum-gate gate-2" style="--tx: 0px; --ty: 10px;"></div>
+            <div class="quantum-gate gate-3" style="--tx: -10px; --ty: 0px;"></div>
+            <div class="quantum-gate gate-4" style="--tx: 0px; --ty: -10px;"></div>
+            
+            <!-- Dòng mã -->
+            <div class="code-line code-line-1">1010011101001</div>
+            <div class="code-line code-line-2">01001110101</div>
+            <div class="code-line code-line-3">11010010101</div>
+            <div class="code-line code-line-4">0101110101001</div>
+            
+            <!-- Thanh đếm thời gian -->
+            <div class="countdown-bar countdown-top">
+                <div class="countdown-progress"></div>
+            </div>
+            <div class="countdown-bar countdown-right">
+                <div class="countdown-progress"></div>
+            </div>
+            <div class="countdown-bar countdown-bottom">
+                <div class="countdown-progress"></div>
+            </div>
+            <div class="countdown-bar countdown-left">
+                <div class="countdown-progress"></div>
+            </div>
+            
+            <!-- Đa giác phản chiếu -->
+            <div class="reflection-poly reflection-top-left"></div>
+            <div class="reflection-poly reflection-top-right"></div>
+            <div class="reflection-poly reflection-bottom-right"></div>
+            <div class="reflection-poly reflection-bottom-left"></div>
+            
+            <!-- Radar hiển thị -->
+            <div class="radar-display radar-top-right">
+                <div class="radar-sweep"></div>
+                <div class="radar-dot dot-1"></div>
+                <div class="radar-dot dot-2"></div>
+                <div class="radar-dot dot-3"></div>
+            </div>
+            
+            <!-- Bảng tin nhắn chạy ở dưới màn hình -->
+            <div class="border-message-container">
+                <div class="border-message-slider">
+                    HỆ THỐNG ĐANG HOẠT ĐỘNG BÌNH THƯỜNG *** CẬP NHẬT CẢNH BÁO MỚI: 5 VỤ ÁN ĐANG CHỜ ĐIỀU TRA *** TIẾN ĐỘ: 72% *** AN NINH MẠNG: AN TOÀN *** CẢNH BÁO MỚI: TỆ NẠN MA TÚY ĐANG TĂNG MẠNH TẠI KHU VỰC PHÍA NAM *** HỆ THỐNG PHÂN TÍCH: ĐANG XỬ LÝ DỮ LIỆU *** SỐ VỤ ÁN ĐÃ GIẢI QUYẾT THÀNH CÔNG: 28 ***
+                </div>
+            </div>
+        </div>
+        
+        <!-- Màn hình intro mới -->
+        <div class="intro-screen" id="intro-screen">
+            <!-- Các hiệu ứng nền -->
+            <div class="intro-bg"></div>
+            <div class="cyber-gradient"></div>
+            <div class="scan-effect"></div>
+            <div class="glitch-overlay"></div>
+            <div class="particles-3d" id="particles-container"></div>
+            
+            <!-- Đường viền tech -->
+            <div class="tech-lines">
+                <div class="tech-line"></div>
+                <div class="tech-line"></div>
+                <div class="tech-line"></div>
+            </div>
+            
+            <!-- Khung viền cyber -->
+            <div class="cyber-frame">
+                <div class="corner corner-top-left"></div>
+                <div class="corner corner-top-right"></div>
+                <div class="corner corner-bottom-left"></div>
+                <div class="corner corner-bottom-right"></div>
+            </div>
+            
+            <div class="intro-container">
+                <div class="intro-banner">
+                    <div class="intro-logo">
+                        <div class="logo-hexagon">
+                            <div class="logo-inner">
+                                <i class="fas fa-user-secret main-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="intro-title">
+                        <div class="text-glitch"></div>
+                        <h1 data-text="Nhà Điều Tra Tệ Nạn">Nhà Điều Tra Tệ Nạn</h1>
+                        <p class="intro-tagline">Khám phá, điều tra và ngăn chặn tệ nạn xã hội</p>
+                    </div>
+                </div>
+                
+                <div class="intro-features">
+                    <div class="feature">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <span>Khám phá bản đồ</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-search"></i>
+                        <span>Thu thập bằng chứng</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-brain"></i>
+                        <span>Phân tích thông tin</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-gavel"></i>
+                        <span>Đưa ra phán quyết</span>
+                    </div>
+                </div>
+                
+                <div class="start-button-container">
+                    <button id="start-game-btn" class="start-button">
+                        <span>Bắt đầu cuộc điều tra</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Nút bỏ qua intro -->
+            <button id="skip-intro-btn" class="skip-intro-button">
+                <i class="fas fa-forward"></i>
+                <span>Bỏ qua</span>
+            </button>
+        </div>
+
+        <header class="game-header">
+            <div class="logo-container">
+                <i class="fas fa-user-secret"></i>
+                <h1>Nhà Điều Tra Tệ Nạn</h1>
+            </div>
+            <div class="user-info" id="user-info">
+                <span class="username" id="username">Khách</span>
+                <div class="stats">
+                    <span><i class="fas fa-star"></i> Điểm: <span id="user-score">0</span></span>
+                    <span><i class="fas fa-trophy"></i> Danh hiệu: <span id="user-rank">Tân binh</span></span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Trang chính của trò chơi (đã ẩn, chỉ giữ lại cấu trúc) -->
+        <div class="main-screen" id="main-screen" style="display: none;">
+            <!-- Không hiển thị bất kỳ nội dung gì trên màn hình chính vì sẽ chuyển thẳng sang bản đồ -->
+        </div>
+
+        <!-- Màn hình bản đồ (lựa chọn vụ án) -->
+        <div class="case-selection-screen" id="case-selection-screen" style="display: none;">
+            <div class="screen-header">
+                <h2 id="case-selection-title">Bản đồ</h2>
+            </div>
+            <div class="cases-grid" id="cases-grid">
+                <!-- Danh sách vụ án được thêm vào động từ JavaScript -->
+            </div>
+        </div>
+
+        <!-- Màn hình chơi game (hiển thị khi bắt đầu một vụ án) -->
+        <div class="gameplay-screen" id="gameplay-screen" style="display: none;">
+            <div class="case-info">
+                <h2 id="case-title">Tên vụ án</h2>
+                <div class="case-details">
+                    <span id="case-difficulty">Độ khó: <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                    <span id="case-type">Loại: Mô phỏng</span>
+                    <div id="case-timer" class="case-timer" style="display: none;">
+                        <i class="fas fa-clock"></i> <span id="timer-display">10:00</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gameplay-area">
+                <div class="case-narrative" id="case-narrative">
+                    <!-- Nội dung vụ án được thêm vào động từ JavaScript -->
+                </div>
+                
+                <div class="evidence-panel" id="evidence-panel">
+                    <h3>Bằng chứng đã thu thập</h3>
+                    <div class="evidence-list" id="evidence-list">
+                        <!-- Bằng chứng được thêm vào động từ JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-panel" id="action-panel">
+                <div class="gameplay-controls">
+                    <button id="show-tutorial" class="control-btn"><i class="fas fa-question-circle"></i> Hướng dẫn</button>
+                    <button id="go-back-step" class="control-btn"><i class="fas fa-arrow-left"></i> Quay lại</button>
+                </div>
+                <div class="action-buttons" id="action-buttons">
+                    <!-- Nút hành động được thêm vào động từ JavaScript -->
+                </div>
+                <div class="game-dialog" id="game-dialog" style="display: block; margin-top: 15px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden;">
+                    <div class="dialog-content" id="dialog-content">
+                        <!-- Nội dung đối thoại được thêm vào động từ JavaScript -->
+                    </div>
+                    <div class="dialog-options" id="dialog-options">
+                        <!-- Tùy chọn đối thoại được thêm vào động từ JavaScript -->
+                    </div>
+                </div>
+                
+                <!-- Debug thông tin hộp thoại -->
+                <div id="dialog-debug" style="margin-top: 20px; background: #f0f0f0; padding: 10px; border-radius: 5px; font-family: monospace; font-size: 12px; display: none;">
+                    <h4 style="margin-top: 0; color: #333;">Debug thông tin hộp thoại:</h4>
+                    <pre id="dialog-debug-info" style="margin: 0; white-space: pre-wrap; max-height: 200px; overflow-y: auto;"></pre>
+                </div>
+                
+                <div class="map-container" id="map-container" style="display: none;">
+                    <!-- Bản đồ được thêm vào động từ JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Hướng dẫn overlay -->
+        <div class="tutorial-overlay" id="tutorial-overlay" style="display: none;">
+            <div class="tutorial-container">
+                <div class="tutorial-header">
+                    <h3>Hướng dẫn</h3>
+                    <button id="close-tutorial" class="close-btn"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="tutorial-content" id="tutorial-content">
+                    <!-- Nội dung hướng dẫn sẽ được thêm vào bằng JavaScript -->
+                </div>
+                <div class="tutorial-controls">
+                    <button id="prev-tutorial" class="tutorial-btn"><i class="fas fa-arrow-left"></i> Trước</button>
+                    <span id="tutorial-progress">1/5</span>
+                    <button id="next-tutorial" class="tutorial-btn">Tiếp <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Màn hình kết thúc vụ án -->
+        <div class="case-result-screen" id="case-result-screen" style="display: none;">
+            <div class="result-container">
+                <div class="result-header" id="result-header">
+                    <h2>Kết thúc vụ án</h2>
+                </div>
+                <div class="result-content" id="result-content">
+                    <!-- Nội dung kết quả được thêm vào động từ JavaScript -->
+                </div>
+                <div class="result-stats" id="result-stats">
+                    <!-- Thống kê kết quả được thêm vào động từ JavaScript -->
+                </div>
+                <div class="result-buttons">
+                    <button id="replay-case" class="btn-replay"><i class="fas fa-redo"></i> Chơi lại</button>
+                    <button id="next-case" class="btn-next"><i class="fas fa-arrow-right"></i> Vụ án tiếp theo</button>
+                    <button id="back-to-cases" class="btn-back"><i class="fas fa-map-marked-alt"></i> Quay lại bản đồ</button>
+                </div>
+                <div class="educational-tips" id="educational-tips">
+                    <h3>Kiến thức bổ ích</h3>
+                    <!-- Nội dung giáo dục được thêm vào động từ JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Lớp phủ loading -->
+        <div class="loading-overlay" id="loading-overlay" style="display: none;">
+            <div class="loading-spinner"></div>
+            <p id="loading-text">Đang tải...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <!-- Error handler -->
+    <script src="../javaScript/detective_error_handler.js"></script>
+    
+    <!-- Các thư viện cốt lõi -->
+    <script src="../javaScript/detective_cases.js"></script>
+    <script src="../javaScript/detective_ui.js"></script>
+    <script src="../javaScript/detective_tutorial.js"></script>
+    <script src="../javaScript/detective_game.js"></script>
+    
+    <!-- Script khởi tạo -->
+    <script src="../javaScript/detective_init.js"></script>
+    
+    <!-- Debug tools -->
+    <script src="../javaScript/detective_debug.js"></script>
+    
+    <!-- Map effects -->
+    <script src="../javaScript/detective_map_effects.js"></script>
+
+    <!-- Script xử lý màn hình intro -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Các phần tử DOM
+            const introScreen = document.getElementById('intro-screen');
+            const startGameBtn = document.getElementById('start-game-btn');
+            const skipIntroBtn = document.getElementById('skip-intro-btn');
+            const introContainer = document.querySelector('.intro-container');
+            const gameHeader = document.querySelector('.game-header');
+            const caseSelectionScreen = document.getElementById('case-selection-screen');
+            const mainScreen = document.getElementById('main-screen');
+            const features = document.querySelectorAll('.feature');
+            const screenBorder = document.getElementById('screen-border');
+            
+            // Thêm class để ẩn viền khi đang ở intro screen
+            document.body.classList.add('intro-screen-active');
+            
+            // Tạo particles 3D
+            createParticles();
+            
+            // Xử lý hiệu ứng parallax 3D
+            introScreen.addEventListener('mousemove', function(e) {
+                // Giới hạn khoảng di chuyển để không làm phiền người dùng
+                const maxMovement = 20;
+                const xCenter = window.innerWidth / 2;
+                const yCenter = window.innerHeight / 2;
+                
+                // Tính toán góc di chuyển dựa trên vị trí chuột
+                const xAxis = Math.max(-maxMovement, Math.min(maxMovement, (xCenter - e.clientX) / 50));
+                const yAxis = Math.max(-maxMovement, Math.min(maxMovement, (yCenter - e.clientY) / 50));
+                
+                // Áp dụng hiệu ứng tilt cho container
+                introContainer.style.transform = `rotateY(${xAxis}deg) rotateX(${-yAxis}deg)`;
+                
+                // Hiệu ứng parallax khác nhau cho các thành phần
+                document.querySelector('.intro-logo').style.transform = 
+                    `translateZ(50px) translateX(${-xAxis * 1.5}px) translateY(${-yAxis * 1.5}px)`;
+                
+                document.querySelector('.intro-title').style.transform = 
+                    `translateZ(30px) translateX(${-xAxis}px) translateY(${-yAxis}px)`;
+                
+                features.forEach((feature, index) => {
+                    // Chuyển động khác nhau cho mỗi tính năng
+                    const depth = 10 + index * 5;
+                    feature.style.transform = 
+                        `translateZ(${depth}px) translateX(${-xAxis * 0.5}px) translateY(${-yAxis * 0.5}px)`;
+                });
+                
+                // Hiệu ứng chuyển động cho nút bắt đầu
+                document.querySelector('.start-button').style.transform = 
+                    `translateZ(20px) translateX(${-xAxis * 0.8}px) translateY(${-yAxis * 0.8}px)`;
+            });
+            
+            // Hiệu ứng khi chuột rời khỏi khu vực
+            introScreen.addEventListener('mouseleave', function() {
+                // Trở về vị trí trung tâm mượt mà
+                introContainer.style.transform = 'rotateY(0deg) rotateX(0deg)';
+                
+                document.querySelector('.intro-logo').style.transform = 'translateZ(50px)';
+                document.querySelector('.intro-title').style.transform = 'translateZ(30px)';
+                
+                features.forEach((feature, index) => {
+                    const depth = 10 + index * 5;
+                    feature.style.transform = `translateZ(${depth}px)`;
+                });
+                
+                document.querySelector('.start-button').style.transform = 'translateZ(20px)';
+            });
+            
+            // Xử lý sự kiện khi bấm nút bắt đầu
+            startGameBtn.addEventListener('click', function() {
+                // Thêm hiệu ứng exit
+                introScreen.classList.add('intro-exit');
+                
+                // Sau khi hiệu ứng hoàn thành, ẩn intro và hiển thị bản đồ
+                setTimeout(function() {
+                    introScreen.style.display = 'none';
+                    
+                    // Hiển thị màn hình bản đồ (case selection)
+                    caseSelectionScreen.style.display = 'block';
+                    gameHeader.style.display = 'flex';
+                    
+                    // Hiển thị viền màn hình
+                    document.body.classList.remove('intro-screen-active');
+                    
+                    // Gọi hàm khởi tạo bản đồ nếu cần
+                    if (typeof initCaseMap === 'function') {
+                        initCaseMap();
+                    }
+                }, 1000);
+            });
+            
+            // Xử lý sự kiện khi bấm nút bỏ qua intro
+            skipIntroBtn.addEventListener('click', function() {
+                // Bỏ qua hiệu ứng và chuyển ngay đến màn hình bản đồ
+                introScreen.style.display = 'none';
+                
+                // Hiển thị màn hình bản đồ ngay lập tức
+                caseSelectionScreen.style.display = 'block';
+                gameHeader.style.display = 'flex';
+                
+                // Hiển thị viền màn hình
+                document.body.classList.remove('intro-screen-active');
+                
+                // Gọi hàm khởi tạo bản đồ nếu cần
+                if (typeof initCaseMap === 'function') {
+                    initCaseMap();
+                }
+            });
+            
+            // Tạo hiệu ứng hover cho nút bắt đầu
+            const startButton = document.getElementById('start-game-btn');
+            startButton.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateZ(30px) scale(1.05)';
+            });
+            
+            startButton.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateZ(20px) scale(1)';
+            });
+            
+            // Tạo hiệu ứng hover cho các feature
+            features.forEach(feature => {
+                feature.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateZ(30px) scale(1.05)';
+                });
+                
+                feature.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateZ(10px) scale(1)';
+                });
+            });
+            
+            // Hiệu ứng text glitch định kỳ
+            setInterval(() => {
+                const glitchElement = document.querySelector('.text-glitch');
+                glitchElement.style.opacity = '0.7';
+                
+                setTimeout(() => {
+                    glitchElement.style.opacity = '0.1';
+                }, 200);
+            }, 5000);
+            
+            // Ẩn các màn hình khác khi trang được tải
+            gameHeader.style.display = 'none';
+            mainScreen.style.display = 'none';
+            caseSelectionScreen.style.display = 'none';
+            
+            // Xử lý các nút viền
+            setupBorderButtons();
+            
+            // Tạo particles ngẫu nhiên
+            function createParticles() {
+                const container = document.getElementById('particles-container');
+                if (!container) return;
+                
+                // Số lượng particle tùy theo kích thước màn hình
+                const particleCount = window.innerWidth < 768 ? 30 : 60;
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    
+                    // Vị trí bắt đầu ngẫu nhiên
+                    const x = Math.random() * 100;
+                    const y = Math.random() * 100;
+                    const z = Math.random() * 200 - 400; // Bắt đầu từ xa
+                    
+                    // Hướng di chuyển ngẫu nhiên
+                    const tx = (Math.random() - 0.5) * 200;
+                    const ty = (Math.random() - 0.5) * 200;
+                    
+                    // Tốc độ và độ trễ ngẫu nhiên
+                    const duration = 5 + Math.random() * 10;
+                    const delay = Math.random() * 5;
+                    
+                    // Kích thước ngẫu nhiên
+                    const size = Math.random() * 3 + 1;
+                    
+                    // Màu sắc ngẫu nhiên
+                    const colors = ['rgba(32, 128, 255, 0.8)', 'rgba(242, 28, 123, 0.8)', 'rgba(255, 255, 255, 0.8)'];
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    
+                    // CSS styles
+                    particle.style.cssText = `
+                        left: ${x}%;
+                        top: ${y}%;
+                        width: ${size}px;
+                        height: ${size}px;
+                        background: ${color};
+                        box-shadow: 0 0 ${size * 2}px ${color};
+                        transform: translateZ(${z}px);
+                        animation-duration: ${duration}s;
+                        animation-delay: ${delay}s;
+                        --tx: ${tx}px;
+                        --ty: ${ty}px;
+                    `;
+                    
+                    container.appendChild(particle);
+                }
+            }
+            
+            // Thiết lập các nút trên viền màn hình
+            function setupBorderButtons() {
+                // Nút trợ giúp
+                document.getElementById('edge-help-btn').addEventListener('click', function() {
+                    // Hiển thị tutorial overlay
+                    const tutorialOverlay = document.getElementById('tutorial-overlay');
+                    if (tutorialOverlay) {
+                        tutorialOverlay.style.display = 'flex';
+                    }
+                });
+                
+                // Nút cài đặt - hiệu ứng khi bấm
+                document.getElementById('edge-settings-btn').addEventListener('click', function() {
+                    // Hiển thị notification
+                    showBorderNotification('Cài đặt sẽ sớm được cập nhật!');
+                });
+                
+                // Nút trang chủ - quay về bản đồ
+                document.getElementById('edge-home-btn').addEventListener('click', function() {
+                    // Chuyển đến màn hình bản đồ
+                    const gameplayScreen = document.getElementById('gameplay-screen');
+                    const caseSelectionScreen = document.getElementById('case-selection-screen');
+                    
+                    if (gameplayScreen.style.display !== 'none') {
+                        gameplayScreen.style.display = 'none';
+                        caseSelectionScreen.style.display = 'block';
+                        showBorderNotification('Đã quay về bản đồ chính!');
+                    }
+                });
+                
+                // Nút phòng thí nghiệm
+                document.getElementById('edge-lab-btn').addEventListener('click', function() {
+                    // Hiển thị notification
+                    showBorderNotification('Phòng thí nghiệm phân tích sẽ sớm được mở!');
+                });
+            }
+            
+            // Hiển thị thông báo trên viền
+            window.showBorderNotification = function(message) {
+                // Tạo phần tử thông báo
+                const notification = document.createElement('div');
+                notification.className = 'border-notification';
+                notification.innerHTML = message;
+                
+                // Thêm vào body
+                document.body.appendChild(notification);
+                
+                // Xóa thông báo sau 3 giây
+                setTimeout(() => {
+                    notification.remove();
+                }, 3000);
+            };
+            
+            // Cập nhật tin nhắn chạy
+            function updateBorderMessages() {
+                const messages = [
+                    "HỆ THỐNG ĐANG HOẠT ĐỘNG BÌNH THƯỜNG",
+                    "CẬP NHẬT CẢNH BÁO MỚI: 5 VỤ ÁN ĐANG CHỜ ĐIỀU TRA",
+                    "TIẾN ĐỘ: 72%",
+                    "AN NINH MẠNG: AN TOÀN",
+                    "CẢNH BÁO MỚI: TỆ NẠN MA TÚY ĐANG TĂNG MẠNH TẠI KHU VỰC PHÍA NAM",
+                    "HỆ THỐNG PHÂN TÍCH: ĐANG XỬ LÝ DỮ LIỆU",
+                    "SỐ VỤ ÁN ĐÃ GIẢI QUYẾT THÀNH CÔNG: 28",
+                    `THỜI GIAN HIỆN TẠI: ${new Date().toLocaleTimeString()}`,
+                    "THIẾT BỊ THEO DÕI: HOẠT ĐỘNG TỐT",
+                    "CẬP NHẬT HỆ THỐNG: PHIÊN BẢN 2.0"
+                ];
+                
+                // Cập nhật tin nhắn chạy mỗi 15 giây
+                setInterval(() => {
+                    const randomMessages = [];
+                    // Chọn ngẫu nhiên 5 tin nhắn
+                    while (randomMessages.length < 5) {
+                        const randMsg = messages[Math.floor(Math.random() * messages.length)];
+                        if (!randomMessages.includes(randMsg)) {
+                            randomMessages.push(randMsg);
+                        }
+                    }
+                    
+                    // Cập nhật thời gian hiện tại
+                    randomMessages.push(`THỜI GIAN HIỆN TẠI: ${new Date().toLocaleTimeString()}`);
+                    
+                    // Kết hợp tin nhắn
+                    const messageText = randomMessages.join(" *** ") + " ***";
+                    
+                    // Cập nhật nội dung
+                    const messageSlider = document.querySelector('.border-message-slider');
+                    if (messageSlider) {
+                        messageSlider.textContent = messageText;
+                        
+                        // Reset animation
+                        messageSlider.style.animation = 'none';
+                        messageSlider.offsetHeight; // Trigger reflow
+                        messageSlider.style.animation = '';
+                        
+                        // Điều chỉnh tốc độ dựa trên độ dài tin nhắn
+                        const duration = Math.max(15, messageText.length / 10);
+                        messageSlider.style.animationDuration = `${duration}s`;
+                    }
+                }, 15000);
+            }
+            
+            // Khởi tạo tin nhắn chạy
+            updateBorderMessages();
+            
+            // Cập nhật giao diện responsive của viền
+            function updateBorderResponsive() {
+                const screenWidth = window.innerWidth;
+                const borderCorners = document.querySelectorAll('.border-corner');
+                const systemStatus = document.querySelectorAll('.system-status');
+                const reflectionPolys = document.querySelectorAll('.reflection-poly');
+                const radarDisplay = document.querySelector('.radar-display');
+                
+                // Điều chỉnh kích thước viền góc dựa trên kích thước màn hình
+                if (screenWidth < 480) {
+                    borderCorners.forEach(corner => {
+                        corner.style.width = '70px';
+                        corner.style.height = '70px';
+                    });
+                    
+                    // Ẩn các thành phần không cần thiết trên màn hình nhỏ
+                    systemStatus.forEach(status => {
+                        status.style.display = 'none';
+                    });
+                    
+                    reflectionPolys.forEach(poly => {
+                        poly.style.display = 'none';
+                    });
+                    
+                    if (radarDisplay) {
+                        radarDisplay.style.width = '50px';
+                        radarDisplay.style.height = '50px';
+                    }
+                } else if (screenWidth < 768) {
+                    borderCorners.forEach(corner => {
+                        corner.style.width = '100px';
+                        corner.style.height = '100px';
+                    });
+                    
+                    // Hiển thị một số thành phần trên màn hình vừa
+                    systemStatus.forEach(status => {
+                        status.style.display = 'block';
+                        status.style.width = '150px';
+                        status.style.fontSize = '10px';
+                    });
+                    
+                    reflectionPolys.forEach(poly => {
+                        poly.style.display = 'block';
+                        poly.style.width = '80px';
+                        poly.style.height = '80px';
+                    });
+                    
+                    if (radarDisplay) {
+                        radarDisplay.style.width = '70px';
+                        radarDisplay.style.height = '70px';
+                    }
+                } else {
+                    borderCorners.forEach(corner => {
+                        corner.style.width = '150px';
+                        corner.style.height = '150px';
+                    });
+                    
+                    // Hiển thị đầy đủ trên màn hình lớn
+                    systemStatus.forEach(status => {
+                        status.style.display = 'block';
+                        status.style.width = '200px';
+                        status.style.fontSize = '12px';
+                    });
+                    
+                    reflectionPolys.forEach(poly => {
+                        poly.style.display = 'block';
+                        poly.style.width = '120px';
+                        poly.style.height = '120px';
+                    });
+                    
+                    if (radarDisplay) {
+                        radarDisplay.style.width = '100px';
+                        radarDisplay.style.height = '100px';
+                    }
+                }
+            }
+            
+            // Thêm hiệu ứng resize
+            window.addEventListener('resize', function() {
+                // Điều chỉnh các hiệu ứng theo kích thước màn hình
+                const particlesContainer = document.getElementById('particles-container');
+                if (particlesContainer) {
+                    particlesContainer.innerHTML = '';
+                    createParticles();
+                }
+                
+                // Cập nhật giao diện responsive của viền
+                updateBorderResponsive();
+            });
+            
+            // Khởi tạo giao diện responsive
+            updateBorderResponsive();
+        });
+    </script>
+</body>
+</html> 

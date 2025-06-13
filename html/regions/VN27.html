@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quảng Nam</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/style-quy.css">
+</head>
+<body>
+     <div class="custom-page-label text-center bg-primary text-black py-2 rounded-top mb-0">
+    <b>Quảng Nam</b>
+  </div>
+   <div class="page-content-wrapper mb-5">
+    <div class="container">
+        <!-- Phần Controls: Lọc, Tìm kiếm, Sắp xếp -->
+        <div class="project-controls">
+            <div class="control-group">
+                <label for="categoryFilter">Danh mục:</label>
+                <select id="categoryFilter">
+                    <option value="all">Tất cả</option>
+                    <option value="TreEm">Trẻ em</option>
+                    <option value="YTe">Y tế</option>
+                    <option value="KhanCap">Khẩn cấp</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="statusFilter">Trạng thái:</label>
+                <select id="statusFilter">
+                    <option value="all">Tất cả trạng thái</option>
+                    <option value="ongoing">Đang gây quỹ</option>
+                    <option value="completed">Đã hoàn thành</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="searchInput">Tìm kiếm:</label>
+                <input type="text" id="searchInput" placeholder="Tên dự án, tổ chức...">
+            </div>
+            <div class="control-group">
+                <label for="sortSelect">Sắp xếp theo:</label>
+                <select id="sortSelect">
+                    <option value="default">Mặc định</option>
+                    <option value="amount">Số tiền huy động (Cao > Thấp)</option>
+                    <option value="percent">Phần trăm hoàn thành (Cao > Thấp)</option>
+                    <option value="date">Thời gian bắt đầu (Mới nhất)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Phần Danh sách dự án (thống nhất) -->
+        <section class="projects-section">
+            <h2 class="section-title">Các Dự Án</h2>
+            <p class="section-subtitle">Chung tay đóng góp, lan tỏa yêu thương đến cộng đồng. Khám phá các dự án và lựa chọn hỗ trợ.</p>
+
+            <div class="projects-grid" id="projects-grid-container">
+                <!-- Card dự án mẫu 1 (Đang gây quỹ) -->
+                <div class="project-card card" data-category="TreEm" data-status="ongoing" data-amount="7974000" data-percent="28.0" data-startdate="2024-07-01">
+                    <div class="project-card__image-container">
+                        <img src="https://i.vrace.com.vn/2025/03/24/Thumbnail5x31400x840px2-1742808133.png?w=860&h=0&q=100&dpr=1&rt=auto&g=no&s=hfXXGywkZPxNUdExOffbvw" alt="Tiếp sức đến trường 2025">
+                        <span class="project-card__tag">Trẻ em</span>
+                    </div>
+                    <div class="project-card__content">
+                        <p class="project-card__organization"><i class="fas fa-shield-alt"></i> Quỹ Vì trẻ em khuyết tật Việt Nam</p>
+                        <h3 class="project-card__title"><a href="project-detail.html">Tiếp sức đến trường 2025</a></h3>
+                        <div class="project-card__stats">
+                            <div class="stat-item">
+                                <span class="funded-amount">7.974.000đ</span>
+                                <span class="stat-label">Đã huy động</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="progress-percentage">28.0%</span>
+                                 <span class="stat-label">Hoàn thành</span>
+                            </div>
+                        </div>
+                        <div class="progress-bar-container mb-2">
+                            <div class="progress-bar" style="width: 28%;"></div>
+                        </div>
+                        <p class="goal-info">Mục tiêu: <span class="goal-amount">200.000.000đ</span></p>
+                        <div class="project-card__countdown" data-end="2025-03-15T23:59:59">Đang tải...</div>
+                        <a href="#" class="btn btn-primary project-card__cta donate-btn">Ủng Hộ Ngay</a>
+                    </div>
+                </div>
+
+                <!-- Card dự án mẫu 2 (Đang gây quỹ) -->
+                <div class="project-card card" data-category="YTe" data-status="ongoing" data-amount="27657100" data-percent="92.2" data-startdate="2024-06-15">
+                    <div class="project-card__image-container">
+                         <img src="https://web.dci.edu.vn/wp-content/uploads/2021/10/GIUP-DO-NGUOI-KHAC.jpg" alt="Xin hãy giúp đỡ">
+                        <span class="project-card__tag">Y tế</span>
+                    </div>
+                    <div class="project-card__content">
+                        <p class="project-card__organization"><i class="fas fa-hand-holding-heart"></i> Quỹ Từ thiện Nắng bước tuổi thơ</p>
+                        <h3 class="project-card__title"><a href="project-detail.html">Xin hãy giúp cô bé Ba Na, Siu Nữ giữ lại ánh sáng</a></h3>
+                        <div class="project-card__stats">
+                            <div class="stat-item">
+                                <span class="funded-amount">27.657.100đ</span>
+                                <span class="stat-label">Đã huy động</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="progress-percentage">92.2%</span>
+                                <span class="stat-label">Hoàn thành</span>
+                            </div>
+                        </div>
+                         <div class="progress-bar-container mb-2">
+                            <div class="progress-bar" style="width: 92.2%;"></div>
+                        </div>
+                        <p class="goal-info">Mục tiêu: <span class="goal-amount">30.000.000đ</span></p>
+                        <div class="project-card__countdown" data-end="2024-12-31T23:59:59">Đang tải...</div>
+                         <a href="#" class="btn btn-primary project-card__cta donate-btn">Ủng Hộ Ngay</a>
+                    </div>
+                </div>
+                
+                <!-- Card dự án mẫu 3 (Đang gây quỹ - Khẩn cấp) -->
+                <div class="project-card card" data-category="KhanCap" data-status="ongoing" data-amount="12288500" data-percent="61.4" data-startdate="2024-07-10">
+                    <div class="project-card__image-container">
+                        <img src="https://kenh14cdn.com/203336854389633024/2022/11/12/cau-be-bao-ve-em-khoi-cho-du-2-14562159-1668237997601392951622.jpg" alt="Ổi, ái cứu gương mặt cho em">
+                        <span class="project-card__tag project-card__tag--urgent">Khẩn cấp</span>
+                    </div>
+                    <div class="project-card__content">
+                        <p class="project-card__organization"><i class="fas fa-clinic-medical"></i> Quỹ Tấm Lòng Đắk Lắk</p>
+                        <h3 class="project-card__title"><a href="project-detail.html">Ổi, ái ơi cứu gương mặt cho em</a></h3>
+                       <div class="project-card__stats">
+                            <div class="stat-item">
+                                <span class="funded-amount">12.288.500đ</span>
+                                <span class="stat-label">Đã huy động</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="progress-percentage">61.4%</span>
+                                <span class="stat-label">Hoàn thành</span>
+                            </div>
+                        </div>
+                         <div class="progress-bar-container mb-2">
+                            <div class="progress-bar" style="width: 61.4%;"></div>
+                        </div>
+                        <p class="goal-info">Mục tiêu: <span class="goal-amount">20.000.000đ</span></p>
+                        <div class="project-card__countdown" data-end="2024-11-30T23:59:59">Đang tải...</div>
+                        <a href="#" class="btn btn-primary project-card__cta donate-btn">Ủng Hộ Ngay</a>
+                    </div>
+                </div>
+
+                <!-- Card dự án đã kết thúc mẫu 1 -->
+                 <div class="project-card card project-card--completed" data-category="YTe" data-status="completed" data-amount="30280100" data-percent="100.9" data-startdate="2023-10-01">
+                    <div class="project-card__image-container">
+                        <img src="https://nangbuoctuoitho.org/image-data/1360-1000/nangbuoctuoitho.org/static/upload/images/thong-tin/Website-1920-X-1080-Px.png" alt="Dự án đã xong">
+                         <span class="project-card__tag project-card__tag--completed">Đã hoàn thành</span>
+                    </div>
+                    <div class="project-card__content">
+                        <p class="project-card__organization"><i class="fas fa-check-circle"></i> Quỹ Từ thiện Nắng bước tuổi thơ</p>
+                        <h3 class="project-card__title"><a href="project-detail-completed.html">Chung tay cứu lấy đôi mắt bé Lê Huỳnh Gia Khánh</a></h3>
+                        <div class="project-card__stats">
+                             <div class="stat-item">
+                                <span class="funded-amount">30.280.100đ</span>
+                                <span class="stat-label">Đã huy động</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="progress-percentage progress-percentage--completed">100.9%</span>
+                                <span class="stat-label">Vượt mục tiêu</span>
+                            </div>
+                        </div>
+                        <div class="progress-bar-container mb-2">
+                            <div class="progress-bar progress-bar--completed" style="width: 100%;"></div>
+                        </div>
+                         <p class="goal-info">Mục tiêu: <span class="goal-amount">30.000.000đ</span></p>
+                        <a href="project-detail-completed.html" class="btn btn-secondary project-card__cta">Xem Báo Cáo</a>
+                    </div>
+                </div>
+
+                <!-- Card dự án đã kết thúc mẫu 2 -->
+                 <div class="project-card card project-card--completed" data-category="TreEm" data-status="completed" data-amount="875611000" data-percent="100.0" data-startdate="2023-08-15">
+                    <div class="project-card__image-container">
+                        <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/06/Hoi-Bao-tro-tre-em-TP.HCM-HCMC-Child-Welfare-Association.png" alt="Dự án xe đạp">
+                         <span class="project-card__tag project-card__tag--completed">Đã hoàn thành</span>
+                    </div>
+                    <div class="project-card__content">
+                        <p class="project-card__organization"><i class="fas fa-check-circle"></i> Quỹ Bảo trợ trẻ em Việt Nam</p>
+                        <h3 class="project-card__title"><a href="project-detail-completed.html">Gom xe đạp, góp tương lai</a></h3>
+                        <div class="project-card__stats">
+                             <div class="stat-item">
+                                <span class="funded-amount">875.611.000đ</span>
+                                <span class="stat-label">Đã huy động</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="progress-percentage progress-percentage--completed">100.0%</span>
+                                <span class="stat-label">Hoàn thành</span>
+                            </div>
+                        </div>
+                        <div class="progress-bar-container mb-2">
+                            <div class="progress-bar progress-bar--completed" style="width: 100%;"></div>
+                        </div>
+                         <p class="goal-info">Mục tiêu: <span class="goal-amount">875.000.000đ</span></p>
+                        <a href="project-detail-completed.html" class="btn btn-secondary project-card__cta">Xem Báo Cáo</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Donation Modal -->
+        <div id="donationModal" class="modal">
+            <div class="modal-content">
+                <span class="close-button" title="Đóng">×</span>
+                <h2>Ủng hộ dự án: <span id="modalProjectTitle">Tên Dự Án</span></h2>
+                <form id="donationForm" action="../thank-you.html?region=VN27" method="get">
+                    <div class="form-group">
+                        <label for="donorName">Tên của bạn:</label>
+                        <input type="text" id="donorName" name="donorName" placeholder="Nguyễn Văn A" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="donorEmail">Email:</label>
+                        <input type="email" id="donorEmail" name="donorEmail" placeholder="email@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="donationAmount">Số tiền ủng hộ (VNĐ):</label>
+                        <input type="number" id="donationAmount" name="donationAmount" placeholder="Tối thiểu 10.000" min="10000" step="1000" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="donationMessage">Lời nhắn (tùy chọn):</label>
+                        <textarea id="donationMessage" name="donationMessage" rows="3" placeholder="Lời chúc của bạn đến dự án..."></textarea>
+                    </div>
+                    <fieldset class="form-group">
+                        <legend>Chọn phương thức thanh toán (mô phỏng):</legend>
+                        <div class="payment-options">
+                            <label><input type="radio" name="paymentMethod" value="momo" checked> <img src="https://upload.wikimedia.org/wikipedia/vi/f/fe/MoMo_Logo.png" alt="Momo" class="payment-logo" onerror="this.style.display='none'; this.nextSibling.textContent='Momo';"> Momo</label>
+                            <label><input type="radio" name="paymentMethod" value="zalopay"> <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Logo-ZaloPay-Square.png" alt="ZaloPay" class="payment-logo" onerror="this.style.display='none'; this.nextSibling.textContent='ZaloPay';"> ZaloPay</label>
+                            <label><input type="radio" name="paymentMethod" value="vnpay"> <img src="https://inkythuatso.com/uploads/images/2021/12/vnpay-logo-inkythuatso-01-13-16-26-42.jpg" alt="VNPay" class="payment-logo" onerror="this.style.display='none'; this.nextSibling.textContent='VNPay';"> VNPay</label>
+                            <label><input type="radio" name="paymentMethod" value="paypal"> <img src="https://cdn.pixabay.com/photo/2015/05/26/09/37/paypal-784404_1280.png" alt="PayPal" class="payment-logo" onerror="this.style.display='none'; this.nextSibling.textContent='PayPal';"> PayPal</label>
+                            <label><input type="radio" name="paymentMethod" value="stripe"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Stripe_Logo%2C_revised_2016.svg/2560px-Stripe_Logo%2C_revised_2016.svg.png" alt="Stripe" class="payment-logo" onerror="this.style.display='none'; this.nextSibling.textContent='Stripe';"> Stripe</label>
+                        </div>
+                    </fieldset>
+                    <div class="modal-actions">
+                        <p class="processing-message" style="display:none; color: #007bff; margin-bottom:10px;">Đang xử lý, vui lòng chờ...</p>
+                        <button type="submit" id="openDonationBtn" class="btn btn-primary btn-block">Xác nhận ủng hộ</button>
+                    </div>
+                    <p class="note mt-2" style="font-size: 0.85em; text-align: center; color: #6c757d;">Lưu ý: Đây là giao diện mô phỏng. Chưa có chức năng xử lý dữ liệu hay thanh toán thực tế nào được tích hợp.</p>
+                </form>
+            </div>
+        </div>
+        <!-- End Donation Modal -->
+
+        <!-- Simulated VNPAY Payment Page -->
+        <div id="simulatedVnpayPage" class="vnpay-payment-page" style="display: none;">
+            <div class="vnpay-header">
+                <img src="/images/vnpay_logo_full.png" alt="VNPAY Logo" class="vnpay-logo-main" onerror="this.style.display='none'; this.parentElement.innerHTML = 'VNPAY';">
+                <div class="vnpay-countdown">
+                    Giao dịch hết hạn sau: <span id="vnpayTimerMinutes">14</span>:<span id="vnpayTimerSeconds">59</span>
+                </div>
+                <div class="vnpay-lang">
+                    <img src="/images/uk_flag.png" alt="EN" onerror="this.style.display='none'; this.parentElement.innerHTML = 'EN';" style="width: 20px; vertical-align: middle;"> En
+                </div>
+            </div>
+
+            <div class="vnpay-alert">
+                <i class="fas fa-exclamation-triangle"></i> Quý khách vui lòng không tắt trình duyệt cho đến khi nhận được kết quả giao dịch trên website. Trường hợp đã thanh toán nhưng chưa nhận kết quả giao dịch, vui lòng bấm "Tải lại" để nhận kết quả. Xin cảm ơn!
+            </div>
+
+            <div class="vnpay-content-wrapper">
+                <div class="vnpay-order-info">
+                    <h3>Thông tin đơn hàng</h3>
+                    <div class="info-item">
+                        <span class="label">Số tiền thanh toán</span>
+                        <span class="value" id="vnpayOrderAmount">0<sup>VND</sup></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Giá trị đơn hàng</span>
+                        <span class="value" id="vnpayBaseAmount">0<sup>VND</sup></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Phí giao dịch</span>
+                        <span class="value" id="vnpayFee">0<sup>VND</sup></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Mã đơn hàng</span>
+                        <span class="value" id="vnpayOrderId">N/A</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Nhà cung cấp</span>
+                        <span class="value">CÔNG TY CỔ PHẦN GIVEMORE (Mô phỏng)</span>
+                    </div>
+                </div>
+
+                <div class="vnpay-qr-section">
+                    <h4>Quét mã qua ứng dụng Ngân hàng/ Ví điện tử</h4>
+                    <a href="#" class="vnpay-instructions-link" onclick="event.preventDefault(); alert('Hiển thị hướng dẫn thanh toán (demo)');"><i class="fas fa-info-circle"></i> Hướng dẫn thanh toán</a>
+                    <div class="vnpay-qr-code">
+                        <img src="https://kalite.vn/wp-content/uploads/2021/09/maqrkalite.jpg" alt="VNPAY QR Code" id="vnpayQrImage" onerror="this.alt='QR Code Image Missing'; this.style.border='1px solid red';">
+                        <span>Scan to Pay</span>
+                    </div>
+                    <button class="btn btn-secondary btn-vnpay-cancel" id="vnpayCancelPayment">Hủy thanh toán</button>
+                </div>
+            </div>
+
+            <div class="vnpay-supported-banks">
+                <p>Danh sách Ngân hàng/ Ví điện tử có áp dụng khuyến mãi (Hình ảnh mang tính minh họa)</p>
+                <div class="bank-logos">
+                    <img src="images/https://static.wixstatic.com/media/9d8ed5_810e9e3b7fad40eca3ec5087da674662~mv2.png/v1/fill/w_560,h_560,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/9d8ed5_810e9e3b7fad40eca3ec5087da674662~mv2.png" alt="Vietcombank" onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', '<span class=\'img-fallback\'>Vietcombank</span>')">
+                    <img src="images/https://inkythuatso.com/uploads/thumbnails/800/2021/10/logo-bidv-inkythuatso-22-08-48-55.jpg" alt="BIDV" onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', '<span class=\'img-fallback\'>BIDV</span>')">
+                    <img src="images/https://static.wixstatic.com/media/9d8ed5_e6ced15f72434992af9b5926526c78f6~mv2.jpg/v1/fill/w_980,h_980,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/9d8ed5_e6ced15f72434992af9b5926526c78f6~mv2.jpg" alt="ACB" onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', '<span class=\'img-fallback\'>ACB</span>')">
+                    <img src="images/https://cdn.haitrieu.com/wp-content/uploads/2022/10/Logo-MoMo-Square-300x300.png" alt="Momo" onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', '<span class=\'img-fallback\'>Momo</span>')">
+                    <img src="images/https://cdn.haitrieu.com/wp-content/uploads/2022/10/Logo-ZaloPay-Square.png" alt="ZaloPay" class="payment-logo" onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', '<span class=\'img-fallback\'>ZaloPay</span>')">
+                </div>
+            </div>
+            
+            <div class="vnpay-footer-actions">
+                <button class="btn btn-primary btn-lg" id="simulateVnpaySuccess">MÔ PHỎNG THANH TOÁN THÀNH CÔNG</button>
+                 <p style="font-size:0.8em; margin-top:10px; color: #555;">(Nhấn nút này để tiếp tục đến trang cảm ơn - Chỉ dành cho mục đích Demo)</p>
+            </div>
+
+            <div class="vnpay-footer-contact">
+                <span><i class="fas fa-phone-alt"></i> 1900.5555.77 (Mô phỏng)</span>
+                <span><i class="fas fa-envelope"></i> hotrovnpay@vnpay.vn (Mô phỏng)</span>
+                <img src="images/https://png.pngtree.com/png-clipart/20250309/original/pngtree-secure-checkout-lock-icon-png-image_20610753.png" alt="Secure Checkout" class="vnpay-secure-logo" onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', '<span class=\'img-fallback\'>Secure</span>')">
+            </div>
+        </div>
+        <!-- End Simulated VNPAY Payment Page -->
+<!-- Nút Đóng chính giữa, bo góc, màu xanh bootstrap -->
+  <div class="text-center my-4">
+    <button id="closeRegionDetailBtn" class="btn btn-primary rounded-pill">
+      Đóng
+    </button>
+  </div>
+  </div>
+    </div> <!-- End .container -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/javaScript/main.js"></script>
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+  // 1. Đọc tham số region
+  const params = new URLSearchParams(window.location.search);
+  const region = params.get('region') || '';
+  console.log('Loaded region page for:', region);
+
+  // 2. Bắt form submit để show VNPAY
+  const form = document.getElementById('donationForm');
+  if (!form) { console.error('donationForm not found'); return; }
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    console.log('Form submitted, showing VNPAY');
+    document.getElementById('donationModal').style.display     = 'none';
+    document.getElementById('simulatedVnpayPage').style.display = 'block';
+  });
+
+  // 3. Bắt nút simulate success
+  const successBtn = document.getElementById('simulateVnpaySuccess');
+  if (!successBtn) {
+    console.error('simulateVnpaySuccess button not found');
+    return;
+  }
+  successBtn.addEventListener('click', () => {
+    console.log('Simulate VNPAY clicked');
+    const donorEmail = form.donorEmail.value;
+    const amount     = form.donationAmount.value;
+    const methodEls  = form.paymentMethod;
+    const method     = methodEls.value;
+    const orderId    = 'ORD' + Date.now();
+    const projectRaw = document.getElementById('modalProjectTitle').textContent;
+    console.log({ donorEmail, amount, method, projectRaw, orderId });
+
+    // Build query string
+    const qs = new URLSearchParams({
+      region,
+      project: encodeURIComponent(projectRaw),
+      email: donorEmail,
+      amount,
+      method,
+      orderId
+    }).toString();
+
+    // 4. Điều hướng trong iframe → dùng đường dẫn tuyệt đối
+    // Giả sử thank-you.html được serve tại /html/thank-you.html
+    const target = `/html/thank-you.html?${qs}`;
+    console.log('Redirecting iframe to:', target);
+    window.location.href = target;
+  });
+
+  // 5. Nút Đóng
+  const closeBtn = document.getElementById('closeRegionDetailBtn');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      console.log('Close region detail');
+      const collapseEl = window.parent.document.getElementById('regionDetail');
+      window.parent.bootstrap.Collapse
+        .getOrCreateInstance(collapseEl)
+        .hide();
+    });
+  }
+});
+
+ //Xử lý Nút đóng trong quy.html
+    document.getElementById('closeRegionDetailBtn').addEventListener('click', function() {
+      // Lấy collapse container trên parent page
+      const collapseEl = window.parent.document.getElementById('regionDetail');
+      // Dùng bootstrap.Collapse trong parent để ẩn
+      const bsCollapse = window.parent.bootstrap.Collapse.getOrCreateInstance(collapseEl);
+      bsCollapse.hide();
+    });
+</script>
+</body>
+</html>
